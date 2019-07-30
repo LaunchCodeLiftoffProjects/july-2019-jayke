@@ -9,11 +9,11 @@
 
     <form th:object="${searchForm}" method="post">
         <div>
-            <label th:for="name">Name</label>
+            <label th:for="name">Search: </label>
             <input th:field="*{name}" />
 
         </div>
-        <input type="submit" value="Return name" />
+        <input type="submit" value="Return search" />
     </form>
 
 
