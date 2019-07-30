@@ -7,6 +7,15 @@
 <body>
     <h1 th:text="${title}">This is the index template. Bloop.</h1>
 
+    <form th:object="${searchForm}" method="post">
+        <div>
+            <label th:for="name">Name</label>
+            <input th:field="*{name}" />
+
+        </div>
+        <input type="submit" value="Return name" />
+    </form>
+
 
 </body>
 </html>
