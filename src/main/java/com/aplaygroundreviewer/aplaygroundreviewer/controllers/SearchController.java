@@ -22,14 +22,14 @@ public class SearchController {
     public String index(Model model, SearchForm searchForm) {
         String name = searchForm.getName();
 
-        return "redirect:/search?name=" + name;
+        return "redirect:/search?term=" + name;
     }
 
     @RequestMapping(value = "search", method = RequestMethod.GET)
     //public String displaySearch(Model model, String name)
     public String displaySearch(Model model, HttpServletRequest request) {
         //model.addAttribute("aname", name);
-        String name = request.getParameter("name");
+        String name = request.getParameter("term");
         model.addAttribute("aname", name);
         return "search-results"; //SUCCESSS!!!!!!
     }
