@@ -18,7 +18,7 @@ public class SearchController {
 
     @RequestMapping(value = "", method = RequestMethod.GET)
     public String index(Model model) {
-        model.addAttribute("title", "Welcome to Playground Reviewer");
+        model.addAttribute("title", "Welcome to STL Playgrounds Finder");
         model.addAttribute(new SearchForm());
         model.addAttribute("playgrounds", playgrounds);
         return "index";
