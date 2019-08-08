@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+    <head>
+        <meta charset="UTF-8"/>
+        <title></title>
+    </head>
+    <body>
+        <h1 th:text="${title}">View a Playground</h1>
+
+        <div th:if="${playground}">
+            <table>
+                <tr>
+                    <th>Name</th>
+                    <td th:text="${playground.name}"></td>
+                </tr>
+                <tr>
+                    <th>Description</th>
+                    <td th:text="${playground.description}"></td>
+                </tr>
+            </table>
+        </div>
+    </body>
+</html>
