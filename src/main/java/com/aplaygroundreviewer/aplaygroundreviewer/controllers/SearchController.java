@@ -20,6 +20,7 @@ public class SearchController {
     public String index(Model model) {
         model.addAttribute("title", "Welcome to Playground Reviewer");
         model.addAttribute(new SearchForm());
+        model.addAttribute("playgrounds", playgrounds);
         return "index";
     }
 
@@ -49,7 +50,7 @@ public class SearchController {
     public String processAddPlaygroundForm(@RequestParam String playgroundName, @RequestParam String playgroundDescription) {
         Playground newPlayground = new Playground(playgroundName, playgroundDescription);
         playgrounds.add(newPlayground);
-        return "redirect: ";
+        return "redirect:";
     }
 
 }
