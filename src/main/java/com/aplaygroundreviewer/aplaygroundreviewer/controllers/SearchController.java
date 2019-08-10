@@ -85,6 +85,8 @@ public class SearchController {
         return "redirect:";
     }
 
+
+    //Viewing a Playground's details by ID in URL
     @RequestMapping(value="view/{id}", method = RequestMethod.GET)
     public String viewPlayground(Model model,
                                  @PathVariable int id){
@@ -92,6 +94,7 @@ public class SearchController {
         model.addAttribute("playground", playground);
         model.addAttribute("title", "View a Playground");
 
+        //returning the 'view.html'
         return "view";
 
     }
