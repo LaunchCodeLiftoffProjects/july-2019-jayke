@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org/">
+
+<head th:fragment="head">
+
+    <meta charset="UTF-8" />
+    <title>Title</title>
+
+    <!-- Bootstrap stylesheet | Template used: bootswatch.com/Journal -->
+    <link href="https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/simplex/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-1OYccka9EByiS23wvPFiYHBPRAgU91xYVFb8g8sen6vRiBI5Uko6+B87q8zPGUnA"
+          crossorigin="anonymous" />
+</head>
+
+<body>
+
+    <!-- Navigation Bar-->
+    <nav th:fragment="nav-bar" class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <!--Navbar Header -->
+        <a th:href="@{/}" class="navbar-brand">St. Louis Playground Finder</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Navbar Items-->
+        <div class="collapse navbar-collapse" id="navbarColor02">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a th:href="@{/}" class="nav-link">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a th:href="@{/}" class="nav-link">Search</a>
+                </li>
+                <li class="nav-item">
+                    <a th:href="@{/}" class="nav-link">Playgrounds</a>
+                </li>
+            </ul>
+            <!-- Navbar Search form-->
+            <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="text" placeholder="Search" />
+                <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+            </form>
+        </div>
+    </nav>
+
+
+</body>
+</html>

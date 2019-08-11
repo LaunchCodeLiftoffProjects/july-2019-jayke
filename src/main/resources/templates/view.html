@@ -5,12 +5,13 @@
         <title></title>
     </head>
     <body>
-        //Heading of page
+        <!-- Heading of page -->
         <h1 th:text="${title}">View a Playground</h1>
 
-        //if playground object exists...
+
+        <!-- if playground object exists... -->
         <div th:if="${playground}">
-            //table of playground details. Revise when database columns are flushed out.
+            <!-- table of playground details. Revise when database columns are flushed out. -->
             <table>
                 <tr>
                     <th>Name</th>
@@ -21,6 +22,18 @@
                     <td th:text="${playground.description}"></td>
                 </tr>
             </table>
+
+            <!-- table of equipment and amenities
+            <table>
+                <tr>
+                    <th colspan="2">Equipment</th>
+                </tr>
+                <tr th:each="item : ${equipment.playground}">
+                    <th th:text="${}">Type</th>
+                    <td th:text="${}">Y/N</td>
+                </tr>
+            </table>
+            -->
         </div>
     </body>
 </html>
