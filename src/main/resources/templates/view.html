@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
-    <head>
-        <meta charset="UTF-8"/>
-        <title></title>
-    </head>
-    <body>
+    <head th:replace="fragments :: head"></head>
+
+    <body class="container body-content">
+        <!--Navigation Bar-->
+        <nav th:replace="fragments :: nav-bar"></nav>
+
         <!-- Heading of page -->
         <h1 th:text="${title}">View a Playground</h1>
 
@@ -22,18 +23,6 @@
                     <td th:text="${playground.description}"></td>
                 </tr>
             </table>
-
-            <!-- table of equipment and amenities
-            <table>
-                <tr>
-                    <th colspan="2">Equipment</th>
-                </tr>
-                <tr th:each="item : ${equipment.playground}">
-                    <th th:text="${}">Type</th>
-                    <td th:text="${}">Y/N</td>
-                </tr>
-            </table>
-            -->
         </div>
     </body>
 </html>

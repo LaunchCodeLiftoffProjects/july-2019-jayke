@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
-<head>
+<head th:replace="fragments :: head"></head>
 
-</head>
 <body class="container body-content">
-
+<nav th:replace="fragments :: nav-bar"></nav>
 <h1 th:text="'Welcome ' + ${user}">Display a name</h1>
 
 </body>
