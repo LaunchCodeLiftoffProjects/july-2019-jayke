@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 public class SearchController {
@@ -29,12 +30,15 @@ public class SearchController {
         model.addAttribute(new SearchForm());
         //model.addAttribute("playgrounds", playgrounds);
         model.addAttribute("playgrounds", playgroundDao.findAll());
+        //List<Playground> alist = playgroundDao.findByName("burp");
         return "index";
     }
 
     @RequestMapping(value = "", method = RequestMethod.POST)
     public String index(Model model, SearchForm searchForm) {
         String name = searchForm.getName();
+
+
 
         return "redirect:/search?term=" + name;
     }
@@ -45,6 +49,8 @@ public class SearchController {
         //model.addAttribute("aname", name);
         String name = request.getParameter("term");
         model.addAttribute("aname", name);
+        //List<Playground> anotherlist = playgroundDao.findByName(name);
+        model.addAttribute("anotherlistmodel",playgroundDao.findByName(name));
         return "search-results"; //SUCCESSS!!!!!!
     }
 
