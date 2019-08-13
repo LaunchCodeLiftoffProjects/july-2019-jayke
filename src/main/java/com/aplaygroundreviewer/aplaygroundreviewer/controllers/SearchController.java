@@ -76,9 +76,21 @@ public class SearchController {
     }
 
 
+    @RequestMapping(value = "remove", method = RequestMethod.GET)
+    public String displayRemovePlaygroundForm(Model model) {
+        model.addAttribute("playgrounds", playgroundDao.findAll());
+        model.addAttribute("title", "Remove Playground");
+        return "remove";
+    }
 
+    @RequestMapping(value = "remove", method = RequestMethod.POST)
+    public String processRemovePlaygroundForm(@ RequestParam int[] playgroundIds) {
 
+        for (int playgroundId : playgroundIds) {
+            playgroundDao.delete(playgroundId);
+        }
 
-
+        return "redirect:";
+    }
 
 }
