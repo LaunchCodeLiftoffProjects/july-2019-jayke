@@ -1,7 +1,7 @@
 package com.aplaygroundreviewer.aplaygroundreviewer.controllers;
 
-import com.aplaygroundreviewer.aplaygroundreviewer.models.Playground;
-import com.aplaygroundreviewer.aplaygroundreviewer.models.data.PlaygroundDao;
+import com.aplaygroundreviewer.aplaygroundreviewer.models.dto.Playground;
+import com.aplaygroundreviewer.aplaygroundreviewer.models.dao.PlaygroundDao;
 import com.aplaygroundreviewer.aplaygroundreviewer.models.forms.SearchForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
