@@ -64,7 +64,7 @@ public class SearchController {
         }
 
         playgroundDao.save(newPlayground);
-        return "redirect:";
+        return "redirect:view/" + newPlayground.getId();
     }
 
 
