@@ -50,7 +50,7 @@ public class SearchController {
         String name = request.getParameter("term");
         model.addAttribute("aname", name);
         //List<Playground> anotherlist = playgroundDao.findByName(name);
-        model.addAttribute("anotherlistmodel",playgroundDao.findByNameContaining(name));
+        model.addAttribute("anotherlistmodel",playgroundDao.findByNameOrDescriptionContaining(name, name));
         return "search-results"; //SUCCESSS!!!!!!
     }
 
