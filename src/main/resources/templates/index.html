@@ -17,17 +17,6 @@
     </form>
 
 
-    <p th:unless="${playgrounds} and ${playgrounds.size()}">no playgrounds :(</p>
-    <table>
-        <tr>
-            <th>Name</th>
-            <th>Description</th>
-        </tr>
-        <tr th:each="playground : ${playgrounds}">
-            <td th:text="${playground.name}"></td>
-            <td th:text="${playground.description}"></td>
 
-        </tr>
-    </table>
 </body>
 </html>
