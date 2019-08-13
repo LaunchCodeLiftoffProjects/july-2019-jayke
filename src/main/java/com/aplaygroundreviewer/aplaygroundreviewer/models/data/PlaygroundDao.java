@@ -9,4 +9,5 @@ import java.util.List;
 public interface PlaygroundDao extends JpaRepository<Playground, Integer> {
 
     List<Playground> findByName(String name);
+    List<Playground> findByNameContaining(String name);
 }
