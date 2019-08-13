@@ -10,6 +10,7 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
@@ -84,7 +85,7 @@ public class SearchController {
     }
 
     @RequestMapping(value = "remove", method = RequestMethod.POST)
-    public String processRemovePlaygroundForm(@ RequestParam int[] playgroundIds) {
+    public String processRemovePlaygroundForm(@RequestParam int[] playgroundIds) {
 
         for (int playgroundId : playgroundIds) {
             playgroundDao.delete(playgroundId);
