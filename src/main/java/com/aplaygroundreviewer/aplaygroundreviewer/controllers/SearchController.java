@@ -10,6 +10,7 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
@@ -76,9 +77,21 @@ public class SearchController {
     }
 
 
+    @RequestMapping(value = "remove", method = RequestMethod.GET)
+    public String displayRemovePlaygroundForm(Model model) {
+        model.addAttribute("playgrounds", playgroundDao.findAll());
+        model.addAttribute("title", "Remove Playground");
+        return "remove";
+    }
 
+    @RequestMapping(value = "remove", method = RequestMethod.POST)
+    public String processRemovePlaygroundForm(@RequestParam int[] playgroundIds) {
 
+        for (int playgroundId : playgroundIds) {
+            playgroundDao.delete(playgroundId);
+        }
 
-
+        return "redirect:";
+    }
 
 }

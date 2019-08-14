@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8"/>
+    <title></title>
+</head>
+<body>
+    <h1 th:text="${title}">Default Title</h1>
+
+    <form method="post">
+        <div th:each="playground : ${playgrounds}">
+            <input type="checkbox" name="playgroundIds" th:value="${playground.id}" th:id="${playground.id}"/>
+            <label th:for="${playground.id}" th:text="${playground.name}"></label>
+            <br />
+
+        </div>
+        <input type="submit" value="Remove Playground" />
+
+    </form>
+
+</body>
+</html>
