@@ -7,10 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
@@ -72,7 +69,7 @@ public class SearchController {
         }
 
         playgroundDao.save(newPlayground);
-        return "redirect:";
+        return "redirect:view/" + newPlayground.getId();
     }
 
 
@@ -91,6 +88,20 @@ public class SearchController {
         }
 
         return "redirect:";
+    }
+
+
+    //Viewing a Playground's details by ID in URL
+    @RequestMapping(value="view/{id}", method = RequestMethod.GET)
+    public String viewPlayground(Model model,
+                                 @PathVariable int id){
+        Playground playground = playgroundDao.findOne(id);
+        model.addAttribute("playground", playground);
+        model.addAttribute("title", "View a Playground");
+
+        //returning the 'view.html'
+        return "view";
+
     }
 
 }

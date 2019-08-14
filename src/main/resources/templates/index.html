@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
-<head>
-    <meta charset="UTF-8"/>
-    <title></title>
-</head>
-<body>
+<head th:replace="fragments :: head"></head>
+
+<body class="container body-content">
+
+    <nav th:replace="fragments :: nav-bar"></nav>
+
     <h1 th:text="${title}">This is the index template. Bloop.</h1>
 
     <form th:object="${searchForm}" method="post">
@@ -17,17 +18,6 @@
     </form>
 
 
-    <p th:unless="${playgrounds} and ${playgrounds.size()}">no playgrounds :(</p>
-    <table>
-        <tr>
-            <th>Name</th>
-            <th>Description</th>
-        </tr>
-        <tr th:each="playground : ${playgrounds}">
-            <td th:text="${playground.name}"></td>
-            <td th:text="${playground.description}"></td>
 
-        </tr>
-    </table>
 </body>
 </html>
