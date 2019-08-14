@@ -10,5 +10,5 @@ public interface PlaygroundDao extends JpaRepository<Playground, Integer> {
 
     List<Playground> findByName(String name);
     List<Playground> findByNameContaining(String name);
-    List<Playground> findByNameOrDescriptionContaining(String name, String description);
+    List<Playground> findByNameContainingOrDescriptionContaining(String name, String description);
 }

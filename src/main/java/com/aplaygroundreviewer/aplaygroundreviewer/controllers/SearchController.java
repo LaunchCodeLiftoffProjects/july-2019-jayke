@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.ArrayList;
-import java.util.List;
 
 @Controller
 public class SearchController {
@@ -51,7 +50,7 @@ public class SearchController {
         String name = request.getParameter("term");
         model.addAttribute("aname", name);
         //List<Playground> anotherlist = playgroundDao.findByName(name);
-        model.addAttribute("anotherlistmodel",playgroundDao.findByNameOrDescriptionContaining(name, name));
+        model.addAttribute("anotherlistmodel",playgroundDao.findByNameContainingOrDescriptionContaining(name, name));
         return "search-results"; //SUCCESSS!!!!!!
     }
 
