@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+    <head>
+        <meta charset="UTF-8"/>
+        <title></title>
+    </head>
+    <body>
+        <!--Heading of page-->
+        <h1 th:text="${title}">View a Playground</h1>
+
+        <!-- if playground object exists...-->
+        <div th:if="${playground}">
+            <!-- table of playground details. Revise when database columns are flushed out.-->
+            <table>
+                <tr>
+                    <th>Name</th>
+                    <td th:text="${playground.name}"></td>
+                </tr>
+                <tr>
+                    <th>Description</th>
+                    <td th:text="${playground.description}"></td>
+                </tr>
+                <tr>
+
+                </tr>
+            </table>
+        </div>
+    </body>
+</html>
