@@ -7,17 +7,17 @@
 <body>
     <h1 th:text="'Display results with' + ' \'' + ${aname} + '\' ' +'in them:'">Display a name</h1>
 
-    <p th:unless="${playgrounds} and ${playgrounds.size()}">no playgrounds :(</p>
-    <table>
-        <tr>
-            <th>Name</th>
-            <th>Description</th>
-        </tr>
-        <tr th:each="playground : ${playgrounds}">
-            <td th:text="${playground.name}"></td>
-            <td th:text="${playground.description}"></td>
+<p th:unless="${anotherlistmodel} and ${anotherlistmodel.size()}"> no results</p>
 
-        </tr>
-    </table>
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Description</th>
+    </tr>
+    <tr th:each="anitem: ${anotherlistmodel}">
+        <td th:text="${anitem.name}"></td>
+        <td th:text="${anitem.description}"></td>
+    </tr>
+</table>
 </body>
 </html>
