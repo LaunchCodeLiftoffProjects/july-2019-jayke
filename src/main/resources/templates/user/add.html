@@ -1,9 +1,16 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<<<<<<< HEAD
 <head>
 
 </head>
 <body class="container body-content">
+=======
+<head th:replace="fragments :: head"></head>
+
+<body class="container body-content">
+<nav th:replace="fragments :: nav-bar"></nav>
+>>>>>>> origin/bootstrap-template
     <h1 th:text="${title}">Default Title</h1>
 
    <form method="post" th:object="${user}">
