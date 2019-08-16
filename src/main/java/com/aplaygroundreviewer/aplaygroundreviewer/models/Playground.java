@@ -1,8 +1,6 @@
 package com.aplaygroundreviewer.aplaygroundreviewer.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -21,9 +19,21 @@ public class Playground {
     @Size(min=3, max=400)
     private String description;
 
+    @OneToOne
+    @JoinColumn(name = "equipment_id")
+    private Equipment equipment;
+
     public Playground(String name, String description) {
         this.name = name;
         this.description = description;
+    }
+
+    public Equipment getEquipment() {
+        return equipment;
+    }
+
+    public void setEquipment(Equipment equipment) {
+        this.equipment = equipment;
     }
 
     public Playground () { }
