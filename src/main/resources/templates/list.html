@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+
+<body class="container body-content">
+    <nav th:replace="fragments :: nav-bar"></nav>
+
+    <div class="card">
+        <div class="card-header">
+            <h1 class="card-title text-center">List of Playgrounds</h1>
+        </div>
+        <div class="card-deck">
+        <h3 th:unless="${playgrounds} and ${playgrounds.size()}">No Playgrounds.</h3>
+        <div class="card" th:each="playground : ${playgrounds}">
+            <img src="..." class="card-img-top" alt="..." height="200" width="200" />
+            <div class="card-body">
+                <h5 class="card-title" th:text="${playground.name}">Card title</h5>
+                <p class="card-text" th:text="${playground.name}">Card Description</p>
+            </div>
+        </div>
+    </div>
+    </div>
+
+
+
+</body>
+</html>

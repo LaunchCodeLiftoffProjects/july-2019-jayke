@@ -104,4 +104,13 @@ public class SearchController {
 
     }
 
+    //Returns all playgrounds
+    @RequestMapping(value="list", method = RequestMethod.GET)
+    public String listPlayground(Model model){
+
+        model.addAttribute("playgrounds", playgroundDao.findAll());
+        model.addAttribute("title", "All Playgrounds");
+        return "list";
+    }
+
 }
