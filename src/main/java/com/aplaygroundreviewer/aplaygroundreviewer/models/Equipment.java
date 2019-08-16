@@ -14,6 +14,7 @@ public class Equipment {
     private Boolean ladder = false;
 
     public Equipment() {
+        this.ladder = false;
     }
 
     public Equipment(Boolean ladder) {
