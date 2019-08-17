@@ -11,13 +11,14 @@ public class Equipment {
     @GeneratedValue
     private int id;
 
-    private Boolean ladder = false;
+    private boolean ladder;
 
     public Equipment() {
-        this.ladder = false;
+      this.ladder = false;
     }
 
-    public Equipment(Boolean ladder) {
+
+    public Equipment(boolean ladder) {
         this.ladder = ladder;
     }
 
@@ -37,11 +38,12 @@ public class Equipment {
         return id;
     }
 
-    public Boolean getLadder() {
+
+    public boolean isLadder() {
         return ladder;
     }
 
-    public void setLadder(Boolean ladder) {
+    public void setLadder(boolean ladder) {
         this.ladder = ladder;
     }
 }

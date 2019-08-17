@@ -23,10 +23,12 @@ public class Playground {
     @JoinColumn(name = "equipment_id")
     private Equipment equipment;
 
+    public Playground () { }
+
     public Playground(String name, String description) {
         this.name = name;
         this.description = description;
-        this.equipment = equipment;
+        this.equipment = new Equipment(false);
     }
 
     public Equipment getEquipment() {
@@ -36,8 +38,6 @@ public class Playground {
     public void setEquipment(Equipment equipment) {
         this.equipment = equipment;
     }
-
-    public Playground () { }
 
     public int getId() {
         return id;
