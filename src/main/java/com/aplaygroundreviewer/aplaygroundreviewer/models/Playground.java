@@ -28,7 +28,7 @@ public class Playground {
     public Playground(String name, String description) {
         this.name = name;
         this.description = description;
-        this.equipment = new Equipment(false);
+        this.equipment = new Equipment();
     }
 
     public Equipment getEquipment() {
