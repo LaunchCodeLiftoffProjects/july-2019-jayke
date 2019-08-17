@@ -19,16 +19,18 @@ public class Playground {
     @Size(min=3, max=400)
     private String description;
 
-    @OneToOne
-    @JoinColumn(name = "equipment_id")
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "equipment_id", unique = true)
     private Equipment equipment;
 
-    public Playground () { }
+    public Playground () {
+        this.equipment = new Equipment(false);
+    }
 
     public Playground(String name, String description) {
         this.name = name;
         this.description = description;
-        this.equipment = new Equipment();
+        this.equipment = new Equipment(false);
     }
 
     public Equipment getEquipment() {

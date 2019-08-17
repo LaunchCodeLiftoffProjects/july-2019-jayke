@@ -11,12 +11,11 @@ public class Equipment {
     @GeneratedValue
     private int id;
 
+    @NotNull
     private boolean ladder;
 
     public Equipment() {
-      this.ladder = false;
     }
-
 
     public Equipment(boolean ladder) {
         this.ladder = ladder;
