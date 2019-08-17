@@ -34,9 +34,6 @@ public class SearchController {
     @RequestMapping(value = "", method = RequestMethod.POST)
     public String index(Model model, SearchForm searchForm) {
         String name = searchForm.getName();
-
-
-
         return "redirect:/search?term=" + name;
     }
 
