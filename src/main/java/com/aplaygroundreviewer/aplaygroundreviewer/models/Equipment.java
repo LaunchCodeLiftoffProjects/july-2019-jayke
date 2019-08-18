@@ -14,11 +14,15 @@ public class Equipment {
     @NotNull
     private boolean ladder;
 
+    @NotNull
+    private boolean swing;
+
     public Equipment() {
     }
 
-    public Equipment(boolean ladder) {
+    public Equipment(boolean ladder, boolean swing) {
         this.ladder = ladder;
+        this.swing = swing;
     }
 
     @OneToOne(mappedBy = "equipment")
@@ -44,6 +48,14 @@ public class Equipment {
 
     public void setLadder(boolean ladder) {
         this.ladder = ladder;
+    }
+
+    public boolean isSwing() {
+        return swing;
+    }
+
+    public void setSwing(boolean swing) {
+        this.swing = swing;
     }
 }
 
