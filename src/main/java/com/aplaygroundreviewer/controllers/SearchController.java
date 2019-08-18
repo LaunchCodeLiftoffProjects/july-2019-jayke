@@ -1,8 +1,10 @@
-package com.aplaygroundreviewer.aplaygroundreviewer.controllers;
+package com.aplaygroundreviewer.controllers;
 
-import com.aplaygroundreviewer.aplaygroundreviewer.models.dto.Playground;
-import com.aplaygroundreviewer.aplaygroundreviewer.models.dao.PlaygroundDao;
-import com.aplaygroundreviewer.aplaygroundreviewer.models.forms.SearchForm;
+
+import com.aplaygroundreviewer.models.dto.User;
+import com.aplaygroundreviewer.models.repositories.PlaygroundDao;
+import com.aplaygroundreviewer.models.dto.Playground;
+import com.aplaygroundreviewer.models.dto.SearchForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -78,11 +80,14 @@ public class SearchController {
         return "remove";
     }
 
+
+
+
     @RequestMapping(value = "remove", method = RequestMethod.POST)
     public String processRemovePlaygroundForm(@ RequestParam int[] playgroundIds) {
 
         for (int playgroundId : playgroundIds) {
-            playgroundDao.delete(playgroundId);
+          // --???  playgroundDao.delete(playgroundId);
         }
 
         return "redirect:";

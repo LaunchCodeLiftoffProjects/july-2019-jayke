@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <title layout:title-pattern="$LAYOUT_TITLE - $CONTENT_TITLE">SpringBoot
+        Thymeleaf</title>
+    <meta
+            content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+            name="viewport"/>
+    <link rel="stylesheet"
+          th:href="@{/assets/bootstrap/css/bootstrap.min.css}"/>
+    <link rel="stylesheet"
+          th:href="@{/assets/font-awesome-4.5.0/css/font-awesome.min.css}"/>
+    <link rel="stylesheet" th:href="@{/assets/css/styles.css}"/>
+
+    <style>
+        .footer {
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            background-color: black;
+            color: white;
+            height: 100px;
+            text-align: center;
+        }
+    </style>
+
+</head>
+
+<body>
+
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <a class="navbar-brand" href="http://localhost:8080">STL Playgrounds</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li><a href="/adduser">Add user</a></li>
+                <li><a href="/add">Add playgound</a></li>
+                <li><a href="/">Search playgound</a></li>
+                <li>
+                    <div sec:authorize="isAuthenticated()" class="collapse navbar-collapse">
+                        <a th:href="@{/logout}">Logout</a>
+						<p>Welcome <span sec:authentication="principal.user.userName"></span></p>
+						<sec:authentication property="authenticateduser" />
+					</div>
+                    <div sec:authorize="isAnonymous()" class="collapse navbar-collapse">
+                        <a th:href="@{/login}">Login</a>
+                        <p>Welcome Visitor</p>
+                    </div>
+                </li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
+
+
+<div class="container">
+
+    <div layout:fragment="content">
+        <!-- Your Page Content Here -->
+    </div>
+
+</div>
+
+
+<div class="footer">
+    <h1>
+        <a href="http://www.javaguides.net/p/spring-boot-tutorial.html">
+            Spring Boot Tutorial</a>
+    </h1>
+
+    <span summary="Example%20Summary" title="Example%20Title" class="socialshare" xml="lang">
+	<!-- Facebook -->
+	<a class="socialshare facebook" href="http://public_domain/public/social/process_share/?fn=SocialShare&socnet=facebook&ssid=brontositeID&tid=%%!tracksent_key%%&title=Example%20Title&summary=Example%20Summary">
+	<img class="socialshare facebook" src="http:///static/static/shared/icons/social/tiny_facebook.gif" border="0px" alt="Share this email with your network on Facebook" />
+	</a>
+        <!-- Twitter -->
+	<a class="socialshare twitter" href="http://public_domain/public/social/process_share/?fn=SocialShare&socnet=twitter&ssid=brontositeID&tid=%%!tracksent_key%%&title=Example%20Title&summary=Example%20Summary">
+	<img class="socialshare twitter" src="http:///static/static/shared/icons/social/tiny_twitter.gif" border="0px" alt="Share this email with your network on Twitter" />
+	</a>
+        <!-- LinkedIn -->
+	<a class="socialshare linkedin" href="http://public_domain/public/social/process_share/?fn=SocialShare&socnet=linkedin&ssid=brontositeID&tid=%%!tracksent_key%%&title=Example%20Title&summary=Example%20Summary">
+	<img class="socialshare linkedin" src="http:///static/static/shared/icons/social/tiny_linkedin.gif" border="0px" alt="Share this email with your network on LinkedIn" />
+	</a>
+        <!-- Myspace -->
+	<a class="socialshare myspace" href="http://public_domain/public/social/process_share/?fn=SocialShare&socnet=myspace&ssid=brontositeID&tid=%%!tracksent_key%%&title=Example%20Title&summary=Example%20Summary">
+	<img class="socialshare myspace" src="http:///static/static/shared/icons/social/tiny_myspace.gif" border="0px" alt="Share this email with your network on MySpace" />
+	</a>
+        <!-- Digg -->
+	<a class="socialshare digg" href="http://public_domain/public/social/process_share/?fn=SocialShare&socnet=digg&ssid=&tid=brontositeID%%!tracksent_key%%&title=Example%20Title&summary=Example%20Summary">
+	<img class="socialshare linkedin" src="http:///static/static/shared/icons/social/tiny_digg.gif" border="0px" alt="Share this email with your network on Digg" />
+	</a>
+</span>
+</div>
+
+</body>
+</html>

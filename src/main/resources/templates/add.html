@@ -1,24 +1,30 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<html lang="en" xmlns:th="http://www.thymeleaf.org/"
+      xmlns:layout="http://www.w3.org/1999/xhtml"
+      layout:decorate="~{layout}">
 <head>
     <meta charset="UTF-8"/>
     <title></title>
 </head>
 <body>
-<h1 th:text="${title}">Title</h1>
-<form method="post" th:object="${playground}">
-    <div>
-        <label th:for="name">Name</label>
-        <input th:field="*{name}" />
-        <span th:errors="*{name}"></span>
-    </div>
-    <div>
-        <label th:for="description">Description</label>
-        <input th:field="*{description}" />
-        <span th:errors="*{description}"></span>
-    </div>
-    <input type="submit" value="Add Playground" />
-</form>
+<div layout:fragment="content">
+
+    <h1 th:text="${title}">Title</h1>
+    <form method="post" th:object="${playground}" th:action="@{/add}">
+        <div>
+            <label th:for="name">Name</label>
+            <input th:field="*{name}"/>
+            <span th:errors="*{name}"></span>
+        </div>
+        <div>
+            <label th:for="description">Description</label>
+            <input th:field="*{description}"/>
+            <span th:errors="*{description}"></span>
+        </div>
+        <input type="submit" value="Add Playground"/>
+    </form>
+
+</div>
 
 </body>
 </html>

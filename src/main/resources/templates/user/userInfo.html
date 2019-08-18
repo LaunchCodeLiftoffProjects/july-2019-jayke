@@ -1,11 +1,16 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<html lang="en" xmlns:th="http://www.thymeleaf.org/"
+      xmlns:layout="http://www.w3.org/1999/xhtml"
+      layout:decorate="~{layout}"><
+
 <head>
 
 </head>
 <body class="container body-content">
+<div layout:fragment="content">
 
-<h1 th:text="'Welcome ' + ${user}">Display a name</h1>
+    <h1 th:text="'Welcome ' + ${user}">Display a name</h1>
 
+    <div>
 </body>
 </html>

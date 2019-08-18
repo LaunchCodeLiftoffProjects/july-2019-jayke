@@ -1,43 +1,50 @@
-buildscript {
-	repositories {
-		mavenCentral()
-	}
-	dependencies {
-		classpath 'org.springframework.boot:spring-boot-gradle-plugin:1.5.21.RELEASE'
-	}
-}
-
 plugins {
 	id 'java'
+	id 'maven-publish'
 }
 
-apply plugin: 'org.springframework.boot'
+repositories {
+	mavenLocal()
+	maven {
+		url = 'http://repo.maven.apache.org/maven2'
+	}
+}
 
 group = 'com.aplaygroundreviewer'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '1.8'
 
-configurations {
-	developmentOnly
-	runtimeClasspath {
-		extendsFrom developmentOnly
+dependencies {
+	compile 'org.springframework.boot:spring-boot-starter-web:2.0.4.RELEASE'
+	compile 'org.springframework.boot:spring-boot-starter-thymeleaf:2.0.4.RELEASE'
+	compile 'nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect:2.3.0'
+	compile 'org.springframework.boot:spring-boot-starter-security:2.0.4.RELEASE'
+	compile 'org.thymeleaf.extras:thymeleaf-extras-springsecurity4:3.0.2.RELEASE'
+	compile 'org.springframework.boot:spring-boot-starter-data-jpa:2.0.4.RELEASE'
+	compile 'org.springframework.boot:spring-boot-devtools:2.0.4.RELEASE'
+	compile 'com.h2database:h2:1.4.197'
+	compile 'mysql:mysql-connector-java:5.1.46'
+	compile 'javax.xml.bind:jaxb-api:2.3.0'
+	compile 'org.projectlombok:lombok:1.18.8'
+	compile group: 'org.javassist', name: 'javassist', version: '3.25.0-GA'
+	testCompile 'org.springframework.boot:spring-boot-starter-test:2.0.4.RELEASE'
+
+}
+
+group = 'com.apress'
+version = '1.0-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+publishing {
+	publications {
+		maven(MavenPublication) {
+			from(components.java)
+		}
 	}
 }
 
-repositories {
-	mavenCentral()
+tasks.withType(JavaCompile) {
+	options.encoding = 'UTF-8'
 }
 
-dependencies {
-	compile 'org.springframework.boot:spring-boot-starter-thymeleaf'
-	compile 'org.springframework.boot:spring-boot-starter-web'
-	compile('org.springframework.boot:spring-boot-starter-data-jpa')
-	compile('mysql:mysql-connector-java')
-	developmentOnly 'org.springframework.boot:spring-boot-devtools'
-	testCompile 'org.springframework.boot:spring-boot-starter-test'
 
-}
-
-bootRun {
-	addResources = true
-}

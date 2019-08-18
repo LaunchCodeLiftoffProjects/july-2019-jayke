@@ -1,11 +1,11 @@
-package com.aplaygroundreviewer.aplaygroundreviewer.models.dao;
+package com.aplaygroundreviewer.models.repositories;
 
-import com.aplaygroundreviewer.aplaygroundreviewer.models.dto.User;
+import com.aplaygroundreviewer.models.dto.Playground;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 @Transactional
 @Repository
-public interface UserDao extends CrudRepository<User, Integer> {
+public interface PlaygroundDao extends CrudRepository<Playground, Integer> {
 }
