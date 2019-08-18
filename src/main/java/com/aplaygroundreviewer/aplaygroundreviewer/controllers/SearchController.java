@@ -21,16 +21,27 @@ public class SearchController {
 
     static ArrayList<Playground> playgrounds = new ArrayList<>();
 
-    @RequestMapping(value = "", method = RequestMethod.GET)
+    @RequestMapping(value = "")
     public String index(Model model) {
-        model.addAttribute("title", "Welcome to STL Playgrounds Finder");
         model.addAttribute(new SearchForm());
-        //model.addAttribute("playgrounds", playgrounds);
-        model.addAttribute("playgrounds", playgroundDao.findAll());
-        //List<Playground> alist = playgroundDao.findByName("burp");
         return "index";
     }
 
+    //refactored search method for the routes to also work with the search bar.
+    @RequestMapping(value="search")
+    public String search(Model model){
+        model.addAttribute(new SearchForm());
+        return"search";
+    }
+
+    @RequestMapping(value="results")
+    public String search(Model model, @ModelAttribute SearchForm searchForm){
+        model.addAttribute("aname", searchForm.getName());
+        model.addAttribute("anotherlistmodel", playgroundDao.findByNameContainingOrDescriptionContaining(searchForm.getName(), searchForm.getName()));
+        return "search-results";
+    }
+
+    /*
     @RequestMapping(value = "", method = RequestMethod.POST)
     public String index(Model model, SearchForm searchForm) {
         String name = searchForm.getName();
@@ -38,33 +49,27 @@ public class SearchController {
     }
 
     @RequestMapping(value = "search", method = RequestMethod.GET)
-    //public String displaySearch(Model model, String name)
     public String displaySearch(Model model, HttpServletRequest request) {
-        //model.addAttribute("aname", name);
         String name = request.getParameter("term");
         model.addAttribute("aname", name);
-        //List<Playground> anotherlist = playgroundDao.findByName(name);
         model.addAttribute("anotherlistmodel",playgroundDao.findByNameContainingOrDescriptionContaining(name, name));
-        return "search-results"; //SUCCESSS!!!!!!
-    }
+        return "search-results";
+    }*/
 
     @RequestMapping(value = "add", method = RequestMethod.GET)
     public String displayAddPlaygroundForm(Model model) {
         model.addAttribute("title", "Add a Playground Object");
+        model.addAttribute(new SearchForm());
         model.addAttribute(new Playground());
         return "add";
     }
 
     @RequestMapping(value = "add", method = RequestMethod.POST)
     public String processAddPlaygroundForm(@ModelAttribute @Valid Playground newPlayground, Errors errors, Model model) {
-        //Playground newPlayground = new Playground(playgroundName, playgroundDescription);
-        //playgrounds.add(newPlayground);
-
         if (errors.hasErrors()) {
             model.addAttribute("title", "Add Playground");
             return "add";
         }
-
         playgroundDao.save(newPlayground);
         return "redirect:view/" + newPlayground.getId();
     }
@@ -72,6 +77,7 @@ public class SearchController {
 
     @RequestMapping(value = "remove", method = RequestMethod.GET)
     public String displayRemovePlaygroundForm(Model model) {
+        model.addAttribute(new SearchForm());
         model.addAttribute("playgrounds", playgroundDao.findAll());
         model.addAttribute("title", "Remove Playground");
         return "remove";
@@ -79,11 +85,9 @@ public class SearchController {
 
     @RequestMapping(value = "remove", method = RequestMethod.POST)
     public String processRemovePlaygroundForm(@RequestParam int[] playgroundIds) {
-
         for (int playgroundId : playgroundIds) {
             playgroundDao.delete(playgroundId);
         }
-
         return "redirect:";
     }
 
@@ -93,18 +97,16 @@ public class SearchController {
     public String viewPlayground(Model model,
                                  @PathVariable int id){
         Playground playground = playgroundDao.findOne(id);
+        model.addAttribute(new SearchForm());
         model.addAttribute("playground", playground);
         model.addAttribute("title", "View a Playground");
-
-        //returning the 'view.html'
         return "view";
-
     }
 
     //Returns all playgrounds
-    @RequestMapping(value="list", method = RequestMethod.GET)
+    @RequestMapping(value="list")
     public String listPlayground(Model model){
-
+        model.addAttribute(new SearchForm());
         model.addAttribute("playgrounds", playgroundDao.findAll());
         model.addAttribute("title", "All Playgrounds");
         return "list";

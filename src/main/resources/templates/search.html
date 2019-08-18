@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+
+<body class="container body-content">
+
+    <nav th:replace="fragments :: nav-bar"></nav>
+
+    <form th:action="@{/results}" th:object="${searchForm}">
+        <h2>Search by:</h2>
+
+        <div class="form-group">
+            <input class="form-control" th:field="*{name}" />
+        </div>
+
+        <input type="submit" value="Search" />
+    </form>
+
+</body>
+</html>

@@ -1,6 +1,7 @@
 package com.aplaygroundreviewer.aplaygroundreviewer.controllers;
 
 import com.aplaygroundreviewer.aplaygroundreviewer.models.User;
+import com.aplaygroundreviewer.aplaygroundreviewer.models.forms.SearchForm;
 import org.apache.catalina.servlet4preview.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,6 +19,7 @@ public class UserController {
 
     @RequestMapping(value = "add", method = RequestMethod.GET)
     public String addUserForm(Model model) {
+        model.addAttribute(new SearchForm());
         model.addAttribute("title", "Add new User");
         model.addAttribute(new User());
         return "user/add";
@@ -42,7 +44,7 @@ public class UserController {
 
     @RequestMapping(value = "userInfo")
     public String displayUserInfo(Model model, HttpServletRequest request) {
-
+        model.addAttribute(new SearchForm());
         model.addAttribute("user", request.getParameter("username"));
         model.addAttribute("title", "User Information");
         return "user/userInfo";

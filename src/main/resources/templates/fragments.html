@@ -4,7 +4,7 @@
 <head th:fragment="head">
 
     <meta charset="UTF-8" />
-    <title>Title</title>
+    <title th:text="${title}">Title</title>
 
     <!-- BootstrapCND | CSS, jQuery, and JavaScript | Template used: bootswatch.com/Journal -->
     <link rel="stylesheet"
@@ -36,15 +36,16 @@
                     <a th:href="@{/}" class="nav-link">Home <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a th:href="@{/}" class="nav-link">Search</a>
+                    <a th:href="@{/search}" class="nav-link">Search</a>
                 </li>
                 <li class="nav-item">
-                    <a href="list.html" class="nav-link">Playgrounds</a>
+                    <a th:href="@{/list}" class="nav-link">Playgrounds</a>
                 </li>
             </ul>
             <!-- Navbar Search form-->
-            <form class="form-inline my-2 my-lg-0" >
-                <input class="form-control mr-sm-2" type="text" placeholder="Search"  />
+            <!--Search bar currently does not search for anything-->
+            <form class="form-inline my-2 my-lg-0" th:object="${searchForm}" th:action="@{/results}" >
+                <input class="form-control mr-sm-2" type="text" placeholder="Search" th:field="*{name}" />
                 <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
             </form>
         </div>
