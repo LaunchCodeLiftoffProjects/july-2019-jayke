@@ -12,17 +12,25 @@ public class Equipment {
     private int id;
 
     @NotNull
-    private boolean ladder;
+    private boolean ladders;
 
     @NotNull
-    private boolean swing;
+    private boolean swings;
+
+    @NotNull
+    private boolean climbingWalls;
+
+    @NotNull
+    private boolean slides;
 
     public Equipment() {
     }
 
-    public Equipment(boolean ladder, boolean swing) {
-        this.ladder = ladder;
-        this.swing = swing;
+    public Equipment(boolean ladders, boolean swings, boolean climbingWalls, boolean slides) {
+        this.ladders = ladders;
+        this.swings = swings;
+        this.climbingWalls = climbingWalls;
+        this.slides = slides;
     }
 
     @OneToOne(mappedBy = "equipment")
@@ -41,21 +49,36 @@ public class Equipment {
         return id;
     }
 
-
-    public boolean isLadder() {
-        return ladder;
+    public boolean isLadders() {
+        return ladders;
     }
 
-    public void setLadder(boolean ladder) {
-        this.ladder = ladder;
+    public void setLadders(boolean ladders) {
+        this.ladders = ladders;
     }
 
-    public boolean isSwing() {
-        return swing;
+    public boolean isSwings() {
+        return swings;
     }
 
-    public void setSwing(boolean swing) {
-        this.swing = swing;
+    public void setSwings(boolean swings) {
+        this.swings = swings;
+    }
+
+    public boolean isClimbingWalls() {
+        return climbingWalls;
+    }
+
+    public void setClimbingWalls(boolean climbingWalls) {
+        this.climbingWalls = climbingWalls;
+    }
+
+    public boolean isSlides() {
+        return slides;
+    }
+
+    public void setSlides(boolean slides) {
+        this.slides = slides;
     }
 }
 
