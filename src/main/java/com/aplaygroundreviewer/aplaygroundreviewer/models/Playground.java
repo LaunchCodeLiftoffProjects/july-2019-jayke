@@ -21,9 +21,15 @@ public class Playground {
     @Size(min=3, max=400)
     private String description;
 
-    public Playground(String name, String description) {
+
+    @NotNull
+    @Size(min=3, max=1000)
+    private String address;
+
+    public Playground(String name, String description, String address) {
         this.name = name;
         this.description = description;
+        this.address = address;
     }
 
     public Playground () { }
@@ -46,5 +52,13 @@ public class Playground {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 }

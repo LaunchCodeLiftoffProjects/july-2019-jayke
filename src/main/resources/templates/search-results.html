@@ -6,5 +6,19 @@
 </head>
 <body>
     <h1 th:text="'Display results with' + ' \'' + ${aname} + '\' ' +'in them:'">Display a name</h1>
+
+    <p th:unless="${playgrounds} and ${playgrounds.size()}">no playgrounds :(</p>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+        </tr>
+        <tr th:each="playground : ${anotherlistmodel}">
+            <td th:text="${playground.name}"></td>
+            <td th:text="${playground.description}"></td>
+            <td th:text="${playground.address}"></td>
+
+        </tr>
+    </table>
 </body>
 </html>
