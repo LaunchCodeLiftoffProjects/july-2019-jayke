@@ -1,22 +1,18 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org/">
-<<<<<<< HEAD
+<html lang="en" xmlns:th="http://www.thymeleaf.org/"
+      xmlns:layout="http://www.w3.org/1999/xhtml"
+      layout:decorate="~{layout}">
+
 <head>
 
 </head>
 <body class="container body-content">
-=======
-<head th:replace="fragments :: head"></head>
-
-<body class="container body-content">
-<nav th:replace="fragments :: nav-bar"></nav>
->>>>>>> origin/bootstrap-template
+<div layout:fragment="content">
     <h1 th:text="${title}">Default Title</h1>
 
-   <form method="post" th:object="${user}">
-
+    <form method="post" th:object="${user}" th:action="@{/adduser}">
         <div class="form-group">
-            <label th:for="userName">Name</label>
+            <label th:for="userName">UserName</label>
             <input class="form-control" th:field="*{userName}"/>
             <span class="error" th:errors="*{userName}"></span>
         </div>
@@ -42,6 +38,6 @@
 
     </form>
 
-
+    </div>
 </body>
 </html>

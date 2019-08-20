@@ -1,4 +1,4 @@
-package com.aplaygroundreviewer.aplaygroundreviewer.models;
+package com.aplaygroundreviewer.models.dto;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

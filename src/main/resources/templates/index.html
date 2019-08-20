@@ -1,22 +1,41 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org/">
-<head th:replace="fragments :: head"></head>
-
-<body class="container body-content">
-
-    <nav th:replace="fragments :: nav-bar"></nav>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+      layout:decorate="~{layout}">
+<head>
+    <meta charset="UTF-8"/>
+    <title></title>
+</head>
+<body>
+<div layout:fragment="content">
+    <div id="fb-root"></div>
+    <script async defer crossorigin="anonymous"
+            src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v4.0"></script>
 
     <h1 th:text="${title}">This is the index template. Bloop.</h1>
 
     <form th:object="${searchForm}" method="post">
         <div>
             <label th:for="name">Search: </label>
-            <input th:field="*{name}" />
+            <input th:field="*{name}"/>
 
         </div>
-        <input type="submit" value="Return search" />
+        <input type="submit" value="Return search"/>
     </form>
 
+    <br> <br>
+    <div class="fb-comments" data-href="https://developers.facebook.com/docs/plugins/comments#configurator"
+         data-width="" data-numposts="5"></div>
+
+    <br> <br>
+    <div class="fb-like" data-href="http://localhost:8080/" data-width="" data-layout="standard" data-action="like"
+         data-size="small" data-show-faces="true" data-share="true"></div>
+
+
+
+</div>
 
 
 </body>

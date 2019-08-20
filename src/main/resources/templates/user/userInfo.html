@@ -1,18 +1,16 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org/">
-<<<<<<< HEAD
+<html lang="en" xmlns:th="http://www.thymeleaf.org/"
+      xmlns:layout="http://www.w3.org/1999/xhtml"
+      layout:decorate="~{layout}"><
+
 <head>
 
 </head>
 <body class="container body-content">
+<div layout:fragment="content">
 
-=======
-<head th:replace="fragments :: head"></head>
+    <h1 th:text="'Welcome ' + ${user}">Display a name</h1>
 
-<body class="container body-content">
-<nav th:replace="fragments :: nav-bar"></nav>
->>>>>>> origin/bootstrap-template
-<h1 th:text="'Welcome ' + ${user}">Display a name</h1>
-
+    <div>
 </body>
 </html>
