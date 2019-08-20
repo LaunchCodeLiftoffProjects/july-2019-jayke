@@ -8,7 +8,23 @@
 
     <h1> INDEX LANDING PAGE </h1>
 
+    <div id="map" style="width:80%; height:400px; margin-left: auto; margin-right: auto"></div>
+    <script>
+      function initMap() {
+          <!--set Map Options -->
+            var options = {
+              center: {lat: 38.6270, lng: -90.1994},
+              zoom: 8
+            };
 
+           <!--New map-->
+		    var map = new google.maps.Map(document.getElementById('map'), options );
+    }
+
+    </script>
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC2jmqjcdqlm96ZPw0HSyDhXpdTC5qwazA&amp;callback=initMap"
+            async="async" defer="defer"></script>
 
 </body>
 </html>

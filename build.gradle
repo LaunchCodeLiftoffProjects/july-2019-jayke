@@ -35,6 +35,8 @@ dependencies {
 	compile('mysql:mysql-connector-java')
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	testCompile 'org.springframework.boot:spring-boot-starter-test'
+	
+	implementation 'com.google.maps:google-maps-services:0.2.2'
 
 }
 
