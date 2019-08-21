@@ -1,8 +1,6 @@
 package com.aplaygroundreviewer.aplaygroundreviewer.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -25,12 +23,27 @@ public class Playground {
     @Size(min=3, max=1000)
     private String address;
 
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "equipment_id", unique = true)
+    private Equipment equipment;
+
+    public Playground () {
+        this.equipment = new Equipment(false, false, false, false);
+    }
+
     public Playground(String name, String description) {
         this.name = name;
         this.description = description;
+        this.equipment = new Equipment(false, false, false, false);
     }
 
-    public Playground () { }
+    public Equipment getEquipment() {
+        return equipment;
+    }
+
+    public void setEquipment(Equipment equipment) {
+        this.equipment = equipment;
+    }
 
     public int getId() {
         return id;
