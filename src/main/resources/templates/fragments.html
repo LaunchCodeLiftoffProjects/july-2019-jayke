@@ -43,7 +43,6 @@
                 </li>
             </ul>
             <!-- Navbar Search form-->
-            <!--Search bar currently does not search for anything-->
             <form class="form-inline my-2 my-lg-0" th:object="${searchForm}" th:action="@{/results}" >
                 <input class="form-control mr-sm-2" type="text" placeholder="Search" th:field="*{name}" />
                 <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>

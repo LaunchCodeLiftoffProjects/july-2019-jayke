@@ -17,6 +17,11 @@
         <input th:field="*{description}" />
         <span th:errors="*{description}"></span>
     </div>
+    <div>
+        <label th:for="address">Address</label>
+        <input th:field="*{address}" />
+        <span th:errors="*{address}"></span>
+    </div>
     <input type="submit" value="Add Playground" />
 </form>
 

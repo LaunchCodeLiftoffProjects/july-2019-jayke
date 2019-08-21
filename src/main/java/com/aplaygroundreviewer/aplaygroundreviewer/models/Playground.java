@@ -23,6 +23,7 @@ public class Playground {
     @Size(min=3, max=1000)
     private String address;
 
+
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "equipment_id", unique = true)
     private Equipment equipment;
@@ -31,9 +32,10 @@ public class Playground {
         this.equipment = new Equipment(false, false, false, false);
     }
 
-    public Playground(String name, String description) {
+    public Playground(String name, String description, String address) {
         this.name = name;
         this.description = description;
+        this.address = address;
         this.equipment = new Equipment(false, false, false, false);
     }
 
@@ -72,4 +74,5 @@ public class Playground {
     public void setAddress(String address) {
         this.address = address;
     }
+
 }
