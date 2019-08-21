@@ -11,10 +11,12 @@
     <tr>
         <th>Name</th>
         <th>Description</th>
+        <th>Address</th>
     </tr>
     <tr th:each="anitem: ${anotherlistmodel}">
         <td th:text="${anitem.name}"></td>
         <td th:text="${anitem.description}"></td>
+        <td th:text="${anitem.address}"></td>
     </tr>
 </table>
 </body>
