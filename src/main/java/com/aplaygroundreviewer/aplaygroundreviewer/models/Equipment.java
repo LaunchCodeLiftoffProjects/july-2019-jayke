@@ -23,14 +23,18 @@ public class Equipment {
     @NotNull
     private boolean slides;
 
+    @NotNull
+    private boolean seesaw;
+
     public Equipment() {
     }
 
-    public Equipment(boolean ladders, boolean swings, boolean climbingWalls, boolean slides) {
+    public Equipment(boolean ladders, boolean swings, boolean climbingWalls, boolean slides, boolean seesaw) {
         this.ladders = ladders;
         this.swings = swings;
         this.climbingWalls = climbingWalls;
         this.slides = slides;
+        this.seesaw = seesaw;
     }
 
     @OneToOne(mappedBy = "equipment")
@@ -79,6 +83,14 @@ public class Equipment {
 
     public void setSlides(boolean slides) {
         this.slides = slides;
+    }
+
+    public boolean isSeesaw() {
+        return seesaw;
+    }
+
+    public void setSeesaw(boolean seesaw) {
+        this.seesaw = seesaw;
     }
 }
 
