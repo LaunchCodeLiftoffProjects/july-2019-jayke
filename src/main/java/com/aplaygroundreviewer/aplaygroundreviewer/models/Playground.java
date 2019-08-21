@@ -29,14 +29,14 @@ public class Playground {
     private Equipment equipment;
 
     public Playground () {
-        this.equipment = new Equipment(false, false, false, false);
+        this.equipment = new Equipment(false, false, false, false, false);
     }
 
     public Playground(String name, String description, String address) {
         this.name = name;
         this.description = description;
         this.address = address;
-        this.equipment = new Equipment(false, false, false, false);
+        this.equipment = new Equipment(false, false, false, false, false);
     }
 
     public Equipment getEquipment() {
