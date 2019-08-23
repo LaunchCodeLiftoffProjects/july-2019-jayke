@@ -1,4 +1,4 @@
-package com.aplaygroundreviewer.aplaygroundreviewer.models;
+package com.aplaygroundreviewer.dto;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;

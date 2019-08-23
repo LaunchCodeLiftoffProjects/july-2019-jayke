@@ -1,8 +1,7 @@
-package com.aplaygroundreviewer.aplaygroundreviewer.models;
+package com.aplaygroundreviewer.dto;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 @Entity
 public class Equipment {

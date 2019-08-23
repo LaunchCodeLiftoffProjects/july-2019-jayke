@@ -1,6 +1,6 @@
-package com.aplaygroundreviewer.aplaygroundreviewer.models.data;
+package com.aplaygroundreviewer.repository;
 
-import com.aplaygroundreviewer.aplaygroundreviewer.models.Equipment;
+import com.aplaygroundreviewer.dto.Equipment;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface EquipmentDao extends JpaRepository<Equipment, Integer> {

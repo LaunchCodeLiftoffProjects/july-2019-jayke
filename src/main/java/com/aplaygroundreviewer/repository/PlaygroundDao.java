@@ -1,13 +1,13 @@
-package com.aplaygroundreviewer.aplaygroundreviewer.models.data;
+package com.aplaygroundreviewer.repository;
 
-import com.aplaygroundreviewer.aplaygroundreviewer.models.Playground;
+import com.aplaygroundreviewer.dto.Playground;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
 
 public interface PlaygroundDao extends JpaRepository<Playground, Integer> {
 
+    Playground findOneById(int id);
     List<Playground> findByName(String name);
     List<Playground> findByNameContaining(String name);
     List<Playground> findByNameContainingOrDescriptionContaining(String name, String description);

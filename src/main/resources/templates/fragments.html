@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org/">
+<html xmlns:th="http://www.thymeleaf.org/"
+xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 
 <head th:fragment="head">
 
@@ -41,6 +42,24 @@
                 <li class="nav-item">
                     <a th:href="@{/list}" class="nav-link">Playgrounds</a>
                 </li>
+                <li class="nav-item">
+                    <a th:href="@{/adduser}" class="nav-link">Sign up <span class="sr-only">(current)</span></a>
+                </li>
+
+                <li>
+                    <div sec:authorize="isAuthenticated()">
+                        <a th:href="@{/logout}" class="nav-link">Logout</a>
+                        <font color="#f5f5f5"><p>Welcome <span sec:authentication="principal.user.userName"></span></p></font>
+                        <sec:authentication property="authenticateduser" />
+                    </div>
+                    <div sec:authorize="isAnonymous()">
+                        <a th:href="@{/login}"  class="nav-link">Login</a>
+                        <font color="white"><p>Welcome Visitor</p></font>
+                    </div>
+                </li>
+
+
+
             </ul>
             <!-- Navbar Search form-->
             <form class="form-inline my-2 my-lg-0" th:object="${searchForm}" th:action="@{/results}" >
