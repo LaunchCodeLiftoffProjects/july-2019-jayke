@@ -6,6 +6,9 @@
     <meta charset="UTF-8" />
     <title th:text="${title}">Title</title>
 
+    <!-- General CSS -->
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+
     <!-- BootstrapCND | CSS, jQuery, and JavaScript | Template used: bootswatch.com/Journal -->
     <link rel="stylesheet"
           href="https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/journal/bootstrap.min.css"
@@ -18,6 +21,8 @@
             integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o"
             crossorigin="anonymous"></script>
 
+    <!--Google Maps API script -->
+    <script type="text/javascript" th:src="@{/js/maps.js}"></script>
 </head>
 
 <body>
@@ -49,7 +54,5 @@
             </form>
         </div>
     </nav>
-
-
 </body>
 </html>
