@@ -59,7 +59,7 @@
                 <div class="col-sm-4">
                     <div class="card border-0">
                         <div class="card-body">
-                            <table class="table table-sm table-striped">
+                            <table class="table table-sm table-striped" >
                                 <thead class="thead-dark text-center">
                                     <tr>
                                         <th scope="col" colspan="2">Equipment</th>
@@ -68,27 +68,19 @@
                                 <tbody>
                                     <tr>
                                         <th scope="row">Climbing Wall</th>
-                                        <td>False</td>
+                                        <td th:text="${playground.equipment.climbingWalls}">False</td>
                                     </tr>
                                     <tr>
                                         <th scope="row">Swing</th>
-                                        <td>False</td>
+                                        <td th:text="${playground.equipment.swings}">False</td>
                                     </tr>
                                     <tr>
                                         <th scope="row">Ladders</th>
-                                        <td>False</td>
+                                        <td th:text="${playground.equipment.ladders}">False</td>
                                     </tr>
                                     <tr>
                                         <th scope="row">Slides</th>
-                                        <td>False</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">Structures</th>
-                                        <td>False</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">See-Saw</th>
-                                        <td>False</td>
+                                        <td th:text="${playground.equipment.slides}">False</td>
                                     </tr>
                                 </tbody>
                             </table>
