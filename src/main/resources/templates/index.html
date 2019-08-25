@@ -2,15 +2,24 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head th:replace="fragments :: head"></head>
 
-<body class="container body-content">
+<body>
+    <div class="container">
+        <nav th:replace="fragments :: nav-bar"></nav>
 
-    <nav th:replace="fragments :: nav-bar"></nav>
+        <div class="card">
+            <div class="card-header">
+                <h1 class="card-title text-center">Welcome to STL Playground Finder!</h1>
+            </div>
+            <div class="card-body">
+                <div id="map"></div>
+                <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC2jmqjcdqlm96ZPw0HSyDhXpdTC5qwazA&amp;callback=initMap"
+                        async="async" defer="defer"></script>
+            </div>
+        </div>
 
-    <h1> INDEX LANDING PAGE </h1>
+    </div>
 
-    <div id="map"></div>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC2jmqjcdqlm96ZPw0HSyDhXpdTC5qwazA&amp;callback=initMap"
-            async="async" defer="defer"></script>
+    <footer th:replace="fragments :: footer"></footer>
 
 </body>
 </html>

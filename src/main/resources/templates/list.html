@@ -2,34 +2,39 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head th:replace="fragments :: head"></head>
 
-<body class="container container-fluid">
-    <nav th:replace="fragments :: nav-bar"></nav>
+<body>
+    <div class="container">
+        <nav th:replace="fragments :: nav-bar"></nav>
 
-    <div class="card border-0">
-        <div class="card-header">
-            <h1 class="card-title text-center">List of Playgrounds</h1>
-        </div>
+        <div class="card">
+            <div class="card-header text-center">
+                <h1 class="card-title">List of Playgrounds</h1>
+                <span><a th:href="@{/add}">Add</a> | <a th:href="@{/remove}">Remove</a></span>
+            </div>
+            <div class="card-body">
+                <h3 th:unless="${playgrounds} and ${playgrounds.size()}">No Playgrounds.</h3>
 
-        <h3 th:unless="${playgrounds} and ${playgrounds.size()}">No Playgrounds.</h3>
-
-        <div class="container" th:if="${playgrounds} and ${playgrounds.size()}">
-            <div class="row " >
-                <div class="col-3 mb-4" th:each="playground : ${playgrounds}">
-                    <div class="card h-100" >
-                    <img src="//placehold.it/200x200" class="card-img-top img-fluid" />
-                    <div class="card-body">
-                        <h5 class="card-title">
-                            <a class="stretched-link" th:href="@{/view/{id}(id=${playground.id})}" th:text="${playground.name}">Card title</a>
-                        </h5>
-                        <p class="card-text" th:text="${playground.description}">Card Description</p>
+                <div class="container" th:if="${playgrounds} and ${playgrounds.size()}">
+                    <div class="row " >
+                        <div class="col-3 mb-4" th:each="playground : ${playgrounds}">
+                            <div class="card h-100" >
+                                <img src="//placehold.it/200x200" class="card-img-top img-fluid" />
+                                <div class="card-body">
+                                    <h5 class="card-title">
+                                        <a class="stretched-link" th:href="@{/view/{id}(id=${playground.id})}" th:text="${playground.name}">Card title</a>
+                                    </h5>
+                                    <p class="card-text" th:text="${playground.description}">Card Description</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                </div>
+
             </div>
         </div>
     </div>
 
-
+    <footer th:replace="fragments :: footer"></footer>
 
 </body>
 </html>

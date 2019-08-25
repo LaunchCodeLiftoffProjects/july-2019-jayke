@@ -1,23 +1,29 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head th:replace="fragments :: head"></head>
-<body class="container body-content">
-<nav th:replace="fragments :: nav-bar"></nav>
-    <h1 th:text="'Display results with' + ' \'' + ${aname} + '\' ' +'in them:'">Display a name</h1>
 
-<p th:unless="${anotherlistmodel} and ${anotherlistmodel.size()}"> no results</p>
+<body>
+    <nav th:replace="fragments :: nav-bar"></nav>
 
-<table>
-    <tr>
-        <th>Name</th>
-        <th>Description</th>
-        <th>Address</th>
-    </tr>
-    <tr th:each="anitem: ${anotherlistmodel}">
-        <td th:text="${anitem.name}"></td>
-        <td th:text="${anitem.description}"></td>
-        <td th:text="${anitem.address}"></td>
-    </tr>
-</table>
+    <div class="container">
+        <h1 th:text="'Display results with' + ' \'' + ${aname} + '\' ' +'in them:'">Display a name</h1>
+
+        <p th:unless="${anotherlistmodel} and ${anotherlistmodel.size()}"> no results</p>
+
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Address</th>
+            </tr>
+            <tr th:each="anitem: ${anotherlistmodel}">
+                <td th:text="${anitem.name}"></td>
+                <td th:text="${anitem.description}"></td>
+                <td th:text="${anitem.address}"></td>
+            </tr>
+        </table>
+    </div>
+
+    <footer th:replace="fragments :: footer"></footer>
 </body>
 </html>

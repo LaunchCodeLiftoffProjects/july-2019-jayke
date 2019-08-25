@@ -23,6 +23,8 @@
 
     <!--Google Maps API script -->
     <script type="text/javascript" th:src="@{/js/maps.js}"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
 </head>
 
 <body>
@@ -54,5 +56,12 @@
             </form>
         </div>
     </nav>
+
+
+    <!-- Footer bar -->
+    <span th:fragment="footer" class="footer text-center text-muted">
+        A Playground Finder | 2019
+    </span>
+
 </body>
 </html>
