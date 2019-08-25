@@ -14,7 +14,7 @@
             <div class="card-body">
                 <h3 th:unless="${playgrounds} and ${playgrounds.size()}">No Playgrounds.</h3>
 
-                <div class="container" th:if="${playgrounds} and ${playgrounds.size()}">
+                <div th:if="${playgrounds} and ${playgrounds.size()}">
                     <div class="row " >
                         <div class="col-3 mb-4" th:each="playground : ${playgrounds}">
                             <div class="card h-100" >
