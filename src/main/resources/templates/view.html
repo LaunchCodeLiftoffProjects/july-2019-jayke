@@ -6,9 +6,6 @@
     </head>
 
     <body class="container body-content">
-    <div id="fb-root"></div>
-    <script async defer crossorigin="anonymous"
-            src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v4.0"></script>
         <!--Navigation Bar-->
         <nav th:replace="fragments :: nav-bar"></nav>
 
@@ -100,6 +97,77 @@
                             </table>
                         </div>
                     </div>
+                    <div id="map" style="width:80%; height:400px; margin-left: auto; margin-right: auto"></div>
+
+
+                    <script>
+
+
+
+                        function initMap() {
+
+                            <!--set Map Options -->
+                            var options = {
+                                center: {lat: 38.6270, lng: -90.1994},
+                                zoom: 9
+                            };
+
+                            <!--New map-->
+                            var map = new google.maps.Map(document.getElementById('map'), options );
+
+                            <!-- Call getLatLng-->
+                            var latLng = getLatLng();
+                            var lat = latLng[0];
+                            var lng = latLng[1];
+
+
+                            <!-- Add marker -->
+                            var marker = new google.maps.Marker({
+                                position : {lat: lat, lng: lng},
+                                map : map,
+                            });
+
+                            <!-- Info window for marker -->
+                            var info = document.getElementById('playgroundName').value;
+                            var infoWindow = new google.maps.InfoWindow( {content:'<h4> ${info}</h4>'} );
+
+                            marker.addListener('click', function(){
+                                infoWindow.open(map,marker);
+                            });
+                        }
+
+
+                        function getLatLng(){
+                            var location = document.getElementById('playgroundName').value;
+                            //var location = 'Chesterfield, St louis, Mo';
+                            console.log(location);
+                            axios.get('https://maps.googleapis.com/maps/api/geocode/json',{
+                                params:{
+                                    address:location,
+                                    key:'AIzaSyC2jmqjcdqlm96ZPw0HSyDhXpdTC5qwazA'
+                                }
+                            })
+                                .then(function(response){
+                                    // Log full response
+                                    console.log(response);
+
+                                    // Geometry
+                                    var lat = response.data.results[0].geometry.location.lat;
+                                    var lng = response.data.results[0].geometry.location.lng;
+
+                                    return [lat, lng]
+                                })
+                                .catch(function(error){
+                                    console.log(error);
+                                });
+                        }
+
+                    </script>
+
+                    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC2jmqjcdqlm96ZPw0HSyDhXpdTC5qwazA&amp;callback=initMap"
+                            async="async" defer="defer"></script>
+
+                </div>
                 </div>
             </div>
             <div class="row no-gutters">
@@ -112,76 +180,22 @@
                     </div>
                 </div>
             </div>
+        </div>
 
-            <div id="map" style="width:40%; height:400px; margin-left: auto; margin-right: auto"></div>
-
-    <script>
-
-
-      function initMap() {
-
-          <!--set Map Options -->
-            var options = {
-              center: {lat: 38.6270, lng: -90.1994},
-              zoom: 9
+        <div id="disqus_thread"></div>
+        <script>
+            var disqus_config = function () {
+                this.page.url = 'http://localhost:8080/view/[[${playground.id}]]';  // Replace PAGE_URL with your page's canonical URL variable
+                this.page.identifier = '[[${playground.id}]]'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
             };
 
-           <!--New map-->
-		    var map = new google.maps.Map(document.getElementById('map'), options );
-
-          <!-- Call getLatLng-->
-            var latLng = getLatLng();
-            var lat = latLng[0];
-            var lng = latLng[1];
-
-
-           <!-- Add marker -->
-            var marker = new google.maps.Marker({
-                        position : {lat: lat, lng: lng},
-                        map : map,
-             });
-
-           <!-- Info window for marker -->
-            var info = document.getElementById('playgroundName').value;
-            var infoWindow = new google.maps.InfoWindow( {content:'<h4> ${info}</h4>'} );
-
-            marker.addListener('click', function(){
-                                infoWindow.open(map,marker);
-            });
-      }
-
-
-      function getLatLng(){
-        var location = document.getElementById('playgroundName').value;
-        //var location = 'Chesterfield, St louis, Mo';
-        console.log(location);
-        axios.get('https://maps.googleapis.com/maps/api/geocode/json',{
-                params:{
-                        address:location,
-                        key:'AIzaSyC2jmqjcdqlm96ZPw0HSyDhXpdTC5qwazA'
-                        }
-                })
-                .then(function(response){
-                // Log full response
-                console.log(response);
-
-                // Geometry
-                var lat = response.data.results[0].geometry.location.lat;
-                var lng = response.data.results[0].geometry.location.lng;
-
-                return [lat, lng]
-                })
-                .catch(function(error){
-                    console.log(error);
-            });
-        }
-
-    </script>
-
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC2jmqjcdqlm96ZPw0HSyDhXpdTC5qwazA&amp;callback=initMap"
-                    async="async" defer="defer"></script>
-
-
-        </div>
+            (function() { // DON'T EDIT BELOW THIS LINE
+                var d = document, s = d.createElement('script');
+                s.src = 'https://playground-viewer.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
     </body>
 </html>

@@ -20,6 +20,7 @@ INSERT INTO users (id, email, password, user_Name) VALUES
 (9998, 'admin2@gmail.com', '$2a$10$R27tQeNfxMi7h1VlreTWAexexoOby5N6ouBEy5rw.UeqG6gKfTzXe', 'User');
 
 
+
 insert into user_role(user_id, role_id) values
 (1,1),
 (2,1)
