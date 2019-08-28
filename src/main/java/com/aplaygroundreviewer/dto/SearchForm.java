@@ -1,4 +1,4 @@
-package com.aplaygroundreviewer.aplaygroundreviewer.models.forms;
+package com.aplaygroundreviewer.dto;
 
 import javax.validation.constraints.NotNull;
 

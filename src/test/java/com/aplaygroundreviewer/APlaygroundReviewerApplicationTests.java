@@ -1,4 +1,4 @@
-package com.aplaygroundreviewer.aplaygroundreviewer;
+package com.aplaygroundreviewer;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
