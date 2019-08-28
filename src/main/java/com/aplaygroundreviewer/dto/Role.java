@@ -41,5 +41,16 @@ public class Role
 	public void setUsers(List<User> users) {
 		this.users = users;
 	}
-	
+
+	public Integer getId() {
+		return id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
 }
