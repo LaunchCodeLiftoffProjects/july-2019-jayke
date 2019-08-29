@@ -2,19 +2,29 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head th:replace="fragments :: head"></head>
 
-<body class="container body-content">
+<body>
+    <div class="container">
+        <nav th:replace="fragments :: nav-bar"></nav>
 
-    <nav th:replace="fragments :: nav-bar"></nav>
+        <div class="card">
+            <div class="card-header text-center">
+                <h1 class="card-title">Advanced Search</h1>
+            </div>
+            <div class="card-body">
+                <form th:action="@{/results}" th:object="${searchForm}">
+                    <h3>Search by term:</h3>
 
-    <form th:action="@{/results}" th:object="${searchForm}">
-        <h2>Search by:</h2>
+                    <div class="form-group">
+                        <input class="form-control" th:field="*{name}" />
+                    </div>
 
-        <div class="form-group">
-            <input class="form-control" th:field="*{name}" />
+                    <input type="submit" value="Search" />
+                </form>
+            </div>
         </div>
+    </div>
 
-        <input type="submit" value="Search" />
-    </form>
+    <footer th:replace="fragments :: footer"></footer>
 
 </body>
 </html>

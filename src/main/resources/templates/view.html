@@ -1,17 +1,15 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
-    <head th:replace="fragments :: head">
-        <!-- geocoding -->
-        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    </head>
+    <head th:replace="fragments :: head"></head>
 
-    <body class="container body-content">
-        <!--Navigation Bar-->
+<body>
+    <div class="container">
         <nav th:replace="fragments :: nav-bar"></nav>
 
         <div class="card" th:if="${playground}">
+            <!--Row 1 | Header -->
             <div class="row">
-                <div class="col-sm-12">
+                <div class="col">
                     <div class="card-header text-center">
                         <h1 id="playgroundName" class="card-title" th:text="${playground.name}">Playground Name</h1>
                         <h6 class="card-subtitle mb-2 text-muted">Address</h6>
@@ -21,9 +19,11 @@
                     </div>
                 </div>
             </div>
+            <!--Row 2 | Images & Info -->
             <div class="row no-gutters">
-                <div class="col-sm-8">
-                    <div class="card border-0">
+                <!--Carousel Column-->
+                <div class="col-7">
+                    <div class="card-body">
                         <div id="carouselPlayground" class="carousel slide container" data-ride="carousel">
                             <div class="carousel-inner">
                                 <div class="carousel-item active">
@@ -59,131 +59,70 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-4">
-                    <div class="card border-0">
-                        <div class="card-body">
-                            <table class="table table-sm table-striped">
-                                <thead class="thead-dark text-center">
-                                    <tr>
-                                        <th scope="col" colspan="2">Equipment</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <th scope="row">Climbing Wall</th>
-                                        <td>False</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">Swing</th>
-                                        <td>False</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">Ladders</th>
-                                        <td>False</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">Slides</th>
-                                        <td>False</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">Structures</th>
-                                        <td>False</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">See-Saw</th>
-                                        <td>False</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
+                <!-- Equipment Column-->
+                <div class="col-5">
+                    <div class="card-body">
+                        <table class="table table-sm table-striped" >
+                            <thead class="thead-dark text-center">
+                                <tr>
+                                    <th scope="col" colspan="2">Equipment</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">Climbing Wall</th>
+                                    <td>
+                                        <span th:if="${playground.equipment.climbingWalls}">Yes</span>
+                                        <span th:unless="${playground.equipment.climbingWalls}">No</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Swing</th>
+                                    <td>
+                                        <span th:if="${playground.equipment.swings}">Yes</span>
+                                        <span th:unless="${playground.equipment.swings}">No</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Ladders</th>
+                                    <td>
+                                        <span th:if="${playground.equipment.ladders}">Yes</span>
+                                        <span th:unless="${playground.equipment.ladders}">No</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Slides</th>
+                                    <td>
+                                        <span th:if="${playground.equipment.slides}">Yes</span>
+                                        <span th:unless="${playground.equipment.slides}">No</span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
-                    <div id="map" style="width:80%; height:400px; margin-left: auto; margin-right: auto"></div>
-
-
-                    <script>
-
-
-
-                        function initMap() {
-
-                            <!--set Map Options -->
-                            var options = {
-                                center: {lat: 38.6270, lng: -90.1994},
-                                zoom: 9
-                            };
-
-                            <!--New map-->
-                            var map = new google.maps.Map(document.getElementById('map'), options );
-
-                            <!-- Call getLatLng-->
-                            var latLng = getLatLng();
-                            var lat = latLng[0];
-                            var lng = latLng[1];
-
-
-                            <!-- Add marker -->
-                            var marker = new google.maps.Marker({
-                                position : {lat: lat, lng: lng},
-                                map : map,
-                            });
-
-                            <!-- Info window for marker -->
-                            var info = document.getElementById('playgroundName').value;
-                            var infoWindow = new google.maps.InfoWindow( {content:'<h4> ${info}</h4>'} );
-
-                            marker.addListener('click', function(){
-                                infoWindow.open(map,marker);
-                            });
-                        }
-
-
-                        function getLatLng(){
-                            var location = document.getElementById('playgroundName').value;
-                            //var location = 'Chesterfield, St louis, Mo';
-                            console.log(location);
-                            axios.get('https://maps.googleapis.com/maps/api/geocode/json',{
-                                params:{
-                                    address:location,
-                                    key:'AIzaSyC2jmqjcdqlm96ZPw0HSyDhXpdTC5qwazA'
-                                }
-                            })
-                                .then(function(response){
-                                    // Log full response
-                                    console.log(response);
-
-                                    // Geometry
-                                    var lat = response.data.results[0].geometry.location.lat;
-                                    var lng = response.data.results[0].geometry.location.lng;
-
-                                    return [lat, lng]
-                                })
-                                .catch(function(error){
-                                    console.log(error);
-                                });
-                        }
-
-                    </script>
-
-                    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC2jmqjcdqlm96ZPw0HSyDhXpdTC5qwazA&amp;callback=initMap"
-                            async="async" defer="defer"></script>
-
-                </div>
                 </div>
             </div>
-            <div class="row no-gutters">
-                <div class="col-sm-8">
-                    <div class="card border-0">
-                        <div class="card-body">
-                            <h5 class="card-title">Playground Description</h5>
-                            <p class="card-subtitle text-muted" th:text="${playground.description}"></p>
-                        </div>
+            <!--Row 3-->
+            <div class="row">
+                <div class="col">
+                    <div class="card-body">
+                        <h5 class="card-title">Playground Description</h5>
+                        <p class="card-subtitle text-muted" th:text="${playground.description}"></p>
                     </div>
+                </div>
+            </div>
+            <!--Row 4 -->
+            <div class="row">
+                <div class="card-body">
+                    <div id="map"></div>
+                    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC2jmqjcdqlm96ZPw0HSyDhXpdTC5qwazA&amp;callback=initMap"
+                        async="async" defer="defer"></script>
                 </div>
             </div>
         </div>
-
-        <div id="disqus_thread"></div>
-        <script>
+    </div>
+    <div id="disqus_thread"></div>
+    <script>
             var disqus_config = function () {
                 this.page.url = 'http://localhost:8080/view/[[${playground.id}]]';  // Replace PAGE_URL with your page's canonical URL variable
                 this.page.identifier = '[[${playground.id}]]'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
@@ -196,6 +135,10 @@
                 (d.head || d.body).appendChild(s);
             })();
         </script>
-        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-    </body>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+    <footer th:replace="fragments :: footer"></footer>
+</body>
+
+
 </html>
