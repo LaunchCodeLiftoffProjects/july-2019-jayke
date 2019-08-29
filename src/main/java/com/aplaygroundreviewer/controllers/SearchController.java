@@ -40,21 +40,6 @@ public class SearchController {
         return "search-results";
     }
 
-    /*
-    @RequestMapping(value = "", method = RequestMethod.POST)
-    public String index(Model model, SearchForm searchForm) {
-        String name = searchForm.getName();
-        return "redirect:/search?term=" + name;
-    }
-
-    @RequestMapping(value = "search", method = RequestMethod.GET)
-    public String displaySearch(Model model, HttpServletRequest request) {
-        String name = request.getParameter("term");
-        model.addAttribute("aname", name);
-        model.addAttribute("anotherlistmodel",playgroundDao.findByNameContainingOrDescriptionContaining(name, name));
-        return "search-results";
-    }*/
-
     @RequestMapping(value = "add", method = RequestMethod.GET)
     public String displayAddPlaygroundForm(Model model) {
         model.addAttribute("title", "Add a Playground Object");
