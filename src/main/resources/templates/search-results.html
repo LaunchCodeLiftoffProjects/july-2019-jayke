@@ -3,25 +3,33 @@
 <head th:replace="fragments :: head"></head>
 
 <body>
-    <nav th:replace="fragments :: nav-bar"></nav>
 
     <div class="container">
-        <h1 th:text="'Display results with' + ' \'' + ${aname} + '\' ' +'in them:'">Display a name</h1>
+        <nav th:replace="fragments :: nav-bar"></nav>
 
-        <p th:unless="${anotherlistmodel} and ${anotherlistmodel.size()}"> no results</p>
+        <div class="card">
+            <div class="card-header text-center">
+                <h1 class="card-title" th:text="'Display results with' + ' \'' + ${aname} + '\' ' +'in them:'">Display a name</h1>
+            </div>
+            <div class="card-body">
+                <p th:unless="${anotherlistmodel} and ${anotherlistmodel.size()}">No Results.</p>
 
-        <table>
-            <tr>
-                <th>Name</th>
-                <th>Description</th>
-                <th>Address</th>
-            </tr>
-            <tr th:each="anitem: ${anotherlistmodel}">
-                <td th:text="${anitem.name}"></td>
-                <td th:text="${anitem.description}"></td>
-                <td th:text="${anitem.address}"></td>
-            </tr>
-        </table>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">Name</th>
+                            <th scope="col">Description</th>
+                            <th scope="col">Address</th>
+                        </tr>
+                    </thead>
+                    <tr th:each="anitem: ${anotherlistmodel}">
+                        <td><a th:text="${anitem.name}" th:href="@{/view/{id}(id=${anitem.id})}"></a></td>
+                        <td th:text="${anitem.description}"></td>
+                        <td th:text="${anitem.address}"></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
     </div>
 
     <footer th:replace="fragments :: footer"></footer>

@@ -68,19 +68,31 @@
                             <tbody>
                                 <tr>
                                     <th scope="row">Climbing Wall</th>
-                                    <td th:text="${playground.equipment.climbingWalls}">False</td>
+                                    <td>
+                                        <span th:if="${playground.equipment.climbingWalls}">Yes</span>
+                                        <span th:unless="${playground.equipment.climbingWalls}">No</span>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Swing</th>
-                                    <td th:text="${playground.equipment.swings}">False</td>
+                                    <td>
+                                        <span th:if="${playground.equipment.swings}">Yes</span>
+                                        <span th:unless="${playground.equipment.swings}">No</span>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Ladders</th>
-                                    <td th:text="${playground.equipment.ladders}">False</td>
+                                    <td>
+                                        <span th:if="${playground.equipment.ladders}">Yes</span>
+                                        <span th:unless="${playground.equipment.ladders}">No</span>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Slides</th>
-                                    <td th:text="${playground.equipment.slides}">False</td>
+                                    <td>
+                                        <span th:if="${playground.equipment.slides}">Yes</span>
+                                        <span th:unless="${playground.equipment.slides}">No</span>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
