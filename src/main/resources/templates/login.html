@@ -30,9 +30,15 @@
                             </div>
                             <button type="submit" class="btn btn-success mb-3" th:text="#{label.login}">Login</button>
 
+                            <!--Alert Balloon for Invalid Input-->
                             <div th:if="${param.error}" class="alert alert-dismissible alert-primary card-text" role="alert">
                                 <button type="button" class="close" data-dismiss="alert">&times;</button>
                                 <strong th:text="#{error.login_failed}">Invalid Email or Password.</strong>
+                            </div>
+                            <!--Alert Balloon for Logging out-->
+                            <div th:if="${param.logout}" class="alert alert-dismissible alert-info card-text" role="alert">
+                                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                <strong th:text="#{info.logout_success}">Logged out successfully.</strong>
                             </div>
                         </form>
                     </div>
@@ -41,5 +47,6 @@
         </div>
     </div>
 
+    <footer th:replace="fragments :: footer"></footer>
 </body>
 </html>
