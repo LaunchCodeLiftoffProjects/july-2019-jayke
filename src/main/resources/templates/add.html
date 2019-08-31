@@ -13,7 +13,7 @@
             </div>
             <div class="card-body">
 
-                <form method="post" th:object="${playground}">
+                <form method="post" th:object="${playground}" th:action="@{/add}">
                     <div class="form-group">
                         <label th:for="name">Name</label>
                         <input type="text" class="form-control" th:field="*{name}" />

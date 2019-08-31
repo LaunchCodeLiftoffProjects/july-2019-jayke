@@ -51,6 +51,7 @@ public class SearchController {
     @RequestMapping(value = "add", method = RequestMethod.POST)
     public String processAddPlaygroundForm(@ModelAttribute @Valid Playground newPlayground, Errors errors, Model model) {
         if (errors.hasErrors()) {
+            Playground playground = newPlayground;
             model.addAttribute("title", "Add Playground");
             return "add";
         }
