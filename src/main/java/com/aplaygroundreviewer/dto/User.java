@@ -1,6 +1,7 @@
 package com.aplaygroundreviewer.dto;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import org.hibernate.validator.constraints.Email;
 
 import javax.annotation.sql.DataSourceDefinition;
@@ -8,6 +9,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.util.List;
+import java.util.Objects;
 
 @Data
 @Entity

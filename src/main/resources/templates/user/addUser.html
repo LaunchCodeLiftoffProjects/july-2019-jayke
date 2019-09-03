@@ -1,12 +1,15 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<html lang="en" xmlns:th="http://www.thymeleaf.org/"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head th:replace="fragments :: head"></head>
 
 <body class="container body-content">
 <nav th:replace="fragments :: nav-bar"></nav>
+<div sec:authorize="isAnonymous()">
     <h1 th:text="${title}">Default Title</h1>
 
-<form method="post" th:object="${user}" th:action="@{/adduser}">
+
+<form method="post" th:object="${user}" th:action="@{/addUser}">
     <div class="form-group">
         <label th:for="userName">UserName</label>
         <input class="form-control" th:field="*{userName}"/>
@@ -21,7 +24,9 @@
 
     <div class="form-group">
         <label for="verifyPassword-field">Verify Password</label>
-        <input class="form-control" id="verifyPassword-field" name="verify" type="password"/>
+        <input class="form-control" id="verifyPassword-field" name="verifyPassword" type="password"/>
+         <span class="error" th:text="${errormessage}"></span>
+
     </div>
 
     <div class="form-group">
@@ -33,6 +38,7 @@
     <input type="submit" value="Add User"/>
 
 </form>
+ </div>
 
 
 </body>

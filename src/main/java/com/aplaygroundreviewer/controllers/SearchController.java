@@ -87,7 +87,7 @@ public class SearchController {
         for (int playgroundId : playgroundIds) {
             playgroundDao.deleteById(playgroundId);
         }
-        return "redirect:";
+        return "redirect:remove";
     }
 
 

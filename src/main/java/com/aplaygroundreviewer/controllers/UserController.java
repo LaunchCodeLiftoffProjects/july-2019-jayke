@@ -3,9 +3,13 @@ package com.aplaygroundreviewer.controllers;
 import com.aplaygroundreviewer.dto.Role;
 import com.aplaygroundreviewer.dto.User;
 import com.aplaygroundreviewer.dto.SearchForm;
+import com.aplaygroundreviewer.repository.UserRepository;
 import com.aplaygroundreviewer.security.CustomUserDetailsService;
 import org.apache.catalina.servlet4preview.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -20,59 +24,53 @@ public class UserController {
 
     @Autowired
     CustomUserDetailsService customUserDetailsService;
+    @Autowired
+    UserRepository userRepository;
 
-    @GetMapping(value = "adduser")
+    @GetMapping(value = "addUser")
     public String addUserForm(Model model) {
+
         model.addAttribute("title", "Add new User");
         model.addAttribute(new SearchForm());
         model.addAttribute(new User());
         return "user/addUser";
     }
 
-    @PostMapping(value = "adduser")
-    public String add(Model model, @Valid @ModelAttribute User user, Errors errors, String verify) {
+    @PostMapping(value = "addUser")
+    public String add(Model model, @Valid @ModelAttribute User user, Errors errors, String verifyPassword) {
+        model.addAttribute(new SearchForm());
+
 
         // check fields not empty
         if (errors.hasErrors()) {
+            model.addAttribute("user", user);
             return "user/addUser";
         }
 
-        if (!user.getPassword().equals(verify)) {
-            user.setEmail(user.getEmail());
-            user.setUserName(user.getUserName());
+        if (!user.getPassword().equals(verifyPassword)) {
+            model.addAttribute("user", user);
+            model.addAttribute("errormessage",  "Password and verify password doesn't match");
             return "user/addUser";
         }
+
+
+    //    List<User> userList = userRepository.findByEmail(user.getEmail());
+
+    //    boolean emailExist = userList.contains(user);
+
+
+
         List<Role> roles = new ArrayList<>();
-        roles.add(Role.builder().name("ROLE_ADMIN").id(1).build());
+        roles.add(Role.builder().name("ROLE_USER").id(2).build());
         user.setRoles(roles);
         customUserDetailsService.save(user);
+
+        UserDetails userDetails = customUserDetailsService.loadUserByUsername(user.getEmail());
+        UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(userDetails, user.getPassword(), userDetails.getAuthorities());
+        SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
+
         return "redirect:userInfo?username=" + user.getUserName();
     }
-
-//    @RequestMapping(value = "add", method = RequestMethod.GET)
-//    public String addUserForm(Model model) {
-//        model.addAttribute(new SearchForm());
-//        model.addAttribute("title", "Add new User");
-//        model.addAttribute(new User());
-//        return "user/add";
-//    }
-//
-//    @RequestMapping(value = "add", method = RequestMethod.POST)
-//    public String add(Model model, @Valid @ModelAttribute User user, Errors errors, String verify) {
-//
-//        // check fields not empty
-//        if (errors.hasErrors()) {
-//            return "user/add";
-//        }
-//
-//        if (!user.getPassword().equals(verify)) {
-//            user.setEmail(user.getEmail());
-//            user.setUserName(user.getUserName());
-//            return "user/add";
-//        }
-//
-//        return "redirect:userInfo?username=" + user.getUserName();
-//    }
 
     @RequestMapping(value = "login", method = RequestMethod.GET)
     public String loginUserForm(Model model) {
@@ -82,17 +80,20 @@ public class UserController {
     }
 
 
-    @RequestMapping(value = "login", method = RequestMethod.POST)
-    public String loginUser(Model model, @ModelAttribute User user) {
-//        boolean validCredentials = userHelper.isCredentialsValid(user);
-//        System.out.println("!!!!!validCredentials = " + validCredentials);
-//        if (validCredentials) {
-//            return "user/login";
-//        } else {
-//            model.addAttribute("isUserValid", "false");
-//            return "user/login";
-//        }
-        return "user/login";
+    @RequestMapping(value ="admin", method = RequestMethod.GET)
+    public String displayAdminPage(Model model) {
+        model.addAttribute(new SearchForm());
+        model.addAttribute("users", userRepository.findAll());
+        model.addAttribute("title", "All users");
+        return "user/admin";
+    }
+
+    @RequestMapping(value ="admin", method = RequestMethod.POST)
+    public String processRemoveUsers(@RequestParam int[] userIds) {
+        for (int userId : userIds) {
+            userRepository.deleteById(userId);
+        }
+        return "redirect:admin";
     }
 
     @RequestMapping(value = "userInfo")

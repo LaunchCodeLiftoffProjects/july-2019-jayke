@@ -1,10 +1,15 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<html lang="en" xmlns:th="http://www.thymeleaf.org/"
+xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+
 <head th:replace="fragments :: head"></head>
 
 <body class="container body-content">
 <nav th:replace="fragments :: nav-bar"></nav>
-<h1 th:text="'Welcome ' + ${user}">Display a name</h1>
+<h1>"Hello!"</h1>
+<!--<h1 th:text="'Welcome ' + ${userName}">Display a name</h1>-->
+<h1 sec:authentication="principal.user.userName"></h1>
+<h1 sec:authentication="principal.user.email"></h1>
 
 </body>
 </html>
