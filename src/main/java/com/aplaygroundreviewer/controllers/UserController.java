@@ -51,6 +51,7 @@ public class UserController {
         user.setRoles(roles);
         customUserDetailsService.save(user);
         userRepository.save(user);
+
         return "redirect:userInfo?username=" + user.getUserName();
     }
 
