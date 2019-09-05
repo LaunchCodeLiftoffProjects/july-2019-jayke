@@ -3,43 +3,54 @@
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head th:replace="fragments :: head"></head>
 
-<body class="container body-content">
-<nav th:replace="fragments :: nav-bar"></nav>
-<div sec:authorize="isAnonymous()">
-    <h1 th:text="${title}">Default Title</h1>
+<body>
+    <div class="container">
+        <nav th:replace="fragments :: nav-bar"></nav>
 
+        <div class="card" sec:authorize="isAnonymous()">
+            <div class="card-header text-center">
+                <h1 class="card-title" th:text="${title}">Title</h1>
+            </div>
 
-<form method="post" th:object="${user}" th:action="@{/addUser}">
-    <div class="form-group">
-        <label th:for="userName">UserName</label>
-        <input class="form-control" th:field="*{userName}"/>
-        <span class="error" th:errors="*{userName}"></span>
+            <div class="card-body">
+
+                <div class="card w-25 mx-auto text-center">
+                    <div class="card-body">
+
+                        <form method="post" th:object="${user}" th:action="@{/addUser}">
+                            <div class="form-group">
+                                <input class="form-control" th:field="*{email}"
+                                       placeholder="Email" type="email"/>
+                                <span class="error" th:errors="*{email}"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <input class="form-control" th:field="*{userName}"
+                                       placeholder="Username"/>
+                                <span class="error" th:errors="*{userName}"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <input class="form-control" th:field="*{password}"
+                                       placeholder="Password" type="password"/>
+                                <span class="error" th:errors="*{password}"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <input class="form-control" id="verifyPassword-field" name="verifyPassword"
+                                       placeholder="Confirm Password" type="password"/>
+                            </div>
+
+                            <button type="submit" class="btn btn-success">Sign-Up</button>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <div class="form-group">
-        <label th:for="password">Password</label>
-        <input class="form-control" th:field="*{password}" type="password"/>
-        <span class="error" th:errors="*{password}"></span>
-    </div>
-
-    <div class="form-group">
-        <label for="verifyPassword-field">Verify Password</label>
-        <input class="form-control" id="verifyPassword-field" name="verifyPassword" type="password"/>
-         <span class="error" th:text="${errormessage}"></span>
-
-    </div>
-
-    <div class="form-group">
-        <label th:for="email">Email</label>
-        <input class="form-control" th:field="*{email}" type="email"/>
-        <span class="error" th:errors="*{email}"></span>
-    </div>
-
-    <input type="submit" value="Add User"/>
-
-</form>
- </div>
-
+    <footer th:replace="fragments :: footer"></footer>
 
 </body>
 </html>

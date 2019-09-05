@@ -33,16 +33,14 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
     <!-- Navigation Bar-->
     <nav th:fragment="nav-bar" class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
         <a th:href="@{/}" class="navbar-brand">St. Louis Playground Finder</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02"
+                aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
         <!-- Navbar Items-->
         <div class="collapse navbar-collapse" id="navbarColor02">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                    <a th:href="@{/}" class="nav-link">Home <span class="sr-only">(current)</span></a>
-                </li>
                 <li class="nav-item">
                     <a th:href="@{/search}" class="nav-link">Search</a>
                 </li>
@@ -53,7 +51,7 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
             <!-- Navbar Search form-->
             <form class="form-inline my-2 my-lg-0 mr-2" th:object="${searchForm}" th:action="@{/results}" >
                 <input class="form-control mr-sm-2" type="text" placeholder="Search" th:field="*{name}" />
-                <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+                <button class="btn btn-secondary my-2 my-sm-0 mr-3" type="submit">Search</button>
             </form>
 
             <!-- Login Items -->
@@ -71,18 +69,19 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
             </ul>
             <ul class="navbar-nav justify-content-end"  sec:authorize="isAnonymous()">
                 <li class="nav-item">
-                    <a class="nav-link btn btn-success btn-sm active mr-2" th:href="@{/addUser}">Sign up</a>
+                    <a class="nav-link btn btn-info btn-sm active mr-2" th:href="@{/login}">Login</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link btn btn-info btn-sm active" th:href="@{/login}">Login</a>
+                    <a class="nav-link btn btn-success btn-sm active" th:href="@{/addUser}">Sign up</a>
                 </li>
             </ul>
+
         </div>
     </nav>
 
     <!-- Footer Information -->
     <span th:fragment="footer" class="footer text-center text-muted">
-        A Playground Finder | 2019
+        STL Playground Finder | 2019
     </span>
 
 </body>

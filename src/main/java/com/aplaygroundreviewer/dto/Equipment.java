@@ -22,14 +22,22 @@ public class Equipment {
     @NotNull
     private boolean slides;
 
+    @NotNull
+    private boolean seesaw;
+
+    @NotNull
+    private boolean structures;
+
     public Equipment() {
     }
 
-    public Equipment(boolean ladders, boolean swings, boolean climbingWalls, boolean slides) {
+    public Equipment(boolean ladders, boolean swings, boolean climbingWalls, boolean slides, boolean seesaw, boolean structures) {
         this.ladders = ladders;
         this.swings = swings;
         this.climbingWalls = climbingWalls;
         this.slides = slides;
+        this.seesaw = seesaw;
+        this.structures = structures;
     }
 
     @OneToOne(mappedBy = "equipment")
@@ -78,6 +86,22 @@ public class Equipment {
 
     public void setSlides(boolean slides) {
         this.slides = slides;
+    }
+
+    public boolean isSeesaw() {
+        return seesaw;
+    }
+
+    public void setSeesaw(boolean seesaw) {
+        this.seesaw = seesaw;
+    }
+
+    public boolean isStructures() {
+        return structures;
+    }
+
+    public void setStructures(boolean structures) {
+        this.structures = structures;
     }
 }
 

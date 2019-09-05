@@ -29,8 +29,7 @@ public class UserController {
 
     @GetMapping(value = "addUser")
     public String addUserForm(Model model) {
-
-        model.addAttribute("title", "Add new User");
+        model.addAttribute("title", "Sign up for STL Playground Finder");
         model.addAttribute(new SearchForm());
         model.addAttribute(new User());
         return "user/addUser";
@@ -75,7 +74,7 @@ public class UserController {
     @RequestMapping(value = "login", method = RequestMethod.GET)
     public String loginUserForm(Model model) {
         model.addAttribute(new SearchForm());
-        model.addAttribute("title", "Login to Web App");
+        model.addAttribute("title", "Login to STL Playground Finder");
         return "login";
     }
 
