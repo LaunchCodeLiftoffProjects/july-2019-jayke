@@ -68,7 +68,7 @@ public class UserController {
         UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(userDetails, user.getPassword(), userDetails.getAuthorities());
         SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
 
-        return "redirect:userInfo?username=" + user.getUserName();
+        return "redirect:/";
     }
 
     @RequestMapping(value = "login", method = RequestMethod.GET)
