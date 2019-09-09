@@ -52,6 +52,7 @@ public class SearchController {
     public String processAddPlaygroundForm(@ModelAttribute @Valid Playground newPlayground, Errors errors, Model model) {
         if (errors.hasErrors()) {
             Playground playground = newPlayground;
+            model.addAttribute(new SearchForm());
             model.addAttribute("title", "Add Playground");
             return "add";
         }

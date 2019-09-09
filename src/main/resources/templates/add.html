@@ -16,26 +16,26 @@
             <div class="card w-50 mx-auto">
                 <div class="card-body">
 
-                    <form method="post" th:object="${playground}" th:action="@{/add}">
+                    <form method="post" th:action="@{/add}" th:object="${playground}">
                         <!--General -->
                         <div class="form-group row">
-                            <label th:for="name" class="col-3 col-form-label">Name</label>
+                            <label class="col-3 col-form-label" th:for="name">Name</label>
                             <div class="col-9">
-                                <input type="text" class="form-control" th:field="*{name}"/>
+                                <input class="form-control" th:field="*{name}" type="text" required/>
                                 <span th:errors="*{name}"></span>
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label th:for="address" class="col-3 col-form-label">Address</label>
+                            <label class="col-3 col-form-label" th:for="address">Address</label>
                             <div class="col-9">
-                                <input type="text" class="form-control" th:field="*{address}"/>
+                                <input class="form-control" th:field="*{address}" type="text" required/>
                                 <span th:errors="*{address}"></span>
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label th:for="description" class="col-3 col-form-label">Description</label>
+                            <label class="col-3 col-form-label" th:for="description">Description</label>
                             <div class="col-9">
-                                <textarea class="form-control" th:field="*{description}"></textarea>
+                                <textarea class="form-control" th:field="*{description}" required></textarea>
                                 <span th:errors="*{description}"></span>
                             </div>
                         </div>
@@ -50,40 +50,47 @@
                                 <legend class="col-form-label col-3 pt-0">Equipments</legend>
                                 <div class="col-9">
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" th:field="*{waterFeature}"
+                                        <input class="form-check-input" th:field="*{waterFeature}" type="checkbox"
                                                value="true"/>
                                         <label class="form-check-label" th:for="waterFeature">Water Features</label>
+                                        <span th:errors="*{waterFeature}"></span>
                                     </div>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" th:field="*{equipment.ladders}"
+                                        <input class="form-check-input" th:field="*{equipment.ladders}" type="checkbox"
                                                value="true"/>
                                         <label class="form-check-label" th:for="equipment.ladders">Ladders</label>
+                                        <span th:errors="*{equipment.ladders}"></span>
                                     </div>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" th:field="*{equipment.swings}"
+                                        <input class="form-check-input" th:field="*{equipment.swings}" type="checkbox"
                                                value="true"/>
                                         <label class="form-check-label" th:for="equipment.swings">Swings</label>
+                                        <span th:errors="*{equipment.swings}"></span>
                                     </div>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox"
-                                               th:field="*{equipment.climbingWalls}" value="true"/>
+                                        <input class="form-check-input" th:field="*{equipment.climbingWalls}"
+                                               type="checkbox" value="true"/>
                                         <label class="form-check-label" th:for="equipment.climbingWalls">Climbing
                                             Walls</label>
+                                        <span th:errors="*{equipment.climbingWalls}"></span>
                                     </div>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" th:field="*{equipment.slides}"
+                                        <input class="form-check-input" th:field="*{equipment.slides}" type="checkbox"
                                                value="true"/>
                                         <label class="form-check-label" th:for="equipment.slides">Slides</label>
+                                        <span th:errors="*{equipment.slides}"></span>
                                     </div>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" th:field="*{equipment.seesaw}"
+                                        <input class="form-check-input" th:field="*{equipment.seesaw}" type="checkbox"
                                                value="true"/>
                                         <label class="form-check-label" th:for="equipment.seesaw">See-Saw</label>
+                                        <span th:errors="*{equipment.seesaw}"></span>
                                     </div>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox"
-                                               th:field="*{equipment.structures}" value="true"/>
+                                        <input class="form-check-input" th:field="*{equipment.structures}"
+                                               type="checkbox" value="true"/>
                                         <label class="form-check-label" th:for="equipment.structures">Structures</label>
+                                        <span th:errors="*{equipment.structures}"></span>
                                     </div>
                                 </div>
                             </div>
@@ -95,16 +102,18 @@
                                 <legend class="col-form-label col-3 pt-0">Amenities</legend>
                                 <div class="col-9">
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox"
-                                               th:field="*{amenities.waterFountain}" value="true"/>
+                                        <input class="form-check-input" th:field="*{amenities.waterFountain}"
+                                               type="checkbox" value="true"/>
                                         <label class="form-check-label" th:for="amenities.waterFountain">Water
                                             Fountain</label>
+                                        <span th:errors="*{amenities.waterFountain}"></span>
                                     </div>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox"
-                                               th:field="*{amenities.restroomChangingStation}" value="true"/>
+                                        <input class="form-check-input" th:field="*{amenities.restroomChangingStation}"
+                                               type="checkbox" value="true"/>
                                         <label class="form-check-label" th:for="amenities.restroomChangingStation">Restroom
                                             Changing Station</label>
+                                        <span th:errors="*{amenities.restroomChangingStation}"></span>
                                     </div>
                                 </div>
                             </div>
@@ -116,15 +125,17 @@
                                 <legend class="col-form-label col-3 pt-0">Accessibilities</legend>
                                 <div class="col-9">
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox"
-                                               th:field="*{accessibility.parkingLot}" value="true"/>
+                                        <input class="form-check-input" th:field="*{accessibility.parkingLot}"
+                                               type="checkbox" value="true"/>
                                         <label class="form-check-label" th:for="accessibility.parkingLot">Parking
                                             Lot</label>
+                                        <span th:errors="*{accessibility.parkingLot}"></span>
                                     </div>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox"
-                                               th:field="*{accessibility.trail}" value="true"/>
+                                        <input class="form-check-input" th:field="*{accessibility.trail}"
+                                               type="checkbox" value="true"/>
                                         <label class="form-check-label" th:for="accessibility.trail">Trail</label>
+                                        <span th:errors="*{accessibility.trail}"></span>
                                     </div>
                                 </div>
                             </div>
@@ -135,14 +146,16 @@
                                 <legend class="col-form-label col-3 pt-0">Shelters</legend>
                                 <div class="col-9">
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" th:field="*{shelters.pavillion}"
+                                        <input class="form-check-input" th:field="*{shelters.pavillion}" type="checkbox"
                                                value="true"/>
                                         <label class="form-check-label" th:for="shelters.pavillion">Pavilion</label>
+                                        <span th:errors="*{shelters.pavillion}"></span>
                                     </div>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" th:field="*{shelters.benches}"
+                                        <input class="form-check-input" th:field="*{shelters.benches}" type="checkbox"
                                                value="true"/>
                                         <label class="form-check-label" th:for="shelters.benches">Benches</label>
+                                        <span th:errors="*{shelters.benches}"></span>
                                     </div>
                                 </div>
                             </div>
@@ -154,22 +167,24 @@
                                 <legend class="col-form-label col-3 pt-0">Special Needs</legend>
                                 <div class="col-9">
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox"
-                                               th:field="*{specialNeeds.sensory}" value="true"/>
+                                        <input class="form-check-input" th:field="*{specialNeeds.sensory}"
+                                               type="checkbox" value="true"/>
                                         <label class="form-check-label" th:for="specialNeeds.sensory">Sensory</label>
+                                        <span th:errors="*{specialNeeds.sensory}"></span>
                                     </div>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox"
-                                               th:field="*{specialNeeds.wheelchairAccessible}" value="true"/>
+                                        <input class="form-check-input" th:field="*{specialNeeds.wheelchairAccessible}"
+                                               type="checkbox" value="true"/>
                                         <label class="form-check-label" th:for="specialNeeds.wheelchairAccessible">Wheelchair
                                             Accessible</label>
+                                        <span th:errors="*{specialNeeds.wheelchairAccessible}"></span>
                                     </div>
                                 </div>
                             </div>
                         </fieldset>
 
                         <center>
-                            <button type="submit" class="btn btn-success">Add Playground</button>
+                            <button class="btn btn-success" type="submit">Add Playground</button>
                         </center>
 
                     </form>
