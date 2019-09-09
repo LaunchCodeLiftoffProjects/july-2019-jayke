@@ -7,8 +7,7 @@ import java.util.List;
 
 public interface PlaygroundDao extends JpaRepository<Playground, Integer> {
 
+    List<Playground> findAll();
     Playground findOneById(int id);
-    List<Playground> findByName(String name);
-    List<Playground> findByNameContaining(String name);
     List<Playground> findByNameContainingOrDescriptionContaining(String name, String description);
 }

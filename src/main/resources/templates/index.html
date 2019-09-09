@@ -12,12 +12,24 @@
             </div>
             <div class="card-body">
                 <div id="map"></div>
-                <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC2jmqjcdqlm96ZPw0HSyDhXpdTC5qwazA&amp;callback=initMap"
-                        async="async" defer="defer"></script>
+
             </div>
         </div>
 
     </div>
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=ChangeThisGoogleKeyPlease&amp;callback=initMap"
+            async="async" defer="defer"></script>
+
+    <script th:inline="javascript">
+        function initMap(){
+            /*<![CDATA[*/
+
+            loadMapFromArray(/*[[${list}]]*/);
+
+            /*]]>*/
+        }
+    </script>
 
     <footer th:replace="fragments :: footer"></footer>
 </body>

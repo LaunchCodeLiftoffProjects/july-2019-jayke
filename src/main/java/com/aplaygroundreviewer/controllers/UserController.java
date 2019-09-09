@@ -53,11 +53,12 @@ public class UserController {
         }
 
 
-    //    List<User> userList = userRepository.findByEmail(user.getEmail());
-
-    //    boolean emailExist = userList.contains(user);
-
-
+        User userFromDb = userRepository.findUserByEmail(user.getEmail());
+        boolean emailExist = userFromDb.getEmail().equals(user.getEmail());
+        if(emailExist){
+            model.addAttribute("emailExist", "Email already used. Please enter new email");
+            return "user/addUser";
+        }
 
         List<Role> roles = new ArrayList<>();
         roles.add(Role.builder().name("ROLE_USER").id(2).build());

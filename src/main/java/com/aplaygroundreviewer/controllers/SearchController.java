@@ -1,6 +1,7 @@
 package com.aplaygroundreviewer.controllers;
 
 import com.aplaygroundreviewer.dto.Playground;
+import com.aplaygroundreviewer.dto.PlaygroundInfo;
 import com.aplaygroundreviewer.repository.PlaygroundDao;
 import com.aplaygroundreviewer.dto.SearchForm;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 public class SearchController {
@@ -18,11 +20,19 @@ public class SearchController {
     @Autowired
     private PlaygroundDao playgroundDao;
 
-    static ArrayList<Playground> playgrounds = new ArrayList<>();
-
     @RequestMapping(value = "")
     public String index(Model model) {
         model.addAttribute(new SearchForm());
+        List<Playground> playgrounds = playgroundDao.findAll();
+        List<PlaygroundInfo> list = new ArrayList<>();
+
+        for (int i = 0; i < playgrounds.size(); i++) {
+            Playground playground = playgrounds.get(i);
+            list.add(PlaygroundInfo.builder().playgroundName(playground.getName()).playgroundAddress(playground.getAddress()).build());
+        }
+
+        model.addAttribute("list", list);
+
         return "index";
     }
 

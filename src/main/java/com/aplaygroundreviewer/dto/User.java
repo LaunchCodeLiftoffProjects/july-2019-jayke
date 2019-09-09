@@ -1,7 +1,6 @@
 package com.aplaygroundreviewer.dto;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.*;
 import org.hibernate.validator.constraints.Email;
 
 import javax.annotation.sql.DataSourceDefinition;
@@ -11,7 +10,11 @@ import javax.validation.constraints.Size;
 import java.util.List;
 import java.util.Objects;
 
-@Data
+@Getter
+@Setter
+@ToString(of = {"id", "userName", "email", "password"})
+@EqualsAndHashCode(of = {"email"})
+@RequiredArgsConstructor
 @Entity
 @Table(name="users")
 public class User
@@ -48,33 +51,5 @@ public class User
     public void setRoles(List<Role> roles)
     {
         this.roles = roles;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 }

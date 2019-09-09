@@ -51,7 +51,7 @@ INSERT INTO users (id, email, password, user_Name) VALUES
 -- (NULL, '', 'Pelican Point State Recreation Area', 'State Recreation Area', NULL);
 
 
-insert into user_role(user_id, role_id) values(1,1),
+insert into user_role(user_id, role_id) values
 (1,1),
 (1,2),
 (2,2);

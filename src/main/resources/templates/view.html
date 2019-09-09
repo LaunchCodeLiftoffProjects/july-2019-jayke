@@ -12,7 +12,7 @@
                 <div class="col">
                     <div class="card-header text-center">
                         <h1 id="playgroundName" class="card-title" th:text="${playground.name}">Playground Name</h1>
-                        <h6 th:text="${playground.address}" class="card-subtitle mb-2 text-muted">Address</h6>
+                        <h6  id="address" th:text="${playground.address}" class="card-subtitle mb-2 text-muted">Address</h6>
                         <br> <br>
                         <div class="fb-like" data-href="http://localhost:8080/" data-width="" data-layout="standard" data-action="like"
                              data-size="small" data-show-faces="true" data-share="true"></div>
@@ -131,7 +131,7 @@
             <div class="row">
                 <div class="card-body">
                     <div id="map"></div>
-                    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC2jmqjcdqlm96ZPw0HSyDhXpdTC5qwazA&amp;callback=initMap"
+                    <script src="https://maps.googleapis.com/maps/api/js?key=ChangeThisGoogleKeyPlease&amp;callback=initMap"
                         async="async" defer="defer"></script>
                 </div>
             </div>
@@ -146,6 +146,13 @@
             </div>
         </div>
     </div>
+    <script>
+        function initMap(){
+            var location = document.querySelector("#address").textContent;
+            loadMapForView(location);
+        }
+
+    </script>
 
     <footer th:replace="fragments :: footer"></footer>
 </body>
