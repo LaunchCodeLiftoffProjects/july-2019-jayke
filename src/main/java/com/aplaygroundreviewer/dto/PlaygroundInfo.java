@@ -8,4 +8,5 @@ import lombok.Data;
 public class PlaygroundInfo {
     public String playgroundName;
     public String playgroundAddress;
+    public String url;
 }

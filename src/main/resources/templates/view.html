@@ -13,9 +13,10 @@
                     <div class="card-header text-center">
                         <h1 id="playgroundName" class="card-title" th:text="${playground.name}">Playground Name</h1>
                         <h6  id="address" th:text="${playground.address}" class="card-subtitle mb-2 text-muted">Address</h6>
+                        <!--Likes insert here -->
+                        <div class="rw-ui-container"></div>
                         <br> <br>
-                        <div class="fb-like" data-href="http://localhost:8080/" data-width="" data-layout="standard" data-action="like"
-                             data-size="small" data-show-faces="true" data-share="true"></div>
+
                     </div>
                 </div>
             </div>
@@ -144,6 +145,16 @@
                     <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
                 </div>
             </div>
+            <!--Row 5 | Likes Comments-->
+            <div class="row">
+                <div class="card-body">
+                    <div id="likes"></div>
+                    <!--Likes Script-->
+                    <script type="text/javascript" th:src="@{/js/likes.js}"></script>
+                    <noscript>Please enable JavaScript to view the <a href = "https://rating-widget.com/get/rating/#_=_">comments powered by Ratingwidget.</a></noscript>
+                </div>
+            </div>
+
         </div>
     </div>
     <script>
@@ -151,10 +162,10 @@
             var location = document.querySelector("#address").textContent;
             loadMapForView(location);
         }
-
     </script>
 
     <footer th:replace="fragments :: footer"></footer>
+
 </body>
 
 

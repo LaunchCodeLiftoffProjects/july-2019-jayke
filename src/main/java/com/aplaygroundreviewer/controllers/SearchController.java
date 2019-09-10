@@ -28,7 +28,8 @@ public class SearchController {
 
         for (int i = 0; i < playgrounds.size(); i++) {
             Playground playground = playgrounds.get(i);
-            list.add(PlaygroundInfo.builder().playgroundName(playground.getName()).playgroundAddress(playground.getAddress()).build());
+            String url = "http://localhost:8080/list/view/"+playground.getId();
+            list.add(PlaygroundInfo.builder().playgroundName(playground.getName()).playgroundAddress(playground.getAddress()).url(url).build());
         }
 
         model.addAttribute("list", list);

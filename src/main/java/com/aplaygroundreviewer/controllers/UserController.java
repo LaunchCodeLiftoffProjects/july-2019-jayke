@@ -8,6 +8,8 @@ import com.aplaygroundreviewer.security.CustomUserDetailsService;
 import org.apache.catalina.servlet4preview.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
@@ -17,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 @Controller
@@ -26,6 +29,9 @@ public class UserController {
     CustomUserDetailsService customUserDetailsService;
     @Autowired
     UserRepository userRepository;
+
+    private Object AdminUserAccess;
+
 
     @GetMapping(value = "addUser")
     public String addUserForm(Model model) {
@@ -54,8 +60,11 @@ public class UserController {
 
 
         User userFromDb = userRepository.findUserByEmail(user.getEmail());
-        boolean emailExist = userFromDb.getEmail().equals(user.getEmail());
-        if(emailExist){
+
+        //boolean emailExist = userFromDb.getEmail().equals(user.getEmail());
+
+        //boolean emailExist = userFromDb.contains(user);
+        if(userFromDb != null){
             model.addAttribute("emailExist", "Email already used. Please enter new email");
             return "user/addUser";
         }
@@ -76,6 +85,16 @@ public class UserController {
     public String loginUserForm(Model model) {
         model.addAttribute(new SearchForm());
         model.addAttribute("title", "Login to STL Playground Finder");
+//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+//        Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
+//        for (GrantedAuthority grantedAuthority : authorities) {
+//            if (grantedAuthority.getAuthority().equals("ROLE_USER")) {
+//                return "user/userInfo";
+//            }
+//            else if (grantedAuthority.getAuthority().equals("ROLE_ADMIN")) {
+//                return "user/admin";
+//            }
+//        }
         return "login";
     }
 
@@ -93,7 +112,7 @@ public class UserController {
         for (int userId : userIds) {
             userRepository.deleteById(userId);
         }
-        return "redirect:admin";
+        return "user/admin";
     }
 
     @RequestMapping(value = "userInfo")

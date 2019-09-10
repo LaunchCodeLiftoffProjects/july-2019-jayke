@@ -54,7 +54,8 @@ function getLatLng(){
         console.log(error);
     });
 }
-function loadMapFromArray(array) {
+
+function loadMapFromArray(playgroundArray) {
     <!--set Map Options -->
     var options = {
         center: {lat: 38.6270, lng: -90.1994},
@@ -65,16 +66,17 @@ function loadMapFromArray(array) {
     map = new google.maps.Map(document.getElementById('map'), options);
 
     var i;
-    for (i = 0; i < array.length; i++) {
-        item = array[i];
-        initMap(item.playgroundAddress, map, item.playgroundName);
+    for (i = 0; i < playgroundArray.length; i++) {
+        playgroundObject = playgroundArray[i];
+       // initMap(item.playgroundAddress, map, item.playgroundName);
+        initMap(playgroundObject, map);
     }
 
-    function initMap(location, map, name) {
+    function initMap(playgroundObject, map) {
         <!-- Get Latitude and Longitude -->
         axios.get('https://maps.googleapis.com/maps/api/geocode/json', {
             params: {
-                address: location,
+                address: playgroundObject.playgroundAddress,
                 key: 'ChangeThisGoogleKeyPlease'
             }
         })
@@ -88,11 +90,11 @@ function loadMapFromArray(array) {
                     position: {lat: lat, lng: lng},
                     map: map,
                     animation: google.maps.Animation.DROP,
-                    title: "Hello World!" + name,
-                    label: name
+                    title: "Hello World!" + playgroundObject.playgroundName,
+                    label: playgroundObject.playgroundName
                 });
 
-                var infoWindow = new google.maps.InfoWindow( {content:'<h4> ' + location +' </h4>'} );
+                var infoWindow = new google.maps.InfoWindow( {content:'<h4> ' + playgroundObject.playgroundAddress +' </h4> <br> playgroundObject.url '} );
                 marker.addListener('click', function(){
                     infoWindow.open(map,marker);
                 });
@@ -105,6 +107,58 @@ function loadMapFromArray(array) {
     }
 
 }
+
+// function loadMapFromArray(array) {
+//     <!--set Map Options -->
+//     var options = {
+//         center: {lat: 38.6270, lng: -90.1994},
+//         zoom: 9
+//     };
+//
+//     <!--New map-->
+//     map = new google.maps.Map(document.getElementById('map'), options);
+//
+//     var i;
+//     for (i = 0; i < array.length; i++) {
+//         item = array[i];
+//         initMap(item.playgroundAddress, map, item.playgroundName);
+//     }
+//
+//     function initMap(location, map, name) {
+//         <!-- Get Latitude and Longitude -->
+//         axios.get('https://maps.googleapis.com/maps/api/geocode/json', {
+//             params: {
+//                 address: location,
+//                 key: 'ChangeThisGoogleKeyPlease'
+//             }
+//         })
+//             .then(function (response) {
+//                 // Geometry
+//                 var lat = response.data.results[0].geometry.location.lat;
+//                 var lng = response.data.results[0].geometry.location.lng;
+//
+//                 <!-- Add marker -->
+//                 var marker = new google.maps.Marker({
+//                     position: {lat: lat, lng: lng},
+//                     map: map,
+//                     animation: google.maps.Animation.DROP,
+//                     title: "Hello World!" + name,
+//                     label: name
+//                 });
+//
+//                 var infoWindow = new google.maps.InfoWindow( {content:'<h4> ' + location +' </h4> <br> '} );
+//                 marker.addListener('click', function(){
+//                     infoWindow.open(map,marker);
+//                 });
+//
+//
+//
+//             });
+//
+//
+//     }
+//
+// }
 
 
 function loadMapForView(string) {
