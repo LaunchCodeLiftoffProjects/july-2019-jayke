@@ -9,41 +9,181 @@
         <div class="card" th:if="${playground}">
             <!--Row 1 | Header -->
             <div class="row">
-                <div class="col">
+                <div class="col" >
                     <div class="card-header text-center">
                         <h1 id="playgroundName" class="card-title" th:text="${playground.name}">Playground Name</h1>
                         <h6 th:text="${playground.address}" class="card-subtitle mb-2 text-muted">Address</h6>
-                        <br> <br>
                         <div class="fb-like" data-href="http://localhost:8080/" data-width="" data-layout="standard" data-action="like"
                              data-size="small" data-show-faces="true" data-share="true"></div>
                     </div>
                 </div>
             </div>
-            <!--Row 2 | Images & Info -->
+            <!--Row 2 | Info and Images -->
             <div class="row no-gutters">
-                <!--Carousel Column-->
-                <div class="col-7">
+                <!--Column 1 | Info Tables -->
+                <div class="col-3">
                     <div class="card-body">
+                        <!--Equipments -->
+                        <table class="table table-sm table-striped">
+                            <thead class="thead-dark text-center">
+                            <tr>
+                                <th scope="col" colspan="2">Equipment</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <th scope="row">Climbing Wall</th>
+                                <td class="text-right">
+                                    <span th:if="${playground.equipment.climbingWalls}">Yes</span>
+                                    <span th:unless="${playground.equipment.climbingWalls}">No</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Ladders</th>
+                                <td class="text-right">
+                                    <span th:if="${playground.equipment.ladders}">Yes</span>
+                                    <span th:unless="${playground.equipment.ladders}">No</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Seesaw</th>
+                                <td class="text-right">
+                                    <span th:if="${playground.equipment.seesaw}">Yes</span>
+                                    <span th:unless="${playground.equipment.seesaw}">No</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Slides</th>
+                                <td class="text-right">
+                                    <span th:if="${playground.equipment.slides}">Yes</span>
+                                    <span th:unless="${playground.equipment.slides}">No</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Structures</th>
+                                <td class="text-right">
+                                    <span th:if="${playground.equipment.structures}">Yes</span>
+                                    <span th:unless="${playground.equipment.structures}">No</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Swing</th>
+                                <td class="text-right">
+                                    <span th:if="${playground.equipment.swings}">Yes</span>
+                                    <span th:unless="${playground.equipment.swings}">No</span>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <!--Amenities-->
+                        <table class="table table-sm table-striped">
+                            <thead class="thead-dark text-center">
+                            <tr>
+                                <th scope="col" colspan="2">Amenities</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <th scope="row">Water Fountain</th>
+                                <td class="text-right">
+                                    <span th:if="${playground.amenities.waterFountain}">Yes</span>
+                                    <span th:unless="${playground.amenities.waterFountain}">No</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Restroom Changing Station</th>
+                                <td class="text-right">
+                                    <span th:if="${playground.amenities.restroomChangingStation}">Yes</span>
+                                    <span th:unless="${playground.amenities.restroomChangingStation}">No</span>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <!--Accessibilites-->
+                        <table class="table table-sm table-striped">
+                            <thead class="thead-dark text-center">
+                            <tr>
+                                <th scope="col" colspan="2">Accessibilities</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <th scope="row">Parking Lot</th>
+                                <td class="text-right">
+                                    <span th:if="${playground.accessibility.parkingLot}">Yes</span>
+                                    <span th:unless="${playground.accessibility.parkingLot}">No</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Trail</th>
+                                <td class="text-right">
+                                    <span th:if="${playground.accessibility.trail}">Yes</span>
+                                    <span th:unless="${playground.accessibility.trail}">No</span>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <!--Shelters-->
+                        <table class="table table-sm table-striped">
+                            <thead class="thead-dark text-center">
+                            <tr>
+                                <th scope="col" colspan="2">Shelters</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <th scope="row">Benches</th>
+                                <td class="text-right">
+                                    <span th:if="${playground.shelters.benches}">Yes</span>
+                                    <span th:unless="${playground.shelters.benches}">No</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Pavilion</th>
+                                <td class="text-right">
+                                    <span th:if="${playground.shelters.pavillion}">Yes</span>
+                                    <span th:unless="${playground.shelters.pavillion}">No</span>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <!--Special Needs-->
+                        <table class="table table-sm table-striped">
+                            <thead class="thead-dark text-center">
+                            <tr>
+                                <th scope="col" colspan="2">Special Needs</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <th scope="row">Sensory</th>
+                                <td class="text-right">
+                                    <span th:if="${playground.specialNeeds.sensory}">Yes</span>
+                                    <span th:unless="${playground.specialNeeds.sensory}">No</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Restroom Changing Station</th>
+                                <td class="text-right">
+                                    <span th:if="${playground.specialNeeds.wheelchairAccessible}">Yes</span>
+                                    <span th:unless="${playground.specialNeeds.wheelchairAccessible}">No</span>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <!--Column 2 | Carousel & Description-->
+                <div class="col-9" >
+                    <div class="row">
+                        <!--Carousel-->
+                        <div class="card-body h-100">
                         <div id="carouselPlayground" class="carousel slide container" data-ride="carousel">
                             <div class="carousel-inner">
                                 <div class="carousel-item active">
-                                    <img class="d-block w-100" src="https://placeimg.com/640/480/arch" alt="First"/>
+                                    <img class="d-block w-100" src="https://placeimg.com/800/400/arch" alt="First"/>
                                     <div class="carousel-caption d-none d-md-block">
                                         <h5>Caption Title Test 1</h5>
-                                        <p>Testing Caption</p>
-                                    </div>
-                                </div>
-                                <div class="carousel-item">
-                                    <img class="d-block w-100" src="https://placeimg.com/640/480/tech" alt="Second"/>
-                                    <div class="carousel-caption d-none d-md-block">
-                                        <h5>Caption Title Test 2</h5>
-                                        <p>Testing Caption</p>
-                                    </div>
-                                </div>
-                                <div class="carousel-item">
-                                    <img class="d-block w-100" src="https://placeimg.com/640/480/people" alt="Third"/>
-                                    <div class="carousel-caption d-none d-md-block">
-                                        <h5>Caption Title Test 3</h5>
                                         <p>Testing Caption</p>
                                     </div>
                                 </div>
@@ -58,81 +198,26 @@
                             </a>
                         </div>
                     </div>
-                </div>
-                <!-- Equipment Column-->
-                <div class="col-5">
-                    <div class="card-body">
-                        <table class="table table-sm table-striped" >
-                            <thead class="thead-dark text-center">
-                                <tr>
-                                    <th scope="col" colspan="2">Equipment</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-
-                                <tr>
-                                    <th scope="row">Climbing Wall</th>
-                                    <td>
-                                        <span th:if="${playground.equipment.climbingWalls}">Yes</span>
-                                        <span th:unless="${playground.equipment.climbingWalls}">No</span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Swing</th>
-                                    <td>
-                                        <span th:if="${playground.equipment.swings}">Yes</span>
-                                        <span th:unless="${playground.equipment.swings}">No</span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Ladders</th>
-                                    <td>
-                                        <span th:if="${playground.equipment.ladders}">Yes</span>
-                                        <span th:unless="${playground.equipment.ladders}">No</span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Slides</th>
-                                    <td>
-                                        <span th:if="${playground.equipment.slides}">Yes</span>
-                                        <span th:unless="${playground.equipment.slides}">No</span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Seesaw</th>
-                                    <td>
-                                        <span th:if="${playground.equipment.seesaw}">Yes</span>
-                                        <span th:unless="${playground.equipment.seesaw}">No</span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Structures</th>
-                                    <td>
-                                        <span th:if="${playground.equipment.structures}">Yes</span>
-                                        <span th:unless="${playground.equipment.structures}">No</span>
-                                    </td>
-                                </tr>
-                                <!--add amenities fields-->
-                            </tbody>
-                        </table>
+                    </div>
+                    <div class="row">
+                        <!--Description-->
+                        <div class="col-6">
+                            <div class="card-body">
+                                <h5 class="card-title">Playground Description</h5>
+                                <p class="card-subtitle text-muted" th:text="${playground.description}"></p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <!--Row 3 | Description -->
+            <!--Row 3 | Map -->
             <div class="row">
                 <div class="col">
-                    <div class="card-body">
-                        <h5 class="card-title">Playground Description</h5>
-                        <p class="card-subtitle text-muted" th:text="${playground.description}"></p>
+                    <div class="card-body h-50">
+                        <div id="map"></div>
+                        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC2jmqjcdqlm96ZPw0HSyDhXpdTC5qwazA&amp;callback=initMap"
+                                async="async" defer="defer"></script>
                     </div>
-                </div>
-            </div>
-            <!--Row 4 | Map -->
-            <div class="row">
-                <div class="card-body">
-                    <div id="map"></div>
-                    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC2jmqjcdqlm96ZPw0HSyDhXpdTC5qwazA&amp;callback=initMap"
-                        async="async" defer="defer"></script>
                 </div>
             </div>
             <!--Row 5 | Disqus Comments-->
