@@ -67,7 +67,7 @@ function callback(results, status) {
 
 function bindInfoWindow(marker, map, infoWindow, htmlContent){
     marker.addListener('click', function(){
-        infoWindow.setContent(html);
+        infoWindow.setContent(htmlContent);
         infoWindow.open(map, this);
     })
 }
