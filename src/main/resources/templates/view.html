@@ -32,6 +32,13 @@
                             </thead>
                             <tbody>
                             <tr>
+                                <th scope="row">Water Features</th>
+                                <td class="text-right">
+                                    <span th:if="${playground.waterFeature}">Yes</span>
+                                    <span th:unless="${playground.waterFeature}">No</span>
+                                </td>
+                            </tr>
+                            <tr>
                                 <th scope="row">Climbing Wall</th>
                                 <td class="text-right">
                                     <span th:if="${playground.equipment.climbingWalls}">Yes</span>
