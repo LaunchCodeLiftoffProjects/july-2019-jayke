@@ -12,6 +12,8 @@ function loadMap(){
 
   var bounds= new google.maps.LatLngBounds();
   var infoWindow = new google.maps.InfoWindow();
+  var marker = new google.maps.Marker();
+  var infoWindowContent;
 
   <!-- Calculate Latitude and Longitude for location -->
   for (i=0; i!=locations.length; i++){
@@ -28,27 +30,30 @@ function loadMap(){
                     var lng = response.data.results[0].geometry.location.lng;
 
                     <!-- Add marker -->
-                     marker = new google.maps.Marker({
+                     marker[i] = new google.maps.Marker({
                                 position : {lat: lat, lng: lng},
                                 map : map,
                                 title: loc
                      });
 
                       <!-- Info window for marker -->
-                      infoWindow = new google.maps.InfoWindow( {content:'<h4> ' + marker.title +' </h4>'} );
-                      marker.addListener('click', function(){
-                                infoWindow.open(map,marker);
+                      infoWindowContent= {content:'<h4> ' + marker[[i]].title +' </h4>'};
+                      infoWindow[i] = new google.maps.InfoWindow( infoWindowContent );
+                      marker[i].addListener('click', function(){
+                                infoWindow.open(map, marker[i]);
                       });
 
                       <!-- Form a boundary for map -->
                       bounds = new google.maps.LatLngBounds();
-                      bounds.extend(marker.getPosition());
+                      bounds.extend(marker[i].getPosition());
+
+                      <!-- Fit all markers on a map -->
+                       map.setCenter(bounds.getCenter());
+                       map.fitBounds(bounds);
       });
 
       }
-                      <!-- Fit all markers on a map -->
-                      map.setCenter(bounds.getCenter());
-                      map.fitBounds(bounds);
+
                       map.setZoom(9);
 }
 
