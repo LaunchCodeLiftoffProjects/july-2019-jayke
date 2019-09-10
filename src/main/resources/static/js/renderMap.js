@@ -11,9 +11,11 @@ function loadMap(){
       var locations = document.querySelectorAll("[id='playgroundName']");
 
   var bounds= new google.maps.LatLngBounds();
+  var infoWindow = new google.maps.InfoWindow();
 
   <!-- Calculate Latitude and Longitude for location -->
   for (i=0; i!=locations.length; i++){
+   var loc = locations[i].value;
       axios.get('https://maps.googleapis.com/maps/api/geocode/json',{
                     params:{
                             address:locations[i].value,
@@ -29,11 +31,11 @@ function loadMap(){
                      marker = new google.maps.Marker({
                                 position : {lat: lat, lng: lng},
                                 map : map,
-                                animation: google.maps.Animation.DROP,
+                                title: loc
                      });
 
                       <!-- Info window for marker -->
-                      var infoWindow = new google.maps.InfoWindow( {content:'<h4> ' + locations +' </h4>'} );
+                      infoWindow = new google.maps.InfoWindow( {content:'<h4> ' + marker.title +' </h4>'} );
                       marker.addListener('click', function(){
                                 infoWindow.open(map,marker);
                       });
