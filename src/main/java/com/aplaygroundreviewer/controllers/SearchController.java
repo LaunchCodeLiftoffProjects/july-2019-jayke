@@ -53,7 +53,7 @@ public class SearchController {
 
     @RequestMapping(value = "add", method = RequestMethod.GET)
     public String displayAddPlaygroundForm(Model model) {
-        model.addAttribute("title", "Add a Playground Object");
+        model.addAttribute("title", "Add a Playground");
         model.addAttribute(new SearchForm());
         model.addAttribute(new Playground());
         return "add";
@@ -63,6 +63,7 @@ public class SearchController {
     public String processAddPlaygroundForm(@ModelAttribute @Valid Playground newPlayground, Errors errors, Model model) {
         if (errors.hasErrors()) {
             Playground playground = newPlayground;
+            model.addAttribute(new SearchForm());
             model.addAttribute("title", "Add Playground");
             return "add";
         }
@@ -75,7 +76,7 @@ public class SearchController {
     public String displayRemovePlaygroundForm(Model model) {
         model.addAttribute(new SearchForm());
         model.addAttribute("playgrounds", playgroundDao.findAll());
-        model.addAttribute("title", "Remove Playground");
+        model.addAttribute("title", "Remove Playground(s)");
         return "remove";
     }
 
