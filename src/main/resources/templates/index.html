@@ -11,25 +11,11 @@
                 <h1 class="card-title text-center">Welcome to STL Playground Finder!</h1>
             </div>
             <div class="card-body">
-                <div id="map"></div>
-
+                <div id="map" style="width:80%; height:400px; margin-left: auto; margin-right: auto"></div>
+                <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY&amp;callback=initMap"
+                        async="async" defer="defer"></script>
             </div>
         </div>
-
-    </div>
-
-    <script src="https://maps.googleapis.com/maps/api/js?key=ChangeThisGoogleKeyPlease&amp;callback=initMap"
-            async="async" defer="defer"></script>
-
-    <script th:inline="javascript">
-        function initMap(){
-            /*<![CDATA[*/
-
-            loadMapFromArray(/*[[${list}]]*/);
-
-            /*]]>*/
-        }
-    </script>
 
     <footer th:replace="fragments :: footer"></footer>
 </body>
