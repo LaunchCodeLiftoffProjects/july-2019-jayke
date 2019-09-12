@@ -7,21 +7,18 @@
         <nav th:replace="fragments :: nav-bar"></nav>
 
         <div class="card" th:if="${playground}">
-            <!--Row 1 | Header -->
-            <div class="row">
-                <div class="col" >
-                    <div class="card-header text-center">
-                        <input id="playgroundName" th:value="${playground.name}" type="hidden"/>
-                        <h1 class="card-title" th:text="${playground.name}">Playground Name</h1>
-                        <h6 class="card-subtitle mb-2 text-muted">Address</h6>
-                    </div>
-                </div>
+            <!-- Header -->
+            <div class="card-header text-center">
+                <input id="playgroundName" th:value="${playground.name}" type="hidden"/>
+                <h1 class="card-title" th:text="${playground.name}">Playground Name</h1>
+                <h6 class="card-subtitle mb-2 text-muted" th:text="${playground.address}">Address</h6>
             </div>
-            <!--Row 2 | Info and Images -->
-            <div class="row no-gutters">
-                <!--Column 1 | Info Tables -->
-                <div class="col-3">
-                    <div class="card-body">
+            <!--Main Body-->
+            <div class="card-body">
+                <!--Row 1 | Info and Images -->
+                <div class="row">
+                    <!--Column 1 | Info Tables -->
+                    <div class="col-3">
                         <!--Equipments -->
                         <table class="table table-sm table-striped">
                             <thead class="thead-dark text-center">
@@ -178,65 +175,62 @@
                             </tbody>
                         </table>
                     </div>
-                </div>
-                <!--Column 2 | Carousel & Description-->
-                <div class="col-9" >
-                    <div class="row">
-                        <!--Carousel-->
-                        <div class="card-body h-100">
-                        <div id="carouselPlayground" class="carousel slide container" data-ride="carousel">
-                            <div class="carousel-inner">
-                                <div class="carousel-item active">
-                                    <img class="d-block w-100" src="https://placeimg.com/800/400/arch" alt="First"/>
-                                    <div class="carousel-caption d-none d-md-block">
-                                        <h5>Caption Title Test 1</h5>
-                                        <p>Testing Caption</p>
+                    <!--Column 2 | Carousel & Description-->
+                    <div class="col-9" >
+                        <div class="row">
+                            <div class="col">
+                                <!--Carousel-->
+                                <div id="carouselPlayground" class="carousel slide container" data-ride="carousel">
+                                        <div class="carousel-inner">
+                                            <div class="carousel-item active">
+                                                <img class="d-block w-100" src="https://placeimg.com/800/400/arch" alt="First"/>
+                                                <div class="carousel-caption d-none d-md-block">
+                                                    <h5>Caption Title Test 1</h5>
+                                                    <p>Testing Caption</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <a class="carousel-control-prev" href="#carouselPlaground" role="button" data-slide="prev">
+                                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                            <span class="sr-only">Previous</span>
+                                        </a>
+                                        <a class="carousel-control-next" href="#carouselPlayground" role="button" data-slide="next">
+                                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                            <span class="sr-only">Next</span>
+                                        </a>
                                     </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <!--Description-->
+                            <div class="col">
+                                <div class="px-3 py-3">
+                                    <h5 class="card-title">Playground Description</h5>
+                                    <p class="card-subtitle text-muted" th:text="${playground.description}"></p>
                                 </div>
                             </div>
-                            <a class="carousel-control-prev" href="#carouselPlaground" role="button" data-slide="prev">
-                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                <span class="sr-only">Previous</span>
-                            </a>
-                            <a class="carousel-control-next" href="#carouselPlayground" role="button" data-slide="next">
-                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                <span class="sr-only">Next</span>
-                            </a>
-                        </div>
-                    </div>
-                    </div>
-                    <div class="row">
-                        <!--Description-->
-                        <div class="col-6">
-                            <div class="card-body">
-                                <h5 class="card-title">Playground Description</h5>
-                                <p class="card-subtitle text-muted" th:text="${playground.description}"></p>
-                            </div>
                         </div>
                     </div>
                 </div>
+                <!--Row 2 | Map -->
+                <div class="row">
+                    <div class="col">
+                            <div id="map"></div>
+                            <script src="https://maps.googleapis.com/maps/api/js?key=Your_Key&amp;callback=loadMap" async="async" defer="defer"></script>
+                    </div>
+                </div>
+                <!--Row 3 | Disqus Comments-->
+                <div class="row">
+                    <div class="col">
+                        <!--Disqus Container-->
+                        <div id="disqus_thread"></div>
+                        <!--Disqus Script-->
+                        <script type="text/javascript" th:src="@{/js/disqus.js}"></script>
+                        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+                    </div>
+                </div>
             </div>
-            <!--Row 3 | Map -->
-            <div class="row">
-                <div class="col">
-                    <div class="card-body h-50">
-                        <div id="map" style="width:40%; height:400px; margin-left: auto; margin-right: auto"></div>
 
-                        <script src="https://maps.googleapis.com/maps/api/js?key=Your_Key&amp;callback=loadMap"
-                                async="async" defer="defer">
-                        </script>
-                    </div>
-                </div>
-            </div>
-            <!--Row 5 | Disqus Comments-->
-            <div class="row">
-                <div class="card-body">
-                    <div id="disqus_thread"></div>
-                    <!--Disqus Script-->
-                    <script type="text/javascript" th:src="@{/js/disqus.js}"></script>
-                    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-                </div>
-            </div>
         </div>
     </div>
 
