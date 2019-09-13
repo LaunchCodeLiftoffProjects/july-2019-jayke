@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<html lang="en" xmlns:th="http://www.thymeleaf.org/"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head th:replace="fragments :: head"></head>
 
 <body>
@@ -11,7 +12,7 @@
         <div class="card-header text-center">
             <h1 class="card-title" th:text="${title}">Default Title</h1>
         </div>
-
+        <div sec:authorize="hasRole('ROLE_ADMIN')">
         <div class="card-body">
             <div class="w-25 mx-auto border p-3">
                 <form method="post" th:action="@{/remove}">
@@ -27,7 +28,7 @@
         </div>
     </div>
 </div>
-
+</div>
     <footer th:replace="fragments :: footer"></footer>
 
 </body>

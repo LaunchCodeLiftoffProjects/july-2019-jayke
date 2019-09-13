@@ -19,7 +19,7 @@ import java.util.Objects;
 @Table(name="users")
 public class User
 {
-    @Id @GeneratedValue(strategy=GenerationType.AUTO)
+    @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Integer id;
 
     @Column(nullable=false)

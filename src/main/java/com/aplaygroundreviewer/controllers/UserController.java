@@ -85,16 +85,6 @@ public class UserController {
     public String loginUserForm(Model model) {
         model.addAttribute(new SearchForm());
         model.addAttribute("title", "Login to STL Playground Finder");
-//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-//        Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
-//        for (GrantedAuthority grantedAuthority : authorities) {
-//            if (grantedAuthority.getAuthority().equals("ROLE_USER")) {
-//                return "user/userInfo";
-//            }
-//            else if (grantedAuthority.getAuthority().equals("ROLE_ADMIN")) {
-//                return "user/admin";
-//            }
-//        }
         return "login";
     }
 
