@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/"
+xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+
+<head th:replace="fragments :: head"></head>
+
+<body class="container body-content">
+<nav th:replace="fragments :: nav-bar"></nav>
+
+<head>
+    <title>User Home</title>
+</head>
+
+<div>
+    <p>
+        Welcome <span sec:authentication="principal.username">User</span>
+    </p>
+    <p>
+        <a th:href="@{/logout}">Logout</a>
+    </p>
+    <div sec:authorize="hasRole('ROLE_ADMIN')">
+        <h3>You will see this only if you are ADMIN</h3>
+        <p>
+            <a th:href="@{/admin}">Admin Home</a>
+        </p>
+    </div>
+</div>
+
+</body>
+
+</html>
