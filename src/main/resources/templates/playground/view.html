@@ -12,6 +12,7 @@
                 <input id="playgroundName" th:value="${playground.name}" type="hidden"/>
                 <h1 class="card-title" th:text="${playground.name}">Playground Name</h1>
                 <h6 class="card-subtitle mb-2 text-muted" th:text="${playground.address}">Address</h6>
+                <a th:href="@{/edit/{id}(id=${playground.id})}">Edit</a>
             </div>
             <!--Main Body-->
             <div class="card-body">

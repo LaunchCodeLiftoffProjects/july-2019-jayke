@@ -95,7 +95,7 @@ public class UserController {
 //                return "user/admin";
 //            }
 //        }
-        return "login";
+        return "user/login";
     }
 
 
