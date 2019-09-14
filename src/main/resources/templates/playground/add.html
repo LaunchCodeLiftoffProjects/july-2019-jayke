@@ -48,11 +48,6 @@
                             <legend class="col-form-label col-4 pt-0">Equipments</legend>
                             <div class="col-8">
                                 <div class="form-check">
-                                    <input class="form-check-input" th:field="*{waterFeature}" type="checkbox"
-                                           value="true"/>
-                                    <label class="form-check-label" th:for="waterFeature">Water Features</label>
-                                </div>
-                                <div class="form-check">
                                     <input class="form-check-input" th:field="*{equipment.ladders}" type="checkbox"
                                            value="true"/>
                                     <label class="form-check-label" th:for="equipment.ladders">Ladders</label>
@@ -160,6 +155,20 @@
                                     <input class="form-check-input" th:field="*{specialNeeds.wheelchairAccessible}"
                                            type="checkbox" value="true"/>
                                     <label class="form-check-label" th:for="specialNeeds.wheelchairAccessible">Wheelchair Accessible</label>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <!--Other -->
+                    <fieldset class="form-group">
+                        <div class="row">
+                            <legend class="col-form-label col-4 pt-0">Other</legend>
+                            <div class="col-8">
+                                <div class="form-check">
+                                    <input class="form-check-input" th:field="*{waterFeature}" type="checkbox"
+                                           value="true"/>
+                                    <label class="form-check-label" th:for="waterFeature">Water Features</label>
                                 </div>
                             </div>
                         </div>
