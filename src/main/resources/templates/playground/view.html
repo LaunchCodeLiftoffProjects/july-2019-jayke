@@ -29,52 +29,69 @@
                             </thead>
                             <tbody>
                             <tr>
-                                <th scope="row">Water Features</th>
-                                <td class="text-right">
-                                    <span th:if="${playground.waterFeature}">Yes</span>
-                                    <span th:unless="${playground.waterFeature}">No</span>
-                                </td>
-                            </tr>
-                            <tr>
                                 <th scope="row">Climbing Wall</th>
                                 <td class="text-right">
-                                    <span th:if="${playground.equipment.climbingWalls}">Yes</span>
-                                    <span th:unless="${playground.equipment.climbingWalls}">No</span>
+                                    <span th:if="${playground.equipment.climbingWalls}">
+                                        <i class="material-icons" style="font-size:1rem; color:green">check_circle</i>
+                                    </span>
+                                    <span th:unless="${playground.equipment.climbingWalls}">
+                                        <i class="material-icons" style="font-size:1rem; color:red">cancel</i>
+                                    </span>
                                 </td>
                             </tr>
                             <tr>
                                 <th scope="row">Ladders</th>
                                 <td class="text-right">
-                                    <span th:if="${playground.equipment.ladders}">Yes</span>
-                                    <span th:unless="${playground.equipment.ladders}">No</span>
+                                    <span th:if="${playground.equipment.ladders}">
+                                        <i class="material-icons" style="font-size:1rem; color:green">check_circle</i>
+                                    </span>
+                                    <span th:unless="${playground.equipment.ladders}">
+                                        <i class="material-icons" style="font-size:1rem; color:red">cancel</i>
+                                    </span>
                                 </td>
                             </tr>
                             <tr>
                                 <th scope="row">Seesaw</th>
                                 <td class="text-right">
-                                    <span th:if="${playground.equipment.seesaw}">Yes</span>
-                                    <span th:unless="${playground.equipment.seesaw}">No</span>
+                                    <span th:if="${playground.equipment.seesaw}">
+                                        <i class="material-icons" style="font-size:1rem; color:green">check_circle</i>
+                                    </span>
+                                    <span th:unless="${playground.equipment.seesaw}">
+                                        <i class="material-icons" style="font-size:1rem; color:red">cancel</i>
+                                    </span>
                                 </td>
                             </tr>
                             <tr>
                                 <th scope="row">Slides</th>
                                 <td class="text-right">
-                                    <span th:if="${playground.equipment.slides}">Yes</span>
-                                    <span th:unless="${playground.equipment.slides}">No</span>
+                                    <span th:if="${playground.equipment.slides}">
+                                        <i class="material-icons" style="font-size:1rem; color:green">check_circle</i>
+                                    </span>
+                                    <span th:unless="${playground.equipment.slides}">
+                                        <i class="material-icons" style="font-size:1rem; color:red">cancel</i>
+                                    </span>
                                 </td>
                             </tr>
                             <tr>
                                 <th scope="row">Structures</th>
                                 <td class="text-right">
-                                    <span th:if="${playground.equipment.structures}">Yes</span>
-                                    <span th:unless="${playground.equipment.structures}">No</span>
+                                    <span th:if="${playground.equipment.structures}">
+                                        <i class="material-icons" style="font-size:1rem; color:green">check_circle</i>
+                                    </span>
+                                    <span th:unless="${playground.equipment.structures}">
+                                        <i class="material-icons" style="font-size:1rem; color:red">cancel</i>
+                                    </span>
                                 </td>
                             </tr>
                             <tr>
                                 <th scope="row">Swing</th>
                                 <td class="text-right">
-                                    <span th:if="${playground.equipment.swings}">Yes</span>
-                                    <span th:unless="${playground.equipment.swings}">No</span>
+                                    <span th:if="${playground.equipment.swings}">
+                                        <i class="material-icons" style="font-size:1rem; color:green">check_circle</i>
+                                    </span>
+                                    <span th:unless="${playground.equipment.swings}">
+                                        <i class="material-icons" style="font-size:1rem; color:red">cancel</i>
+                                    </span>
                                 </td>
                             </tr>
                             </tbody>
@@ -90,15 +107,23 @@
                             <tr>
                                 <th scope="row">Water Fountain</th>
                                 <td class="text-right">
-                                    <span th:if="${playground.amenities.waterFountain}">Yes</span>
-                                    <span th:unless="${playground.amenities.waterFountain}">No</span>
+                                    <span th:if="${playground.amenities.waterFountain}">
+                                        <i class="material-icons" style="font-size:1rem; color:green">check_circle</i>
+                                    </span>
+                                    <span th:unless="${playground.amenities.waterFountain}">
+                                        <i class="material-icons" style="font-size:1rem; color:red">cancel</i>
+                                    </span>
                                 </td>
                             </tr>
                             <tr>
                                 <th scope="row">Restroom Changing Station</th>
                                 <td class="text-right">
-                                    <span th:if="${playground.amenities.restroomChangingStation}">Yes</span>
-                                    <span th:unless="${playground.amenities.restroomChangingStation}">No</span>
+                                    <span th:if="${playground.amenities.restroomChangingStation}">
+                                        <i class="material-icons" style="font-size:1rem; color:green">check_circle</i>
+                                    </span>
+                                    <span th:unless="${playground.amenities.restroomChangingStation}">
+                                        <i class="material-icons" style="font-size:1rem; color:red">cancel</i>
+                                    </span>
                                 </td>
                             </tr>
                             </tbody>
@@ -114,15 +139,23 @@
                             <tr>
                                 <th scope="row">Parking Lot</th>
                                 <td class="text-right">
-                                    <span th:if="${playground.accessibility.parkingLot}">Yes</span>
-                                    <span th:unless="${playground.accessibility.parkingLot}">No</span>
+                                    <span th:if="${playground.accessibility.parkingLot}">
+                                        <i class="material-icons" style="font-size:1rem; color:green">check_circle</i>
+                                    </span>
+                                    <span th:unless="${playground.accessibility.parkingLot}">
+                                        <i class="material-icons" style="font-size:1rem; color:red">cancel</i>
+                                    </span>
                                 </td>
                             </tr>
                             <tr>
                                 <th scope="row">Trail</th>
                                 <td class="text-right">
-                                    <span th:if="${playground.accessibility.trail}">Yes</span>
-                                    <span th:unless="${playground.accessibility.trail}">No</span>
+                                    <span th:if="${playground.accessibility.trail}">
+                                        <i class="material-icons" style="font-size:1rem; color:green">check_circle</i>
+                                    </span>
+                                    <span th:unless="${playground.accessibility.trail}">
+                                        <i class="material-icons" style="font-size:1rem; color:red">cancel</i>
+                                    </span>
                                 </td>
                             </tr>
                             </tbody>
@@ -138,15 +171,23 @@
                             <tr>
                                 <th scope="row">Benches</th>
                                 <td class="text-right">
-                                    <span th:if="${playground.shelters.benches}">Yes</span>
-                                    <span th:unless="${playground.shelters.benches}">No</span>
+                                    <span th:if="${playground.shelters.benches}">
+                                        <i class="material-icons" style="font-size:1rem; color:green">check_circle</i>
+                                    </span>
+                                    <span th:unless="${playground.shelters.benches}">
+                                        <i class="material-icons" style="font-size:1rem; color:red">cancel</i>
+                                    </span>
                                 </td>
                             </tr>
                             <tr>
                                 <th scope="row">Pavilion</th>
                                 <td class="text-right">
-                                    <span th:if="${playground.shelters.pavillion}">Yes</span>
-                                    <span th:unless="${playground.shelters.pavillion}">No</span>
+                                    <span th:if="${playground.shelters.pavillion}">
+                                        <i class="material-icons" style="font-size:1rem; color:green">check_circle</i>
+                                    </span>
+                                    <span th:unless="${playground.shelters.pavillion}">
+                                        <i class="material-icons" style="font-size:1rem; color:red">cancel</i>
+                                    </span>
                                 </td>
                             </tr>
                             </tbody>
@@ -162,15 +203,44 @@
                             <tr>
                                 <th scope="row">Sensory</th>
                                 <td class="text-right">
-                                    <span th:if="${playground.specialNeeds.sensory}">Yes</span>
-                                    <span th:unless="${playground.specialNeeds.sensory}">No</span>
+                                    <span th:if="${playground.specialNeeds.sensory}">
+                                        <i class="material-icons" style="font-size:1rem; color:green">check_circle</i>
+                                    </span>
+                                    <span th:unless="${playground.specialNeeds.sensory}">
+                                        <i class="material-icons" style="font-size:1rem; color:red">cancel</i>
+                                    </span>
                                 </td>
                             </tr>
                             <tr>
                                 <th scope="row">Restroom Changing Station</th>
                                 <td class="text-right">
-                                    <span th:if="${playground.specialNeeds.wheelchairAccessible}">Yes</span>
-                                    <span th:unless="${playground.specialNeeds.wheelchairAccessible}">No</span>
+                                    <span th:if="${playground.specialNeeds.wheelchairAccessible}">
+                                        <i class="material-icons" style="font-size:1rem; color:green">check_circle</i>
+                                    </span>
+                                    <span th:unless="${playground.specialNeeds.wheelchairAccessible}">
+                                        <i class="material-icons" style="font-size:1rem; color:red">cancel</i>
+                                    </span>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <!--Other-->
+                        <table class="table table-sm table-striped">
+                            <thead class="thead-dark text-center">
+                                <tr>
+                                    <th scope="col" colspan="2">Other</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <th scope="row">Water Features</th>
+                                <td class="text-right">
+                                    <span th:if="${playground.waterFeature}">
+                                        <i class="material-icons" style="font-size:1rem; color:green">check_circle</i>
+                                    </span>
+                                    <span th:unless="${playground.waterFeature}">
+                                        <i class="material-icons" style="font-size:1rem; color:red">cancel</i>
+                                    </span>
                                 </td>
                             </tr>
                             </tbody>
@@ -217,7 +287,7 @@
                 <div class="row">
                     <div class="col">
                             <div id="map"></div>
-                            <script src="https://maps.googleapis.com/maps/api/js?key=Your_Key&amp;callback=loadMap" async="async" defer="defer"></script>
+                            <script src="https://maps.googleapis.com/maps/api/js?key=Your_key&amp;callback=loadMap" async="async" defer="defer"></script>
                     </div>
                 </div>
                 <!--Row 3 | Disqus Comments-->
