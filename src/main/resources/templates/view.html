@@ -13,6 +13,7 @@
                 <h1 class="card-title" th:text="${playground.name}">Playground Name</h1>
                 <h6 class="card-subtitle mb-2 text-muted" th:text="${playground.address}">Address</h6>
             </div>
+            <div class="rw-ui-container"></div>
             <!--Main Body-->
             <div class="card-body">
                 <!--Row 1 | Info and Images -->
@@ -227,6 +228,15 @@
                         <!--Disqus Script-->
                         <script type="text/javascript" th:src="@{/js/disqus.js}"></script>
                         <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+                    </div>
+                </div>
+                <!--Row 5 | Likes Comments-->
+                <div class="row">
+                    <div class="card-body">
+                        <div id="likes"></div>
+                        <!--Likes Script-->
+                        <script type="text/javascript" th:src="@{/js/likes.js}"></script>
+                        <noscript>Please enable JavaScript to view the <a href = "https://rating-widget.com/get/rating/#_=_">comments powered by Ratingwidget.</a></noscript>
                     </div>
                 </div>
             </div>

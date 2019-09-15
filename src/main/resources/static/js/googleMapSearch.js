@@ -44,8 +44,7 @@ function callback(results, status) {
             name = place.name;
 
             <!-- Content for infoWindow-->
-            content = `<h3> ${place.name} </h3>
-            <h3>${place.vicinity} </h3>`
+            content = '<h3> ${place.name} </h3>  <h3>${place.vicinity} </h3>'
 
 
         var marker = new google.maps.Marker({

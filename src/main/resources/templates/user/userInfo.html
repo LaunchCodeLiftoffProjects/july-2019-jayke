@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/"
-xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 
 <head th:replace="fragments :: head"></head>
 
@@ -11,18 +11,20 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
     <title>User Home</title>
 </head>
 
-<div>
-    <p>
-        Welcome <span sec:authentication="principal.username">User</span>
-    </p>
-    <p>
-        <a th:href="@{/logout}">Logout</a>
-    </p>
-    <div sec:authorize="hasRole('ROLE_ADMIN')">
-        <h3>You will see this only if you are ADMIN</h3>
+<div sec:authorize="isAuthenticated()">
+    <div>
         <p>
-            <a th:href="@{/admin}">Admin Home</a>
+            Welcome <span sec:authentication="principal.username">User</span>
         </p>
+        <p>
+            <a th:href="@{/logout}">Logout</a>
+        </p>
+        <div sec:authorize="hasRole('ROLE_ADMIN')">
+            <h3>You will see this only if you are ADMIN</h3>
+            <p>
+                <a th:href="@{/admin}">Admin Home</a>
+            </p>
+        </div>
     </div>
 </div>
 

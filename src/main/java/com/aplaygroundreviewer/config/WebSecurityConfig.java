@@ -21,65 +21,63 @@ import javax.sql.DataSource;
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(securedEnabled = true, proxyTargetClass = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
-	
-	@Autowired
-	private UserDetailsService customUserDetailsService;
-	
-	@Autowired
-	private DataSource dataSource;
-	
-	@Bean
+
+    @Autowired
+    private UserDetailsService customUserDetailsService;
+
+    @Autowired
+    private DataSource dataSource;
+
+    @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
-	
-	@Autowired
+
+    @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth
-        	.userDetailsService(customUserDetailsService)
-        	.passwordEncoder(passwordEncoder());
+                .userDetailsService(customUserDetailsService)
+                .passwordEncoder(passwordEncoder());
     }
-	
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http        	
-        	.headers()
-        		.frameOptions().sameOrigin()
-        		.and()
-            .authorizeRequests()
-            	.antMatchers("/resources/**", "/webjars/**","/assets/**").permitAll()
-				.antMatchers("/user/**").hasRole("ADMIN")
-				//.antMatchers("/userInfo").access("hasRole('ROLE_USER')")
-				//.antMatchers("/admin").access("hasRole('ROLE_ADMIN')")
+        http
+                .headers()
+                .frameOptions().sameOrigin()
+                .and()
+                .authorizeRequests()
+                .antMatchers("/resources/**", "/webjars/**", "/assets/**").permitAll()
+                .antMatchers("/user/**").hasRole("ADMIN")
+                //.antMatchers("/admin").access("hasRole('ROLE_ADMIN')")
 //				.antMatchers("/*").permitAll()
                 .antMatchers("/js/**", "/css/**", "/images/**").permitAll()
-				.and()
-            .formLogin()
+                .and()
+                .formLogin()
                 .loginPage("/login")
                 .defaultSuccessUrl("/")
-//                .defaultSuccessUrl("/")
                 .failureUrl("/login?error")
                 .permitAll()
                 .and()
-            .logout()
-            	.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-            	.logoutSuccessUrl("/login?logout")
-            	.deleteCookies("my-remember-me-cookie")
+                .logout()
+                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                .logoutSuccessUrl("/login?logout")
+                .deleteCookies("my-remember-me-cookie")
                 .permitAll()
                 .and()
-             .rememberMe()
-             	//.key("my-secure-key")
-             	.rememberMeCookieName("my-remember-me-cookie")
-             	.tokenRepository(persistentTokenRepository())
-             	.tokenValiditySeconds(24 * 60 * 60)
-             	.and()
-            .exceptionHandling()
-             	;
+                .rememberMe()
+                //.key("my-secure-key")
+                .rememberMeCookieName("my-remember-me-cookie")
+                .tokenRepository(persistentTokenRepository())
+                .tokenValiditySeconds(24 * 60 * 60)
+                .and()
+                .exceptionHandling()
+        ;
     }
-    
-    PersistentTokenRepository persistentTokenRepository(){
-    	JdbcTokenRepositoryImpl tokenRepositoryImpl = new JdbcTokenRepositoryImpl();
-    	tokenRepositoryImpl.setDataSource(dataSource);
-    	return tokenRepositoryImpl;
+    //save data about user in cookies
+    PersistentTokenRepository persistentTokenRepository() {
+        JdbcTokenRepositoryImpl tokenRepositoryImpl = new JdbcTokenRepositoryImpl();
+        tokenRepositoryImpl.setDataSource(dataSource);
+        return tokenRepositoryImpl;
     }
 }

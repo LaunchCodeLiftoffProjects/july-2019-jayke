@@ -19,7 +19,7 @@ public class SearchController {
 
     @Autowired
     private PlaygroundDao playgroundDao;
-
+    //This functionality will helpful when will take playgrounds list from our db not from google directly
     @RequestMapping(value = "")
     public String index(Model model) {
         model.addAttribute(new SearchForm());

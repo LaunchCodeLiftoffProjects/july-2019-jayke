@@ -19,6 +19,7 @@ public class WebConfig implements WebMvcConfigurer
     @Autowired
     private MessageSource messageSource;
 
+    //Set login page for spring security
     @Override
     public void addViewControllers(ViewControllerRegistry registry)
     {
@@ -32,11 +33,15 @@ public class WebConfig implements WebMvcConfigurer
         return factory;
     }
 
+    //The Spring Security dialect display content based on user roles,permissions or other security expressions.
+    //Attributes Spring Security Dialect: sec:authorize and sec:authentication.
     @Bean
     public SpringSecurityDialect securityDialect() {
         return new SpringSecurityDialect();
     }
 
+    //To create custom sections in our layout or reusable templates that can be replaced by sections which share the same name,
+    //use fragment attribute inside our template.html body
     @Bean
     public LayoutDialect layoutDialect() {
         return new LayoutDialect();

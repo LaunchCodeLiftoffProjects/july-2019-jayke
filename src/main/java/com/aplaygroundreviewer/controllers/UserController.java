@@ -8,8 +8,6 @@ import com.aplaygroundreviewer.security.CustomUserDetailsService;
 import org.apache.catalina.servlet4preview.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
@@ -19,7 +17,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 @Controller
@@ -29,8 +26,6 @@ public class UserController {
     CustomUserDetailsService customUserDetailsService;
     @Autowired
     UserRepository userRepository;
-
-    private Object AdminUserAccess;
 
 
     @GetMapping(value = "addUser")
@@ -51,31 +46,31 @@ public class UserController {
             model.addAttribute("user", user);
             return "user/addUser";
         }
-
+        //check if password and verification password match
         if (!user.getPassword().equals(verifyPassword)) {
             model.addAttribute("user", user);
             model.addAttribute("errormessage",  "Password and verify password doesn't match");
             return "user/addUser";
         }
 
-
+        //take user from db and compare with user from ui
         User userFromDb = userRepository.findUserByEmail(user.getEmail());
-
-        //boolean emailExist = userFromDb.getEmail().equals(user.getEmail());
-
-        //boolean emailExist = userFromDb.contains(user);
         if(userFromDb != null){
             model.addAttribute("emailExist", "Email already used. Please enter new email");
             return "user/addUser";
         }
-
+        //
         List<Role> roles = new ArrayList<>();
         roles.add(Role.builder().name("ROLE_USER").id(2).build());
         user.setRoles(roles);
         customUserDetailsService.save(user);
 
+        //This code for auto-login after registration
+        //fetch user from DB by email
         UserDetails userDetails = customUserDetailsService.loadUserByUsername(user.getEmail());
+        //get authorities, validate password
         UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(userDetails, user.getPassword(), userDetails.getAuthorities());
+        //put User in Context
         SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
 
         return "redirect:/";
@@ -88,7 +83,7 @@ public class UserController {
         return "login";
     }
 
-
+    //Admin page with limited access just for admin
     @RequestMapping(value ="admin", method = RequestMethod.GET)
     public String displayAdminPage(Model model) {
         model.addAttribute(new SearchForm());
@@ -104,7 +99,7 @@ public class UserController {
         }
         return "user/admin";
     }
-
+    //User page just for authenticated users
     @RequestMapping(value = "userInfo")
     public String displayUserInfo(Model model, HttpServletRequest request) {
         model.addAttribute(new SearchForm());
