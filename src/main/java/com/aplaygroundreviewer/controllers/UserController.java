@@ -1,15 +1,13 @@
 package com.aplaygroundreviewer.controllers;
 
 import com.aplaygroundreviewer.dto.Role;
-import com.aplaygroundreviewer.dto.User;
 import com.aplaygroundreviewer.dto.SearchForm;
+import com.aplaygroundreviewer.dto.User;
 import com.aplaygroundreviewer.repository.UserRepository;
 import com.aplaygroundreviewer.security.CustomUserDetailsService;
 import org.apache.catalina.servlet4preview.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
@@ -19,7 +17,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 @Controller
@@ -85,7 +82,17 @@ public class UserController {
     public String loginUserForm(Model model) {
         model.addAttribute(new SearchForm());
         model.addAttribute("title", "Login to STL Playground Finder");
-        return "login";
+//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+//        Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
+//        for (GrantedAuthority grantedAuthority : authorities) {
+//            if (grantedAuthority.getAuthority().equals("ROLE_USER")) {
+//                return "user/userInfo";
+//            }
+//            else if (grantedAuthority.getAuthority().equals("ROLE_ADMIN")) {
+//                return "user/admin";
+//            }
+//        }
+        return "user/login";
     }
 
 

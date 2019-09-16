@@ -2,8 +2,8 @@ package com.aplaygroundreviewer.controllers;
 
 import com.aplaygroundreviewer.dto.Playground;
 import com.aplaygroundreviewer.dto.PlaygroundInfo;
-import com.aplaygroundreviewer.repository.PlaygroundDao;
 import com.aplaygroundreviewer.dto.SearchForm;
+import com.aplaygroundreviewer.repository.PlaygroundDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -41,14 +41,14 @@ public class SearchController {
     @RequestMapping(value="search")
     public String search(Model model){
         model.addAttribute(new SearchForm());
-        return"search";
+        return "search/search";
     }
 
     @RequestMapping(value="results")
     public String search(Model model, @ModelAttribute SearchForm searchForm){
         model.addAttribute("aname", searchForm.getName());
         model.addAttribute("anotherlistmodel", playgroundDao.findByNameContainingOrDescriptionContaining(searchForm.getName(), searchForm.getName()));
-        return "search-results";
+        return "search/search-results";
     }
 
     @RequestMapping(value = "add", method = RequestMethod.GET)
@@ -56,7 +56,7 @@ public class SearchController {
         model.addAttribute("title", "Add a Playground");
         model.addAttribute(new SearchForm());
         model.addAttribute(new Playground());
-        return "add";
+        return "playground/add";
     }
 
     @RequestMapping(value = "add", method = RequestMethod.POST)
@@ -65,10 +65,10 @@ public class SearchController {
             Playground playground = newPlayground;
             model.addAttribute(new SearchForm());
             model.addAttribute("title", "Add Playground");
-            return "add";
+            return "playground/add";
         }
         playgroundDao.save(newPlayground);
-        return "redirect:view/" + newPlayground.getId();
+        return "redirect:/view/" + newPlayground.getId();
     }
 
 
@@ -77,7 +77,7 @@ public class SearchController {
         model.addAttribute(new SearchForm());
         model.addAttribute("playgrounds", playgroundDao.findAll());
         model.addAttribute("title", "Remove Playground(s)");
-        return "remove";
+        return "playground/remove";
     }
 
     @RequestMapping(value = "remove", method = RequestMethod.POST)
@@ -85,7 +85,7 @@ public class SearchController {
         for (int playgroundId : playgroundIds) {
             playgroundDao.deleteById(playgroundId);
         }
-        return "redirect:remove";
+        return "redirect:playground/remove";
     }
 
 
@@ -97,7 +97,7 @@ public class SearchController {
         model.addAttribute(new SearchForm());
         model.addAttribute("playground", playground);
         model.addAttribute("title", "View a Playground");
-        return "view";
+        return "playground/view";
     }
 
     //Returns all playgrounds
@@ -106,7 +106,41 @@ public class SearchController {
         model.addAttribute(new SearchForm());
         model.addAttribute("playgrounds", playgroundDao.findAll());
         model.addAttribute("title", "All Playgrounds");
-        return "list";
+        return "playground/list";
+    }
+
+    //Edit Playground
+    @RequestMapping(value = "edit/{id}", method = RequestMethod.GET)
+    public String displayEditPlayground(Model model, @PathVariable int id) {
+        Playground playground = playgroundDao.findOneById(id);
+        model.addAttribute(new SearchForm());
+        model.addAttribute("playground", playground);
+
+        return "playground/edit";
+    }
+
+    @RequestMapping(value = "edit", method = RequestMethod.POST)
+    public String processEditPlayground(int id, @ModelAttribute @Valid Playground playground, Errors errors, Model model) {
+        if (errors.hasErrors()) {
+            model.addAttribute(new SearchForm());
+            model.addAttribute("title", "Edit Playground");
+            return "playground/edit";
+        }
+
+        Playground editPlayground = playgroundDao.findOneById(id);
+        editPlayground.setName(playground.getName());
+        editPlayground.setAddress(playground.getAddress());
+        editPlayground.setDescription(playground.getDescription());
+        editPlayground.setWaterFeature(playground.getWaterFeature());
+        editPlayground.setEquipment(playground.getEquipment());
+        editPlayground.setAmenities(playground.getAmenities());
+        editPlayground.setAccessibility(playground.getAccessibility());
+        editPlayground.setShelters(playground.getShelters());
+        editPlayground.setSpecialNeeds(playground.getSpecialNeeds());
+
+        playgroundDao.save(editPlayground);
+
+        return "redirect:/view/" + editPlayground.getId();
     }
 
 }
