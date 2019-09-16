@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 @Controller
@@ -19,6 +20,7 @@ public class SearchController {
 
     @Autowired
     private PlaygroundDao playgroundDao;
+    private static HashMap<String, String> singleSelectAllValues = new HashMap<>();
 
     @RequestMapping(value = "")
     public String index(Model model) {
@@ -37,17 +39,30 @@ public class SearchController {
         return "index";
     }
 
-    //refactored search method for the routes to also work with the search bar.
     @RequestMapping(value="search")
     public String search(Model model){
+        singleSelectAllValues.put("searchTerm", "Search term");
+        singleSelectAllValues.put("location", "Location");
+
+        model.addAttribute("singleSelectAllValues", singleSelectAllValues);
+        String radioButtonSelectedValue;
+
         model.addAttribute(new SearchForm());
         return "search/search";
     }
 
     @RequestMapping(value="results")
-    public String search(Model model, @ModelAttribute SearchForm searchForm){
+    public String search(Model model, @ModelAttribute SearchForm searchForm, @RequestParam String searchBy) {
         model.addAttribute("aname", searchForm.getName());
-        model.addAttribute("anotherlistmodel", playgroundDao.findByNameContainingOrDescriptionContaining(searchForm.getName(), searchForm.getName()));
+        //Search term
+        if (searchBy.equals("searchTerm")) {
+            model.addAttribute("anotherlistmodel", playgroundDao.findByNameContainingOrDescriptionContaining
+                                                                         (searchForm.getName(), searchForm.getName()));
+        }
+        //location
+        else if (searchBy.equals("location")) {
+            model.addAttribute("location", searchForm.getName());
+        }
         return "search/search-results";
     }
 

@@ -15,10 +15,19 @@
                     <h3>Search by term:</h3>
 
                     <div class="form-group">
-                        <input class="form-control" th:field="*{name}" />
-                    </div>
 
-                    <input type="submit" value="Search" />
+                        <ul class="form-control">
+                            <li th:each="radioValue: ${singleSelectAllValues}">
+                                <input name="searchBy" th:id="${radioValue.key}" th:value="${radioValue.key}"
+                                       type="radio"/>
+                                <label th:for="${radioValue.key}" th:text="${radioValue.value}"></label>
+                            </li>
+                        </ul>
+
+                        <input class="form-control" th:field="*{name}" />
+
+                        <input type="submit" value="Search"/>
+                    </div>
                 </form>
             </div>
         </div>

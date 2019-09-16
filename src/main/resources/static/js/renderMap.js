@@ -21,7 +21,7 @@ function loadMap(){
       axios.get('https://maps.googleapis.com/maps/api/geocode/json',{
                     params:{
                             address:locations[i].value,
-                            key:'YourKeys'
+                            key:'AIzaSyC7hSUws5hbDKi3JScfBgPEKeGo4EbJb_s'
                             }
                     })
                     .then(function(response){
