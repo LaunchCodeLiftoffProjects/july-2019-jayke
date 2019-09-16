@@ -52,8 +52,10 @@ public class SearchController {
     }
 
     @RequestMapping(value="results")
-    public String search(Model model, @ModelAttribute SearchForm searchForm, @RequestParam String searchBy) {
+    public String search(Model model, @ModelAttribute SearchForm searchForm,
+                         @RequestParam(value = "searchBy", defaultValue = "searchTerm", required = false) String searchBy) {
         model.addAttribute("aname", searchForm.getName());
+
         //Search term
         if (searchBy.equals("searchTerm")) {
             model.addAttribute("anotherlistmodel", playgroundDao.findByNameContainingOrDescriptionContaining

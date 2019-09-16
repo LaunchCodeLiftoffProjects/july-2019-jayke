@@ -19,7 +19,7 @@
                         <ul class="form-control">
                             <li th:each="radioValue: ${singleSelectAllValues}">
                                 <input name="searchBy" th:id="${radioValue.key}" th:value="${radioValue.key}"
-                                       type="radio"/>
+                                       th:checked="${radioValue.key == 'searchTerm'}" type="radio"/>
                                 <label th:for="${radioValue.key}" th:text="${radioValue.value}"></label>
                             </li>
                         </ul>
