@@ -68,12 +68,11 @@ function callback(results, status) {
         <!-- Results array will have parks list-->
         for (var i=0; i<results.length; i++) {
             var place = results[i];
-            name = place.name;
 
             <!-- Content for infoWindow-->
-            content = `<h3> ${place.name} </h3>
-            <h3>${place.vicinity} </h3>`
-
+            let content = `<h4> ${place.name} </h4>
+            <h5>Address: ${place.vicinity} </h5>
+            <p>Rating: ${place.rating}<br>`
 
         var marker = new google.maps.Marker({
             position: place.geometry.location,
