@@ -12,22 +12,16 @@
             </div>
             <div class="card-body">
                 <form th:action="@{/results}" th:object="${searchForm}">
-                    <h3>Search by term:</h3>
-
+                    <h5>Search By:</h5>
                     <div class="form-group">
-
-                        <ul class="form-control">
-                            <li th:each="radioValue: ${singleSelectAllValues}">
-                                <input name="searchBy" th:id="${radioValue.key}" th:value="${radioValue.key}"
-                                       th:checked="${radioValue.key == 'searchTerm'}" type="radio"/>
-                                <label th:for="${radioValue.key}" th:text="${radioValue.value}"></label>
-                            </li>
-                        </ul>
-
+                        <div class="form-check form-check-inline" th:each="radioValue : ${singleSelectAllValues}">
+                            <input class="form-check-input" name="searchBy" th:id="${radioValue.key}"
+                                   th:value="${radioValue.key}" th:checked="${radioValue.key == 'searchTerm'}" type="radio"/>
+                            <label  class="form-check-label" th:for="${radioValue.key}" th:text="${radioValue.value}"></label>
+                        </div>
                         <input class="form-control" th:field="*{name}" />
-
-                        <input type="submit" value="Search"/>
                     </div>
+                    <input type="submit" value="Search"/>
                 </form>
             </div>
         </div>

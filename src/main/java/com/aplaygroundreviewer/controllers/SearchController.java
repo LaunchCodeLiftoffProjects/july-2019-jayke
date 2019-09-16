@@ -41,7 +41,7 @@ public class SearchController {
 
     @RequestMapping(value="search")
     public String search(Model model){
-        singleSelectAllValues.put("searchTerm", "Search term");
+        singleSelectAllValues.put("searchTerm", "Keyword");
         singleSelectAllValues.put("location", "Location");
 
         model.addAttribute("singleSelectAllValues", singleSelectAllValues);
