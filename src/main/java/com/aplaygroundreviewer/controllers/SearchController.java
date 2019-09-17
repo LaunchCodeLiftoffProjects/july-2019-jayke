@@ -1,5 +1,6 @@
 package com.aplaygroundreviewer.controllers;
 
+import com.aplaygroundreviewer.dto.Equipment;
 import com.aplaygroundreviewer.dto.Playground;
 import com.aplaygroundreviewer.dto.PlaygroundInfo;
 import com.aplaygroundreviewer.dto.SearchForm;
@@ -113,6 +114,7 @@ public class SearchController {
         model.addAttribute(new SearchForm());
         model.addAttribute("playground", playground);
         model.addAttribute("title", "View a Playground");
+
         return "playground/view";
     }
 

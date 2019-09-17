@@ -8,7 +8,7 @@ import javax.validation.constraints.Size;
 public class Playground {
 
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @GeneratedValue(strategy=GenerationType.AUTO)
     private int id;
 
     @NotNull
@@ -131,6 +131,10 @@ public class Playground {
 
     public void setWaterFeature(boolean waterFeature) {
         this.waterFeature = waterFeature;
+    }
+
+    public boolean isWaterFeature() {
+        return waterFeature;
     }
 
     public Shelters getShelters() {
