@@ -3,24 +3,24 @@ var lastOpenedInfoWindow;
 function searchMap(){
     var location = new Object();
 
-    <!-- Get location from browser -->
+    //<!-- Get location from browser -->
     navigator.geolocation.getCurrentPosition(function(pos){
         location.lat = pos.coords.latitude;
         location.long= pos.coords.longitude;
 
-    <!-- Set Map -->
+        //<!-- Set Map -->
         map = new google.maps.Map(document.getElementById('map'),{
             center: {lat:location.lat, lng:location.long},
             zoom: 15
         });
 
-    <!-- Function to get parks info -->
+        //<!-- Function to get parks info -->
         getParks(location);
    });
 }
 
 function searchByLocationMap(){
-    <!-- Get location from Form -->
+    //<!-- Get location from Form -->
     var loc = document.getElementById('location');
 
     var geocoder =  new google.maps.Geocoder();
@@ -33,29 +33,29 @@ function searchByLocationMap(){
                 alert("Something got wrong " + status);
               }
 
-    <!-- Set Map -->
+    //<!-- Set Map -->
         map = new google.maps.Map(document.getElementById('map'),{
             center: {"lat":location.lat, "lng":location.long},
             zoom: 15
         });
 
-    <!-- Function to get parks info -->
+    //<!-- Function to get parks info -->
         getParks(location);
    });
 }
 
 function getParks(location){
-    <!-- Get Longitude and Latitude from current browser location -->
+    //<!-- Get Longitude and Latitude from current browser location -->
     var location = new google.maps.LatLng(location.lat, location.long);
 
-    <!-- Form request for parks at current location and radius-->
+    //<!-- Form request for parks at current location and radius-->
     var parkRequest = {
         location: location,
         radius: 3000,
         type: ['park']
         };
 
-    <!-- Request for parks-->
+    // <!-- Request for parks-->
     var service = new google.maps.places.PlacesService(map);
     service.nearbySearch(parkRequest, callback);
 }
@@ -65,11 +65,11 @@ function callback(results, status) {
     var bounds = new google.maps.LatLngBounds();
 
     if (status== google.maps.places.PlacesServiceStatus.OK) {
-        <!-- Results array will have parks list-->
+        //<!-- Results array will have parks list-->
         for (var i=0; i<results.length; i++) {
             var place = results[i];
 
-            <!-- Content for infoWindow-->
+            //<!-- Content for infoWindow-->
             let content = `<h4> ${place.name} </h4>
             <h5>Address: ${place.vicinity} </h5>
             <p>Rating: ${place.rating}<br>`
