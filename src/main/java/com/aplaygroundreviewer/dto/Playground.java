@@ -125,7 +125,7 @@ public class Playground {
         this.accessibility = accessibility;
     }
 
-    public boolean isWaterFeature() {
+    public boolean getWaterFeature() {
         return waterFeature;
     }
 

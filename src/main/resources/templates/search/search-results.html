@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+
+<body>
+
+    <div class="container">
+        <nav th:replace="fragments :: nav-bar"></nav>
+
+        <div class="card">
+            <div class="card-header text-center">
+                <h1 class="card-title" th:text="'Display results with' + ' \'' + ${aname} + '\' ' +'in them:'">Display a name</h1>
+            </div>
+            <div class="card-body">
+                <div id="map" style="width:100%; height:400px; margin-left: auto; margin-right: auto"></div>
+
+                <div th:if="${location}">
+                    <input id="location" th:value="${location}" type="hidden"/>
+
+                    <script async="async" defer="defer"
+                            src="https://maps.googleapis.com/maps/api/js?key=Your_Key&amp;libraries=places&amp;callback=searchByLocationMap">
+                    </script>
+                </div>
+
+                <p th:unless="${anotherlistmodel} and ${anotherlistmodel.size()}">No Results.</p>
+                <div th:if="${anotherlistmodel} and ${anotherlistmodel.size()}">
+
+                    <script async="async" defer="defer"
+                            src="https://maps.googleapis.com/maps/api/js?key=Your_Key&amp;callback=loadMap">
+                    </script>
+
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th scope="col">Name</th>
+                            <th scope="col">Description</th>
+                            <th scope="col">Address</th>
+                        </tr>
+                        </thead>
+                        <tr th:each="anitem, itemStat: ${anotherlistmodel}">
+                            <input id="playgroundName" th:name="|playgroundNames[${itemStat.index}]|"
+                                   th:value="${anitem.getName()}"
+                                   type="hidden"/>
+                            <td><a th:href="@{/view/{id}(id=${anitem.id})}" th:text="${anitem.name}"></a></td>
+                            <td th:text="${anitem.description}"></td>
+                            <td th:text="${anitem.address}"></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer th:replace="fragments :: footer"></footer>
+</body>
+</html>

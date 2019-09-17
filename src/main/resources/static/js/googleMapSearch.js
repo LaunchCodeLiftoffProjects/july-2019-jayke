@@ -1,6 +1,8 @@
 var map;
+var lastOpenedInfoWindow;
 function searchMap(){
     var location = new Object();
+
     <!-- Get location from browser -->
     navigator.geolocation.getCurrentPosition(function(pos){
         location.lat = pos.coords.latitude;
@@ -9,7 +11,32 @@ function searchMap(){
     <!-- Set Map -->
         map = new google.maps.Map(document.getElementById('map'),{
             center: {lat:location.lat, lng:location.long},
-            zoom: 9
+            zoom: 15
+        });
+
+    <!-- Function to get parks info -->
+        getParks(location);
+   });
+}
+
+function searchByLocationMap(){
+    <!-- Get location from Form -->
+    var loc = document.getElementById('location');
+
+    var geocoder =  new google.maps.Geocoder();
+        geocoder.geocode(
+                { 'address': loc.value}, function(results, status) {
+              if (status == "OK") {
+                location.lat =  results[0].geometry.location.lat();
+                location.long=  results[0].geometry.location.lng();
+              } else {
+                alert("Something got wrong " + status);
+              }
+
+    <!-- Set Map -->
+        map = new google.maps.Map(document.getElementById('map'),{
+            center: {"lat":location.lat, "lng":location.long},
+            zoom: 15
         });
 
     <!-- Function to get parks info -->
@@ -29,7 +56,7 @@ function getParks(location){
         };
 
     <!-- Request for parks-->
-    service = new google.maps.places.PlacesService(map);
+    var service = new google.maps.places.PlacesService(map);
     service.nearbySearch(parkRequest, callback);
 }
 
@@ -41,11 +68,11 @@ function callback(results, status) {
         <!-- Results array will have parks list-->
         for (var i=0; i<results.length; i++) {
             var place = results[i];
-            name = place.name;
 
             <!-- Content for infoWindow-->
-            content = '<h3> ${place.name} </h3>  <h3>${place.vicinity} </h3>'
-
+            let content = `<h4> ${place.name} </h4>
+            <h5>Address: ${place.vicinity} </h5>
+            <p>Rating: ${place.rating}<br>`
 
         var marker = new google.maps.Marker({
             position: place.geometry.location,
@@ -66,7 +93,15 @@ function callback(results, status) {
 
 function bindInfoWindow(marker, map, infoWindow, htmlContent){
     marker.addListener('click', function(){
+        closeLastOpenedInfoWindow();
         infoWindow.setContent(htmlContent);
         infoWindow.open(map, this);
+        lastOpenedInfoWindow = infoWindow;
     })
+}
+
+function closeLastOpenedInfoWindow(){
+    if (lastOpenedInfoWindow) {
+        lastOpenedInfoWindow.close();
+    }
 }
