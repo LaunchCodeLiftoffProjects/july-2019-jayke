@@ -23,10 +23,11 @@
                 </div>
 
                 <p th:unless="${anotherlistmodel} and ${anotherlistmodel.size()}">No Results.</p>
+
                 <div th:if="${anotherlistmodel} and ${anotherlistmodel.size()}">
 
                     <script async="async" defer="defer"
-                            src="https://maps.googleapis.com/maps/api/js?key=Your_Key&amp;callback=loadMap">
+                            src="https://maps.googleapis.com/maps/api/js?key=Your_Key&amp;libraries=places&amp;callback=loadMap">
                     </script>
 
                     <table class="table table-striped">

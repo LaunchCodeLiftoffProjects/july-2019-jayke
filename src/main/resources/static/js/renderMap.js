@@ -1,60 +1,69 @@
+var locationLat = new Array();
+var locationLng = new Array();
+var locationAddress = new Array();
+var map;
+var length;
+
 function loadMap(){
-  //<!--set Map Options -->
       var options = {
-        zoom: 9
+        zoom: 5
       };
 
-  //<!--New map-->
-      var map = new google.maps.Map(document.getElementById('map'), options );
+      map = new google.maps.Map(document.getElementById('map'), options );
 
-  //<!--Get location to put marker-->
       var locations = document.querySelectorAll("[id='playgroundName']");
+      hasGeocoded= false;
+      length = locations.length;
 
-  var bounds= new google.maps.LatLngBounds();
-  var infoWindow = new google.maps.InfoWindow();
-  var marker = new google.maps.Marker();
-  var infoWindowContent;
-
-  //<!-- Calculate Latitude and Longitude for location -->
-  for (i=0; i!=locations.length; i++){
-   var loc = locations[i].value;
-      axios.get('https://maps.googleapis.com/maps/api/geocode/json',{
-                    params:{
-                            address:locations[i].value,
-                            key:'KEY'
-                            }
-                    })
-                    .then(function(response){
-                    // Geometry
-                    var lat = response.data.results[0].geometry.location.lat;
-                    var lng = response.data.results[0].geometry.location.lng;
-
-                    //<!-- Add marker -->
-                     marker[i] = new google.maps.Marker({
-                                position : {lat: lat, lng: lng},
-                                map : map,
-                                title: loc
-                     });
-
-                      //<!-- Info window for marker -->
-                      infoWindowContent= {content:'<h4> ' + marker[[i]].title +' </h4>'};
-                      infoWindow[i] = new google.maps.InfoWindow( infoWindowContent );
-                      marker[i].addListener('click', function(){
-                                infoWindow.open(map, marker[i]);
-                      });
-
-                      //<!-- Form a boundary for map -->
-                      bounds = new google.maps.LatLngBounds();
-                      bounds.extend(marker[i].getPosition());
-
-                      //<!-- Fit all markers on a map -->
-                       map.setCenter(bounds.getCenter());
-                       map.fitBounds(bounds);
-      });
-
+      for (i=0; i!=locations.length; i++){
+        var address = locations[i].value;
+        var geocoder =  new google.maps.Geocoder();
+        geocoder.geocode( { 'address': address}, function(results, status) {
+        if (status == google.maps.GeocoderStatus.OK) {
+            var lat = results[0].geometry.location.lat();
+            var lng = results[0].geometry.location.lng();
+            var add = results[0].formatted_address;
+            createLatLngArray(lat,lng, add);
+            }
+        });
       }
-
-                      map.setZoom(9);
 }
 
+function createLatLngArray(lat, lng, add){
+    locationLat.push(lat);
+    locationLng.push(lng);
+    locationAddress.push(add);
 
+    if(locationLat.length == length)
+    {
+    putMarkers();
+    console.log(locationLat.length);
+    console.log(length);
+    }
+
+}
+
+function putMarkers(){
+
+var infowindow = new google.maps.InfoWindow();
+var bounds = new google.maps.LatLngBounds();
+
+var marker, i;
+
+for (i = 0; i < locationLat.length; i++) {
+    marker = new google.maps.Marker({
+         position: new google.maps.LatLng(locationLat[i], locationLng[i]),
+         map: map
+    });
+    marker.setMap(map);
+
+    google.maps.event.addListener(marker, 'click', (function(marker, i) {
+         return function() {
+             infowindow.setContent(locationAddress[i]);
+             infowindow.open(map, marker);
+         }
+    })(marker, i));
+    bounds.extend(marker.getPosition());
+}
+map.fitBounds(bounds);
+}
