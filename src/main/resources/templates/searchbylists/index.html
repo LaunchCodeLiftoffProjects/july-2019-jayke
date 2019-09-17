@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body>
+<div class="container">
+    <nav th:replace="fragments :: nav-bar"></nav>
+<h1>Search By List</h1>
+    <h6>Accessibility</h6>
+        <ul>
+            <li>
+                <a th:href="@{/searchbylists/parking-lot}">Parking Lot</a>
+            </li>
+            <li>
+                <a th:href="@{/searchbylists/trail}">Trail</a>
+            </li>
+        </ul>
+
+    <h6>Amenities</h6>
+        <ul>
+            <li>
+                <a th:href="@{/searchbylists/restroom-changing-station}">Restroom Changing Station</a>
+            </li>
+            <li>
+                <a th:href="@{/searchbylists/water-fountain}">Water Fountain</a>
+            </li>
+        </ul>
+    <h6>Equipment</h6>
+        <ul>
+            <li>
+                <a th:href="@{/searchbylists/climbing-walls}">Climbing Walls</a>
+            </li>
+            <li>
+                <a th:href="@{/searchbylists/ladders}">Ladders</a>
+            </li>
+            <li>
+                <a th:href="@{/searchbylists/seesaw}">Seesaw</a>
+            </li>
+            <li>
+                <a th:href="@{/searchbylists/slides}">Slides</a>
+            </li>
+            <li>
+                <a th:href="@{/searchbylists/structures}">Structures</a>
+            </li>
+            <li>
+                <a th:href="@{/searchbylists/swings}">Swings</a>
+            </li>
+        </ul>
+    <h6>Shelters</h6>
+        <ul>
+            <li>
+                <a th:href="@{/searchbylists/benches}">Benches</a>
+            </li>
+            <li>
+                <a th:href="@{/searchbylists/pavillion}">Pavillion</a>
+            </li>
+        </ul>
+    <h6>Special Needs</h6>
+        <ul>
+            <li>
+                <a th:href="@{/searchbylists/sensory}">Sensory</a>
+            </li>
+            <li>
+                <a th:href="@{/searchbylists/wheelchair-accessible}">Wheelchair Accessible</a>
+            </li>
+        </ul>
+    <a th:href="@{/searchbylists/water-feature}"><h6>Water Feature</h6></a>
+</div>
+<footer th:replace="fragments :: footer"></footer>
+</body>
+</html>
