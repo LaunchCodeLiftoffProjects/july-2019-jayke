@@ -60,8 +60,8 @@ public class SearchController {
 
         //Search term
         if (searchBy.equals("searchTerm")) {
-            model.addAttribute("anotherlistmodel", playgroundDao.findByNameContainingOrDescriptionContaining
-                                                                         (searchForm.getName(), searchForm.getName()));
+            model.addAttribute("anotherlistmodel", playgroundDao.findByNameContainingOrDescriptionContainingOrAddressContaining
+                                                                         (searchForm.getName(), searchForm.getName(), searchForm.getName()));
         }
         //location
         else if (searchBy.equals("location")) {
