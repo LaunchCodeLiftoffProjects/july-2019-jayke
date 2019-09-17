@@ -44,15 +44,15 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
         <div class="collapse navbar-collapse" id="navbarColor02">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a th:href="@{/search}" class="nav-link">Search</a>
+                    <a th:href="@{/search}" class="nav-link">Advanced Search</a>
                 </li>
                 <li class="nav-item">
-                    <a th:href="@{/list}" class="nav-link">Playgrounds</a>
+                    <a th:href="@{/list}" class="nav-link">Browse Playgrounds</a>
                 </li>
             </ul>
             <!-- Navbar Search form-->
             <form class="form-inline my-2 my-lg-0 mr-2" th:object="${searchForm}" th:action="@{/results}" >
-                <input class="form-control mr-sm-2" type="text" placeholder="Search" th:field="*{name}" />
+                <input class="form-control mr-sm-2" type="text" placeholder="Enter Search Term..." th:field="*{name}" />
                 <button class="btn btn-secondary my-2 my-sm-0 mr-3" type="submit">Search</button>
             </form>
 
