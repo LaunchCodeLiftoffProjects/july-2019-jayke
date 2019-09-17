@@ -12,13 +12,11 @@
 </head>
 
 <div sec:authorize="isAuthenticated()">
-    <div>
-        <p>
-            Welcome <span sec:authentication="principal.username">User</span>
-        </p>
-        <p>
-            <a th:href="@{/logout}">Logout</a>
-        </p>
+    <div class="jumbotron">
+        <h1 class="display-4">Hello, <span sec:authentication="principal.user.userName">User</span>!</h1>
+        <p class="lead">This page is still a work in progress!</p>
+        <hr class="my-4">
+        <a role="button" class="btn btn-danger btn-sm" th:href="@{/logout}">Logout</a>
         <div sec:authorize="hasRole('ROLE_ADMIN')">
             <h3>You will see this only if you are ADMIN</h3>
             <p>
