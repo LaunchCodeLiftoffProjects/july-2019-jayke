@@ -11,18 +11,26 @@
                 <h1 class="card-title">Advanced Search</h1>
             </div>
             <div class="card-body">
-                <form th:action="@{/results}" th:object="${searchForm}">
-                    <h5>Search By:</h5>
-                    <div class="form-group">
-                        <div class="form-check form-check-inline" th:each="radioValue : ${singleSelectAllValues}">
-                            <input class="form-check-input" name="searchBy" th:id="${radioValue.key}"
-                                   th:value="${radioValue.key}" th:checked="${radioValue.key == 'searchTerm'}" type="radio"/>
-                            <label  class="form-check-label" th:for="${radioValue.key}" th:text="${radioValue.value}"></label>
+                <div class="w-50 mx-auto">
+                    <form th:action="@{/results}" th:object="${searchForm}">
+                        <h5>Search By:</h5>
+                        <div class="form-group">
+                            <div class="form-check form-check-inline" th:each="radioValue : ${singleSelectAllValues}">
+                                <input class="form-check-input" name="searchBy"
+                                       th:checked="${radioValue.key == 'searchTerm'}"
+                                       th:id="${radioValue.key}"
+                                       th:value="${radioValue.key}"
+                                       type="radio"/>
+                                <label class="form-check-label" th:for="${radioValue.key}"
+                                       th:text="${radioValue.value}"></label>
+                            </div>
+                            <input class="form-control" th:field="*{name}"/>
                         </div>
-                        <input class="form-control" th:field="*{name}" />
-                    </div>
-                    <input type="submit" value="Search"/>
-                </form>
+                        <div class="text-center">
+                            <button class="btn btn-success" type="submit">Search</button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
