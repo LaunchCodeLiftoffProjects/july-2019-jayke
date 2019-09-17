@@ -7,12 +7,15 @@
 
 <div class="container">
     <nav th:replace="fragments :: nav-bar"></nav>
+    <div sec:authorize="isAnonymous()" class="alert alert-warning" role="alert">
+        Not Authorized to Access.
+    </div>
 
-    <div class="card">
+    <!-- Change to ROLE_ADMIN when fixed -->
+    <div sec:authorize="hasRole('ROLE_USER')" class="card">
         <div class="card-header text-center">
             <h1 class="card-title" th:text="${title}">Default Title</h1>
         </div>
-        <div sec:authorize="hasRole('ROLE_ADMIN')">
         <div class="card-body">
             <div class="w-25 mx-auto border p-3">
                 <form method="post" th:action="@{/remove}">
@@ -27,6 +30,7 @@
             </div>
         </div>
     </div>
+
 </div>
 </div>
     <footer th:replace="fragments :: footer"></footer>

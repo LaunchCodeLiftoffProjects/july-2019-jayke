@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<html lang="en" xmlns:th="http://www.thymeleaf.org/"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head th:replace="fragments :: head"></head>
 
 <body>
@@ -10,7 +11,9 @@
         <div class="card">
             <div class="card-header text-center">
                 <h1 class="card-title">List of Playgrounds</h1>
-                <span><a th:href="@{/add}">Add</a> | <a th:href="@{/remove}">Remove</a></span>
+                <span sec:authorize="hasRole('ROLE_USER')"><a th:href="@{/add}">Add</a></span>
+                <!-- Change to ROLE_ADMIN when fixed -->
+                <span sec:authorize="hasRole('ROLE_USER')"> | <a th:href="@{/remove}">Remove</a></span>
             </div>
 
             <div class="card-body">

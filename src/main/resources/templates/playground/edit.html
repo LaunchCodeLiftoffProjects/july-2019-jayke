@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<html lang="en" xmlns:th="http://www.thymeleaf.org/"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head th:replace="fragments :: head"></head>
 
 <body>
@@ -7,7 +8,12 @@
 <div class="container">
     <nav th:replace="fragments :: nav-bar"></nav>
 
-    <div class="card">
+    <div sec:authorize="isAnonymous()" class="alert alert-warning" role="alert">
+        Not Authorized to Access.
+    </div>
+
+    <!-- Change to ROLE_ADMIN when fixed -->
+    <div sec:authorize="hasRole('ROLE_USER')" class="card">
         <div class="card-header text-center">
             <h1 class="card-title">Edit Playground</h1>
         </div>
