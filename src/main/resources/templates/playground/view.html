@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<html lang="en" xmlns:th="http://www.thymeleaf.org/"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
     <head th:replace="fragments :: head"></head>
-
 <body>
     <div class="container">
         <nav th:replace="fragments :: nav-bar"></nav>
@@ -12,11 +12,16 @@
                 <input id="playgroundName" th:value="${playground.name}" type="hidden"/>
                 <h1 class="card-title" th:text="${playground.name}">Playground Name</h1>
                 <h6 class="card-subtitle mb-2 text-muted" th:text="${playground.address}">Address</h6>
-                <a th:href="@{/edit/{id}(id=${playground.id})}">Edit</a>
+                <div class="rw-ui-container"></div>
             </div>
-            <div class="rw-ui-container"></div>
+            <div sec:authorize="hasRole('ROLE_ADMIN')" class="row no-gutter">
+                <div class="col text-center">
+                    <a th:href="@{/edit/{id}(id=${playground.id})}">Edit</a>
+                </div>
+            </div>
             <!--Main Body-->
             <div class="card-body">
+
                 <!--Row 1 | Info and Images -->
                 <div class="row">
                     <!--Column 1 | Info Tables -->
