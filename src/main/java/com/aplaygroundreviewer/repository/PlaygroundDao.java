@@ -9,5 +9,6 @@ public interface PlaygroundDao extends JpaRepository<Playground, Integer> {
 
     List<Playground> findAll();
     Playground findOneById(int id);
-    List<Playground> findByNameContainingOrDescriptionContaining(String name, String description);
+
+    List<Playground> findByNameContainingOrDescriptionContainingOrAddressContaining(String name, String description, String Address);
 }
