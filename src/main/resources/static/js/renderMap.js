@@ -6,7 +6,7 @@ var length;
 
 function loadMap(){
       var options = {
-        zoom: 5
+        zoom: 1
       };
 
       map = new google.maps.Map(document.getElementById('map'), options );

@@ -40,7 +40,7 @@
                         </thead>
                         <tr th:each="anitem, itemStat: ${anotherlistmodel}">
                             <input id="playgroundName" th:name="|playgroundNames[${itemStat.index}]|"
-                                   th:value="${anitem.getName()}"
+                                   th:value="${anitem.getAddress()}"
                                    type="hidden"/>
                             <td><a th:href="@{/view/{id}(id=${anitem.id})}" th:text="${anitem.name}"></a></td>
                             <td th:text="${anitem.description}"></td>
