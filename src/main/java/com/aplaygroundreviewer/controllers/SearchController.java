@@ -12,9 +12,11 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+//import java.util.ArrayList.size();
 
 @Controller
 public class SearchController {
@@ -22,6 +24,7 @@ public class SearchController {
     @Autowired
     private PlaygroundDao playgroundDao;
     private static HashMap<String, String> singleSelectAllValues = new HashMap<>();
+    private static HashMap<String, String> playgroundFeatures = new HashMap<>();
 
     //This functionality will helpful when will take playgrounds list from our db not from google directly
     @RequestMapping(value = "")
@@ -43,11 +46,30 @@ public class SearchController {
 
     @RequestMapping(value="search")
     public String search(Model model){
+
         singleSelectAllValues.put("searchTerm", "Keyword");
         singleSelectAllValues.put("location", "Location");
 
         model.addAttribute("singleSelectAllValues", singleSelectAllValues);
         String radioButtonSelectedValue;
+
+
+        playgroundFeatures.put("slides", "Slides");
+        playgroundFeatures.put("ladders", "Ladders");
+        playgroundFeatures.put("parkingLot", "Parking Lot");
+        playgroundFeatures.put("trail", "Trail");
+        playgroundFeatures.put("restroomChangingStation", "Restroom Changing Station");
+        playgroundFeatures.put("waterFountain", "Water Fountain");
+        playgroundFeatures.put("climbingWalls", "Climbing Walls");
+        playgroundFeatures.put("seesaw", "See-saw");
+        playgroundFeatures.put("structures", "Structures");
+        playgroundFeatures.put("swings", "Swings");
+        playgroundFeatures.put("benches", "Benches");
+        playgroundFeatures.put("pavillion","Pavillion");
+        playgroundFeatures.put("sensory","Sensory");
+        playgroundFeatures.put("wheelchairAccessible","Wheelchair Accessible");
+        playgroundFeatures.put("waterFeature","Water Feature");
+        model.addAttribute("playgroundFeatures", playgroundFeatures);
 
         model.addAttribute(new SearchForm());
         return "search/search";
@@ -162,5 +184,9 @@ public class SearchController {
 
         return "redirect:/view/" + editPlayground.getId();
     }
+
+
+
+
 
 }

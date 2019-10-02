@@ -29,8 +29,23 @@
                         <div class="text-center">
                             <button class="btn btn-success" type="submit">Search</button>
                         </div>
-                        <h5>Or Search By <a th:href="@{/searchbylists}">List</a></h5>
                     </form>
+                        <h5>Search By Playground Features</h5>
+                    <form method="post" th:action="@{/searchbyfeatures}">
+                        <div>
+                            <div th:each="feature : ${playgroundFeatures}">
+                                <input name="pFeatures" type="checkbox"
+                                        th:id="${feature.key}"
+                                        th:value="${feature.key}" />
+                                <label th:for="${feature.key}"
+                                        th:text="${feature.value}"></label>
+                            </div>
+                        </div>
+                        <div>
+                            <button type="submit">Search By Feature</button>
+                        </div>
+                    </form>
+                        <h5>Or Search By <a th:href="@{/searchbylists}">List</a></h5>
                 </div>
             </div>
         </div>
