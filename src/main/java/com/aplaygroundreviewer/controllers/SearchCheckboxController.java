@@ -2,6 +2,7 @@ package com.aplaygroundreviewer.controllers;
 
 import com.aplaygroundreviewer.dto.*;
 import com.aplaygroundreviewer.repository.PlaygroundDao;
+import org.hibernate.mapping.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,7 +20,7 @@ public class SearchCheckboxController {
 
     @Autowired
     private PlaygroundDao playgroundDao;
-    private static HashMap<String, String> playgroundFeatures = new HashMap<>();
+    //private static HashMap<String, String> playgroundFeatures = new HashMap<>();
 
 
     @RequestMapping(value = "searchbyfeatures", method = RequestMethod.POST)
@@ -41,7 +42,7 @@ public class SearchCheckboxController {
 
 
         //////LENGTH = 2
-        if (listsize == 2) {
+        /*if (listsize == 2) {
 
             //////PARKING LOT
             //parking lot and trail
@@ -325,17 +326,33 @@ public class SearchCheckboxController {
 
 
 
-        } else if (listsize == 1) {
+        } else*/
+        if (listsize == 1) {
+
+
+            /*for (Playground playground : allPlaygrounds) {
+                for (String item : playgroundFeaturesArrayList) {
+                    if ()
+                }
+
+            }*/
 
             //parking lot
-            if (playgroundFeaturesArrayList.contains("parkingLot")) {
+            if (playgroundFeaturesArrayList.contains("ParkingLot")) {
+
 
                 for (Playground playground : allPlaygrounds) {
                     Accessibility accessibility = playground.getAccessibility();
 
-                    if (accessibility.isParkingLot()) {
+                    //Having working HashMap with Boolean values and strings
+                    HashMap<String, Boolean> booleanValues = new HashMap<>();
+                    booleanValues.put("ParkingLot", accessibility.isParkingLot());
+                    String isParking = "accessibility.isParkingLot()";
+                    boolean varBoolean = Boolean.parseBoolean(isParking); //Return false do to string not being "true"
+
+                    if (booleanValues.get("ParkingLot")) {
                         targetedPlaygrounds.add(playground);
-                    } else {
+                    } else{
                         continue;
                     }
 

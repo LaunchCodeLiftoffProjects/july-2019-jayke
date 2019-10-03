@@ -54,21 +54,21 @@ public class SearchController {
         String radioButtonSelectedValue;
 
 
-        playgroundFeatures.put("slides", "Slides");
-        playgroundFeatures.put("ladders", "Ladders");
-        playgroundFeatures.put("parkingLot", "Parking Lot");
-        playgroundFeatures.put("trail", "Trail");
-        playgroundFeatures.put("restroomChangingStation", "Restroom Changing Station");
-        playgroundFeatures.put("waterFountain", "Water Fountain");
-        playgroundFeatures.put("climbingWalls", "Climbing Walls");
-        playgroundFeatures.put("seesaw", "See-saw");
-        playgroundFeatures.put("structures", "Structures");
-        playgroundFeatures.put("swings", "Swings");
-        playgroundFeatures.put("benches", "Benches");
-        playgroundFeatures.put("pavillion","Pavillion");
-        playgroundFeatures.put("sensory","Sensory");
-        playgroundFeatures.put("wheelchairAccessible","Wheelchair Accessible");
-        playgroundFeatures.put("waterFeature","Water Feature");
+        playgroundFeatures.put("Slides", "Slides");
+        playgroundFeatures.put("Ladders", "Ladders");
+        playgroundFeatures.put("ParkingLot", "Parking Lot");
+        playgroundFeatures.put("Trail", "Trail");
+        playgroundFeatures.put("RestroomChangingStation", "Restroom Changing Station");
+        playgroundFeatures.put("WaterFountain", "Water Fountain");
+        playgroundFeatures.put("ClimbingWalls", "Climbing Walls");
+        playgroundFeatures.put("Seesaw", "See-saw");
+        playgroundFeatures.put("Structures", "Structures");
+        playgroundFeatures.put("Swings", "Swings");
+        playgroundFeatures.put("Benches", "Benches");
+        playgroundFeatures.put("Pavillion","Pavillion");
+        playgroundFeatures.put("Sensory","Sensory");
+        playgroundFeatures.put("WheelchairAccessible","Wheelchair Accessible");
+        playgroundFeatures.put("WaterFeature","Water Feature");
         model.addAttribute("playgroundFeatures", playgroundFeatures);
 
         model.addAttribute(new SearchForm());
