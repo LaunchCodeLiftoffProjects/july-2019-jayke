@@ -79,7 +79,7 @@ public class SearchCheckboxController {
                     }
                 }
 
-                //If all CheckboxItem objects in checkboxItemArrayList are "true" (check via counterForCheckboxItemArrayList), add playground object to targeted playgrounds.
+                //If all CheckboxItem objects in checkboxItemArrayList are "true" (check via counterForCheckboxItemArrayList), add playground object to targetedPlaygrounds arraylist.
                 if (checkboxItemArrayList.size() > listSizeMinusOne && counterForCheckboxItemArrayList == listsize) {
                     targetedPlaygrounds.add(playground);
                 }
