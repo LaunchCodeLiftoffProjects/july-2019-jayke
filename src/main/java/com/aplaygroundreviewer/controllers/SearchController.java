@@ -65,7 +65,7 @@ public class SearchController {
         playgroundFeatures.put("Structures", "Structures");
         playgroundFeatures.put("Swings", "Swings");
         playgroundFeatures.put("Benches", "Benches");
-        playgroundFeatures.put("Pavillion","Pavillion");
+        playgroundFeatures.put("Pavillion","Pavilion");
         playgroundFeatures.put("Sensory","Sensory");
         playgroundFeatures.put("WheelchairAccessible","Wheelchair Accessible");
         playgroundFeatures.put("WaterFeature","Water Feature");
