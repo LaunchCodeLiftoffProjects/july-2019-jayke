@@ -8,6 +8,7 @@ import javax.validation.constraints.Size;
 public class Playground {
 
     @Id
+    //@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
     @GeneratedValue(strategy=GenerationType.AUTO)
     private int id;
 
