@@ -1,9 +1,6 @@
 package com.aplaygroundreviewer.controllers;
 
-import com.aplaygroundreviewer.dto.Equipment;
-import com.aplaygroundreviewer.dto.Playground;
-import com.aplaygroundreviewer.dto.PlaygroundInfo;
-import com.aplaygroundreviewer.dto.SearchForm;
+import com.aplaygroundreviewer.dto.*;
 import com.aplaygroundreviewer.repository.PlaygroundDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,6 +9,9 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -33,12 +33,36 @@ public class SearchController {
         List<Playground> playgrounds = playgroundDao.findAll();
         List<PlaygroundInfo> list = new ArrayList<>();
 
+
+        String csvFile = "/Users/Lillian/csv/googleKey.txt";
+        String line = "";
+        String cvsSplitBy = ",";
+        List<AKey> toHoldKey = new ArrayList<>();
+
+        try (BufferedReader br = new BufferedReader(new FileReader(csvFile))) {
+            while ((line = br.readLine()) != null) {
+                String[] theKeys = line.split(cvsSplitBy);
+                String arrayItemToKey = theKeys[0];
+
+
+                AKey akey = new AKey(arrayItemToKey);
+                toHoldKey.add(akey);
+                //String whatever = "whatever";
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+        //AKey akey = new AKey();
+
         for (int i = 0; i < playgrounds.size(); i++) {
             Playground playground = playgrounds.get(i);
             String url = "http://localhost:8080/list/view/"+playground.getId();
             list.add(PlaygroundInfo.builder().playgroundName(playground.getName()).playgroundAddress(playground.getAddress()).url(url).build());
         }
 
+        model.addAttribute("aKey", toHoldKey.get(0));
         model.addAttribute("list", list);
 
         return "index";
